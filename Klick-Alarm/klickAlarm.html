@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klick-Alarm</title>
+    <!-- <link rel="stylesheet" href="./klickAlarm.css"> -->
+
+    <style>
+        body {
+            background-color: lightslategray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        button {
+            width: 200px;
+            height: 200px;
+            background-color: lightgreen;
+            border-radius: 50%;
+            border: 2px solid black;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: green;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="button">Zeige Text</button>
+
+
+    <script>
+
+        let button = document.getElementById("button");
+
+        button.addEventListener("click", function () {
+            button.innerText = "Button wurde gedrückt!";
+            button.style.background = "orange";
+        });
+
+
+
+    </script>
+
+    <!-- <script src="./klickAlarm.js"></script> -->
+
+    <!--
+    Feedback:
+
+    Dein Code sieht sehr gut aus! Du hast den Button korrekt erstellt und gestylt. Der Hover-Effekt sowie die Klick-Interaktion funktionieren wie vorgesehen. Es gibt nur ein paar kleine Anmerkungen:
+
+    HTML: Der link-Tag für das Stylesheet enthält eine URL ("href="#"), die vermutlich nicht benötigt wird, da du das CSS inline im style-Tag definiert hast. Du kannst den <link>-Tag entfernen, da er aktuell nicht verwendet wird.
+
+    JavaScript: Du hast den Text des Buttons nach dem Klick korrekt geändert und den Button-Hintergrund auf "orange" gesetzt. Falls du stattdessen einen alert möchtest (wie ursprünglich in der Aufgabe angegeben), könntest du zusätzlich einen Alert einfügen.
+
+    Hier wäre der JavaScript-Code mit dem Alert:
+
+
+    button.addEventListener("click", function () {
+    alert("Button wurde geklickt!");
+    button.innerText = "Button wurde gedrückt!";
+    button.style.background = "orange";
+    });
+    -->
+</body>
+
+</html>
