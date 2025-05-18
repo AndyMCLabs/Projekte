@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ClickQuest - Rise of the Clicklord</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+    <h1>⚔️ ClickQuest ⚔️<br> Rise of the Clicklord</h1>
+    <p>Level: <span id="level">1</span></p>
+    <p>Klicks: <span id="points">0</span></p>
+    <p>Zeit: <span id="timer">30</span>s</p>
+    <button id="click-btn" title="Klick so schnell du kannst!">Klick mich, Held!</button>
+    <p id="message"></p>
+    <audio id="bg-music" src="./cartoon-toot-toot-tuesday.mp3" loop></audio>
+    <audio id="click-sound" src="./metalhit.mp3" preload="auto"></audio>
+    <div id="time-bonus" class="hidden">⏱️ + Zeit!</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

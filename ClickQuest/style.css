@@ -1,0 +1,71 @@
+body {
+  font-family: "Trebuchet MS", sans-serif;
+  background: linear-gradient(to right, #1a1a40, #0f0f2e);
+  color: orangered;
+  text-align: center;
+  padding: 50px;
+
+  background-image: url('./ClickQuest.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+
+.game-container {
+  background-color: hsla(235, 35%, 24%, 0.75);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #000c50;
+  max-width: 500px;
+  margin: auto;
+}
+
+#click-btn {
+  position: absolute; /* Sehr wichtig für das Springen! */
+  transition: top 0.3s, left 0.3s; /* Smooth movement! */
+  padding: 15px 30px;
+  font-size: 18px;
+  margin-top: 20px;
+  color: orange;
+  background-color: #000c50;
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.1s ease-in-out;
+}
+
+#click-btn:hover {
+  transform: scale(1.05);
+  background-color: #000c50;
+  box-shadow: 0 0 20px orangered;
+}
+
+#time-bonus {
+  position: absolute;
+  padding: 10px 20px;
+  background-color: gold;
+  border: 2px solid #333;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+  animation: float 2s infinite alternate;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
