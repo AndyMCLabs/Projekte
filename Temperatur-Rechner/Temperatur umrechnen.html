@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperatur-Rechner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            background: linear-gradient(to right, blue, red);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .results div {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperatur-Rechner</h1>
+        <p>Geben Sie eine Temperatur in einem der Felder ein und klicken Sie auf die entsprechende Schaltfläche, um die Umrechnungen durchzuführen.</p>
+        
+        <div class="input-group">
+            <input type="number" id="kelvinInput" placeholder="Temperatur in Kelvin" step="any">
+            <button onclick="convertFromKelvin()">Umrechnen</button>
+        </div>
+        <div class="input-group">
+            <input type="number" id="celsiusInput" placeholder="Temperatur in Celsius" step="any">
+            <button onclick="convertFromCelsius()">Umrechnen</button>
+        </div>
+        <div class="input-group">
+            <input type="number" id="fahrenheitInput" placeholder="Temperatur in Fahrenheit" step="any">
+            <button onclick="convertFromFahrenheit()">Umrechnen</button>
+        </div>
+        <div class="input-group">
+            <input type="number" id="newtonInput" placeholder="Temperatur in Newton" step="any">
+            <button onclick="convertFromNewton()">Umrechnen</button>
+        </div>
+        
+        <div class="results">
+            <div id="kelvinResult"></div>
+            <div id="celsiusResult"></div>
+            <div id="fahrenheitResult"></div>
+            <div id="newtonResult"></div>
+        </div>
+    </div>
+
+    <script>
+        function convertFromKelvin() {
+            const kelvin = parseFloat(document.getElementById('kelvinInput').value);
+            if (isNaN(kelvin)) {
+                alert('Bitte geben Sie eine gültige Zahl ein.');
+                return;
+            }
+            const celsius = kelvin - 273.15;
+            const fahrenheit = celsius * (9 / 5) + 32;
+            const newton = celsius * (33 / 100);
+            document.getElementById('kelvinResult').innerText = `Kelvin: ${kelvin} K`;
+            document.getElementById('celsiusResult').innerText = `Celsius: ${celsius.toFixed(2)} °C`;
+            document.getElementById('fahrenheitResult').innerText = `Fahrenheit: ${fahrenheit.toFixed(2)} °F`;
+            document.getElementById('newtonResult').innerText = `Newton: ${newton.toFixed(2)} °N`;
+        }
+
+        function convertFromCelsius() {
+            const celsius = parseFloat(document.getElementById('celsiusInput').value);
+            if (isNaN(celsius)) {
+                alert('Bitte geben Sie eine gültige Zahl ein.');
+                return;
+            }
+            const kelvin = celsius + 273.15;
+            const fahrenheit = celsius * (9 / 5) + 32;
+            const newton = celsius * (33 / 100);
+            document.getElementById('kelvinResult').innerText = `Kelvin: ${kelvin.toFixed(2)} K`;
+            document.getElementById('celsiusResult').innerText = `Celsius: ${celsius} °C`;
+            document.getElementById('fahrenheitResult').innerText = `Fahrenheit: ${fahrenheit.toFixed(2)} °F`;
+            document.getElementById('newtonResult').innerText = `Newton: ${newton.toFixed(2)} °N`;
+        }
+
+        function convertFromFahrenheit() {
+            const fahrenheit = parseFloat(document.getElementById('fahrenheitInput').value);
+            if (isNaN(fahrenheit)) {
+                alert('Bitte geben Sie eine gültige Zahl ein.');
+                return;
+            }
+            const celsius = (fahrenheit - 32) * (5 / 9);
+            const kelvin = celsius + 273.15;
+            const newton = celsius * (33 / 100);
+            document.getElementById('kelvinResult').innerText = `Kelvin: ${kelvin.toFixed(2)} K`;
+            document.getElementById('celsiusResult').innerText = `Celsius: ${celsius.toFixed(2)} °C`;
+            document.getElementById('fahrenheitResult').innerText = `Fahrenheit: ${fahrenheit} °F`;
+            document.getElementById('newtonResult').innerText = `Newton: ${newton.toFixed(2)} °N`;
+        }
+
+        function convertFromNewton() {
+            const newton = parseFloat(document.getElementById('newtonInput').value);
+            if (isNaN(newton)) {
+                alert('Bitte geben Sie eine gültige Zahl ein.');
+                return;
+            }
+            const celsius = newton * (100 / 33);
+            const kelvin = celsius + 273.15;
+            const fahrenheit = celsius * (9 / 5) + 32;
+            document.getElementById('kelvinResult').innerText = `Kelvin: ${kelvin.toFixed(2)} K`;
+            document.getElementById('celsiusResult').innerText = `Celsius: ${celsius.toFixed(2)} °C`;
+            document.getElementById('fahrenheitResult').innerText = `Fahrenheit: ${fahrenheit.toFixed(2)} °F`;
+            document.getElementById('newtonResult').innerText = `Newton: ${newton} °N`;
+        }
+    </script>
+</body>
+</html>
