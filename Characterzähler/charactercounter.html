@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character-Counter</title>
+
+    <!-- Style -->
+    <style>
+        body {
+            background-color: #787355;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #mainContainer {
+            background-color: #99B09B;
+            width: 600px;
+            padding: 50px;
+            border: 1px solid black;
+            border-radius: 2.5rem;
+            box-shadow: 0 0 0.5rem black;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            align-items: center;
+        }
+
+        textarea {
+            background-color: #B59CEC;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0.2rem black;
+            width: 99%;
+            height: 20%;
+            margin-bottom: 2%;
+            height: 30vh;
+        }
+
+        p {
+            margin-bottom: 1%;
+            font-size: 1.2rem;
+            border-radius: 1rem;
+            transition: color 1s, background-color 1s;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #mainContainer {
+                width: auto;
+            }
+        };
+    </style>
+</head>
+
+<body>
+
+    <div id="mainContainer">
+        <h1 aria-label="Character Zähler">Character-Zähler</h1>
+        <textarea name="textArea" id="textArea" placeholder="Gib deinen Text ein..." oninput="characterCount()"
+            aria-label="Textfeld"></textarea>
+        <p id="zeichenAnzahl" aria-label="Ergebnis Anzeige">Ergebnis: 0</p>
+        <p id="maxCharactersResult" aria-label="Zeichen verbleibend">Verbleibend: 200</p>
+    </div>
+
+    <!-- Script-->
+    <script>
+
+        // Variablen deklarieren
+        const textAreaEl = document.getElementById("textArea"); // Textfeld
+        const zeichenAnzahlEl = document.getElementById("zeichenAnzahl"); // p-Element
+        const maxCharactersResultEl = document.getElementById("maxCharactersResult"); // Verbleibend
+
+        // Funktion definieren
+        function characterCount() {
+            let textAreaValue = textAreaEl.value; // Zahl aus Textfeld beziehen
+            let textAreaLength = textAreaValue.length; // Zählen der Zeichen
+            zeichenAnzahlEl.innerText = "Ergebnis: " + textAreaLength; // Ausgabe der Zeichen
+
+            const maxChars = 200; // maximale Zeichen
+            let charsVerbleibend = 200 - textAreaLength; // Zeichen verbleibend
+            maxCharactersResultEl.innerText = "Verbleibend: " + charsVerbleibend; // Ausgabe Zeichen verbleibend
+
+            if (charsVerbleibend < 0) {
+                maxCharactersResultEl.innerText = "Zeichenbegrenzung erreicht!" // Infomeldung
+                maxCharactersResultEl.style.color = "red"; // rot, wenn kleiner 0
+                maxCharactersResultEl.style.backgroundColor = "black"; // Hintergrund schwarz
+                maxCharactersResultEl.style.textAlign = "center" // Text zentriert
+            } else {
+                maxCharactersResultEl.style.color = "black"; // schwarz, wenn größer als 0
+                maxCharactersResultEl.style.backgroundColor = "#99B09B"; // Hintergrund wie Container
+                maxCharactersResultEl.style.textAlign = "left"; // Text wieder links
+            };
+        };
+
+    </script>
+</body>
+
+</html>
+
+<!--
+Ich gebe deinem Projekt eine **1** (sehr gut)! Es sieht gut durchdacht aus, funktioniert korrekt und ist sauber strukturiert. Hier ist detailliertes Feedback:
+
+### Was gut gelungen ist:
+1. **Struktur**: Die HTML- und CSS-Struktur ist klar und gut organisiert. Du verwendest sinnvolle IDs und Klassen.
+2. **Design und Styling**: Dein Layout mit flexbox für die Ausrichtung ist gut gewählt, und die Farben sowie der Schatten geben dem Projekt ein ansprechendes Aussehen.
+3. **Responsives Design**: Du hast daran gedacht, das Layout mit einer Media Query für kleinere Bildschirme anzupassen – ein wichtiger Punkt!
+4. **JavaScript-Logik**: Deine JavaScript-Funktion funktioniert korrekt und aktualisiert die Zeichenanzahl sowie die verbleibenden Zeichen. Die Bedingung für das Erreichen des Zeichenlimits ist gut gelöst.
+5. **Barrierefreiheit**: Du hast `aria-labels` verwendet, was gut für die Barrierefreiheit ist.
+
+### Verbesserungspotenzial:
+1. **HTML-Kommentar überflüssig**: Stylesheet und Script Kommentare: Diese sind überflüssig und könnten entfernt werden, wenn sie nicht gebraucht werden. ENTFERNT!!
+    2. **Struktur des Skripts**: Anstelle von `document.getElementById("textArea").value` könntest du direkt `textAreaEl.value` verwenden, da du das Element bereits als Konstante definiert hast. GEÄNDERT!!
+    3. **Verwaltung der maximalen Zeichenanzahl**: Die maximale Zeichenanzahl könnte ebenfalls als eine Konstante definiert werden, um es leichter zu ändern, wenn man das Projekt später anpasst. Beispiel:
+       ```js
+       const maxChars = 200; GEÄNDERT!!
+       ```
+    4. **Styling-Optimierung**: Du könntest einen sanften Übergang (`transition`) hinzufügen, wenn die Farben sich ändern, um es flüssiger wirken zu lassen:
+       ```css
+       transition: color 0.3s, background-color 0.3s; ---- HINZUGEFÜGT!!
+       ```
+    
+    ### Zusammenfassung:
+    Du hast ein sehr sauberes und funktionales Projekt erstellt. Es ist sowohl inhaltlich als auch vom Code-Stil sehr gut gemacht und zeigt, dass du ein gutes Verständnis für HTML, CSS und JavaScript hast. Klasse Arbeit!
+-->
+
+<!--
+    Dein überarbeitetes Projekt bekommt von mir wieder eine **1** (sehr gut)! Du hast bereits eine sehr starke Grundlage, und die Verbesserungen, die du vorgenommen hast, sind sinnvoll. Hier ist das detaillierte Feedback:
+
+### Was du verbessert hast:
+1. **Optimierte Variable-Zuweisungen**: Du hast die `document.getElementById`-Aufrufe reduziert, indem du die Elementvariablen gleich am Anfang definiert hast. Das ist effizienter und verbessert die Lesbarkeit des Codes.
+2. **Übergang (Transition)**: Du hast dem `<p>`-Element eine Übergangsanimation hinzugefügt, um die Farb- und Hintergrundänderungen bei Überschreiten der Zeichenanzahl flüssiger zu gestalten. Das gibt dem Projekt eine polierte, visuelle Verbesserung.
+3. **Direkte Ausgabe der Zeichenanzahl**: Du hast einen Ausgangswert von "Ergebnis: 0" und "Verbleibend: 200" direkt in die Anzeige integriert, was den initialen Zustand klar macht. Gute Wahl!
+
+### Was weiterhin sehr gut ist:
+- **Design und User Experience**: Die Farbwahl und das Layout sind sehr benutzerfreundlich. Das Textfeld hebt sich optisch gut vom Hintergrund ab und die Nutzung von flexbox sorgt für eine schöne Zentrierung des Inhalts.
+- **JavaScript-Logik**: Deine Funktion funktioniert reibungslos und deckt die Anforderungen des Projekts ab. Die Bedingungen für das Zeichenlimit werden korrekt behandelt.
+- **Barrierefreiheit**: Die Verwendung von `aria-labels` zur Verbesserung der Zugänglichkeit bleibt ein Pluspunkt.
+
+### Verbesserungsvorschläge (optional):
+1. **Code-Verkürzung für die verbleibenden Zeichen**:
+   Du könntest die verbleibende Zeichenanzahl in einer Konstante speichern, um die Berechnung an mehreren Stellen zu vermeiden:
+   ```js
+   const charsVerbleibend = maxChars - textAreaLength;
+   ```
+   Das spart ein wenig Redundanz.
+   
+2. **Styling-Optimierung (zentrierter Text)**:
+   Anstatt die Textausrichtung mit JavaScript zu ändern, könntest du dies direkt über CSS regeln und nur die Farbe und den Hintergrund bei Bedarf dynamisch ändern:
+   ```css
+   text-align: center;
+   ```
+
+### Zusammenfassung:
+Dein Projekt ist visuell und funktional sehr ansprechend. Du hast sowohl strukturell als auch in Bezug auf Benutzerfreundlichkeit und Zugänglichkeit sehr gute Entscheidungen getroffen. Auch die Implementierung der JavaScript-Funktion ist effizient und gut lesbar. Mit diesen kleinen Anpassungen bist du auf einem exzellenten Weg, weiter zu lernen und deine Fähigkeiten zu verfeinern.
+-->
