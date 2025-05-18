@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date-and-Time</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+
+    <!-------------------->
+    <style>
+
+        body {
+            background-color: #8A80B3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        #time {
+            width: 300px;
+            padding: 50px;
+            background-color: #06BBBD;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #date {
+            margin-top: 50px;
+            width: 300px;
+            padding: 50px;
+            background-color: #2D4697;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+
+    </style>
+    <!-------------------->
+
+</head>
+
+
+
+<body>
+
+    <!-------------------->
+
+    <h1>Zeit und Datum</h1>
+    <div id="time" aria-live="polite">00:00</div>
+    <div id="date" aria-live="polite">Date</div>
+
+    <!-------------------->
+
+    <!-------------------->
+    <script>
+
+    let timeEl = document.getElementById("time");
+    let dateEl = document.getElementById("date");
+    let time;
+    let date;
+
+    function getTime (){
+        time = new Date();
+        let timeOnly = time.toLocaleTimeString();
+        timeEl.innerText = timeOnly + " Uhr";
+    }
+
+    setInterval(getTime, 1000);
+
+
+    function getDate() {
+        date = new Date();
+        let dateOnly = date.toLocaleDateString()
+        dateEl.innerText = dateOnly;
+    }
+
+    setInterval(getDate, 1000);
+
+    getTime();
+    getDate();
+
+
+    </script>
+    <!-------------------->
+
+
+    <!-- <script src="#"></script> -->
+</body>
+
+<!--
+
+Dein Code sieht schon richtig gut aus! Du hast sowohl die HTML-Struktur als auch das CSS und JavaScript sauber aufgebaut. Ich gebe dir ein paar Hinweise, um es noch besser zu machen:
+
+### Feedback zu deinem Code:
+
+1. **CSS-Styling:**
+   - Das Design ist übersichtlich und gut strukturiert. Die Farben harmonieren gut miteinander, und der Text ist gut lesbar.
+   - Die Breite von `#time` und `#date` ist gleich, was das Layout konsistent macht. Super!
+
+2. **JavaScript:**
+   - Du verwendest `setInterval` richtig, um die Uhrzeit und das Datum regelmäßig zu aktualisieren. Das passt perfekt!
+   - Die Nutzung von `toLocaleTimeString()` und `toLocaleDateString()` ist effizient und bietet eine gute Formatierung.
+   - **Kleine Optimierung:** Du könntest beide Funktionen in eine zusammenfassen, um Redundanz zu vermeiden. Wenn du das aber getrennt halten möchtest, ist das auch völlig in Ordnung!
+
+3. **Verbesserungsvorschläge:**
+   - **Uhrzeit sofort anzeigen:** Aktuell wird die Zeit und das Datum erst nach einem Intervall angezeigt. Du könntest die Funktionen `getTime()` und `getDate()` direkt nach der Definition einmal ausführen, damit sie sofort die Werte setzen, bevor das Intervall startet. Beispiel:
+     ```javascript
+     getTime();
+     getDate();
+     ```
+   - **Datums- und Zeitformat anpassen (optional):** Wenn du das Format des Datums oder der Uhrzeit ändern möchtest, kannst du in `toLocaleDateString()` oder `toLocaleTimeString()` zusätzliche Optionen übergeben. Beispielsweise:
+     ```javascript
+     let dateOnly = date.toLocaleDateString('de-DE', {
+       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+     });
+     ```
+
+4. **Zugänglichkeit:**
+   - Wenn du an die Barrierefreiheit deiner Seite denkst, könntest du für die Elemente `#time` und `#date` noch zusätzliche Attribute wie `aria-live="polite"` hinzufügen, um Screenreadern mitzuteilen, dass sich der Inhalt automatisch aktualisiert.
+
+Ansonsten ist das ein sehr solider Ansatz! Wenn du diese Punkte durchgehst, bist du auf einem guten Weg. Lass mich wissen, wie du weiterkommst!
+-->
+
+</html>

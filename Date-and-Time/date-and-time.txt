@@ -1,0 +1,206 @@
+Das `Date`-Objekt in JavaScript ist ein integriertes Objekt, das Datums- und Zeitinformationen speichert und verschiedene Methoden bietet, um mit Datum und Uhrzeit zu arbeiten. Hier ist eine vollständige Übersicht:
+
+### 1. **Erstellen eines `Date`-Objekts**
+
+Es gibt mehrere Möglichkeiten, ein `Date`-Objekt zu erstellen:
+
+```javascript
+let heute = new Date();  // aktuelles Datum und Zeit
+```
+
+Du kannst auch ein bestimmtes Datum angeben:
+```javascript
+let bestimmtesDatum = new Date('2024-10-01'); // 1. Oktober 2024
+let datumMitZeit = new Date('2024-10-01T12:00:00'); // 1. Oktober 2024, 12:00 Uhr
+```
+
+Du kannst das Datum auch mit numerischen Werten angeben:
+```javascript
+let datum = new Date(2024, 9, 1); // 1. Oktober 2024 (Monat 9, da Januar 0 ist)
+```
+
+### 2. **Wichtige Methoden des `Date`-Objekts**
+
+#### **Abrufen von Teilen des Datums**
+- `getFullYear()`: Gibt das Jahr zurück.
+  ```javascript
+  heute.getFullYear(); // z.B. 2024
+  ```
+- `getMonth()`: Gibt den Monat zurück (0 = Januar, 11 = Dezember).
+  ```javascript
+  heute.getMonth(); // z.B. 9 für Oktober
+  ```
+- `getDate()`: Gibt den Tag des Monats zurück.
+  ```javascript
+  heute.getDate(); // z.B. 1
+  ```
+- `getDay()`: Gibt den Wochentag zurück (0 = Sonntag, 6 = Samstag).
+  ```javascript
+  heute.getDay(); // z.B. 3 für Mittwoch
+  ```
+- `getHours()`, `getMinutes()`, `getSeconds()`, `getMilliseconds()`: Gibt Stunden, Minuten, Sekunden oder Millisekunden zurück.
+  ```javascript
+  heute.getHours(); // z.B. 14 (für 14 Uhr)
+  ```
+
+#### **Einstellen von Teilen des Datums**
+- `setFullYear()`, `setMonth()`, `setDate()`: Ändern das Jahr, den Monat oder den Tag.
+  ```javascript
+  datum.setFullYear(2025); // Jahr auf 2025 ändern
+  ```
+  
+- `setHours()`, `setMinutes()`, `setSeconds()`, `setMilliseconds()`: Ändern Stunden, Minuten, Sekunden oder Millisekunden.
+  ```javascript
+  datum.setHours(12); // Uhrzeit auf 12 Uhr setzen
+  ```
+
+### 3. **Zeitstempel**
+Der Zeitstempel ist die Anzahl der Millisekunden seit dem 1. Januar 1970 (Unix-Epoche):
+- `getTime()`: Gibt den Zeitstempel zurück.
+  ```javascript
+  datum.getTime(); // z.B. 1727289600000
+  ```
+- `Date.now()`: Gibt den aktuellen Zeitstempel zurück.
+  ```javascript
+  Date.now(); // aktueller Zeitstempel
+  ```
+
+### 4. **Vergleiche von Daten**
+Du kannst Datumsobjekte vergleichen, indem du ihre Zeitstempel nutzt:
+```javascript
+let datum1 = new Date('2024-10-01');
+let datum2 = new Date('2024-12-01');
+if (datum1 < datum2) {
+    console.log("Datum1 ist früher");
+}
+```
+
+### 5. **Datum als String**
+- `toString()`: Gibt das Datum als String im Standardformat zurück.
+  ```javascript
+  datum.toString(); // z.B. "Tue Oct 01 2024 12:00:00 GMT+0200"
+  ```
+- `toDateString()`: Gibt nur das Datum ohne Zeit zurück.
+  ```javascript
+  datum.toDateString(); // z.B. "Tue Oct 01 2024"
+  ```
+- `toISOString()`: Gibt das Datum im ISO 8601 Format zurück.
+  ```javascript
+  datum.toISOString(); // z.B. "2024-10-01T12:00:00.000Z"
+  ```
+
+### 6. **Zeitzonen**
+- `getTimezoneOffset()`: Gibt den Unterschied zur UTC-Zeit in Minuten zurück.
+  ```javascript
+  datum.getTimezoneOffset(); // z.B. -120 für UTC+2
+  ```
+
+### 7. **Zusätzliche nützliche Methoden**
+- `toLocaleDateString()`: Gibt das Datum in einem lokalen Format zurück.
+  ```javascript
+  datum.toLocaleDateString('de-DE'); // z.B. "01.10.2024" im deutschen Format
+  ```
+- `toLocaleTimeString()`: Gibt die Uhrzeit im lokalen Format zurück.
+  ```javascript
+  datum.toLocaleTimeString(); // z.B. "12:00:00"
+  ```
+
+Mit diesen Methoden kannst du sowohl Daten verarbeiten als auch Zeitinformationen nach Bedarf formatieren und vergleichen!
+
+-----
+-----
+
+Die Methode `setInterval()` in JavaScript wird verwendet, um eine Funktion oder einen Codeblock wiederholt in einem festgelegten Zeitintervall auszuführen. Diese Methode ist besonders nützlich für Timer, Animationen oder für regelmäßige Aktualisierungen in einer Anwendung.
+
+### Syntax
+
+Die allgemeine Syntax für `setInterval()` lautet:
+
+```javascript
+setInterval(function, delay, arg1, arg2, ...);
+```
+
+- **function**: Die Funktion oder der Codeblock, der wiederholt ausgeführt werden soll.
+- **delay**: Die Zeitspanne in Millisekunden (1 Sekunde = 1000 Millisekunden), nach der die Funktion wiederholt aufgerufen wird.
+- **arg1, arg2, ...**: (optional) Argumente, die an die Funktion übergeben werden.
+
+### Beispiel
+
+Hier ist ein einfaches Beispiel, das jede Sekunde eine Nachricht in der Konsole ausgibt:
+
+```javascript
+function meineFunktion() {
+    console.log("Diese Nachricht wird jede Sekunde angezeigt.");
+}
+
+let intervalId = setInterval(meineFunktion, 1000); // alle 1000 ms (1 Sekunde)
+```
+
+### Wichtige Punkte
+
+1. **Identifikator zurückgeben**:
+   `setInterval()` gibt einen Identifikator zurück, den du speichern kannst. Dieser Identifikator kann später verwendet werden, um das Intervall mit `clearInterval()` zu stoppen.
+
+   ```javascript
+   let intervalId = setInterval(meineFunktion, 1000);
+   ```
+
+2. **Beenden des Intervalls**:
+   Um das Intervall zu stoppen, verwendest du die `clearInterval()`-Funktion, die den zuvor zurückgegebenen Identifikator als Argument benötigt.
+
+   ```javascript
+   clearInterval(intervalId); // stoppt das Intervall
+   ```
+
+3. **Timing**:
+   Der `delay`-Wert gibt an, wie oft die Funktion ausgeführt wird. Beachte, dass die Zeit, die für die Ausführung der Funktion benötigt wird, nicht in den `delay`-Wert einfließt. Das bedeutet, dass die Funktion eventuell mehr Zeit benötigt als das angegebene Intervall, was zu unerwarteten Ergebnissen führen kann, wenn die Ausführungszeit hoch ist.
+
+4. **Argumente**:
+   Wenn du Argumente an die Funktion übergeben möchtest, kannst du sie direkt in der `setInterval()`-Aufrufreihe angeben:
+
+   ```javascript
+   function begruessung(name) {
+       console.log(`Hallo, ${name}!`);
+   }
+
+   let intervalId = setInterval(begruessung, 1000, "Alice"); // "Alice" wird als Argument übergeben
+   ```
+
+5. **Verwendung mit anonymen Funktionen**:
+   Du kannst auch anonyme Funktionen verwenden, um direkten Code auszuführen, ohne eine benannte Funktion zu definieren:
+
+   ```javascript
+   let intervalId = setInterval(() => {
+       console.log("Dies ist eine anonyme Funktion, die jede Sekunde ausgeführt wird.");
+   }, 1000);
+   ```
+
+### Anwendungsfälle
+
+- **Uhr**: Eine digitale Uhr erstellen, die jede Sekunde aktualisiert wird.
+- **Animation**: Ein sich bewegendes Element auf einer Webseite erstellen.
+- **Datenaktualisierung**: Regelmäßige Aktualisierungen von Daten von einem Server abrufen.
+
+### Beispiel: Countdown-Timer
+
+Hier ist ein einfaches Beispiel für einen Countdown-Timer:
+
+```javascript
+let countdown = 10; // 10 Sekunden Countdown
+
+let intervalId = setInterval(() => {
+    console.log(countdown);
+    countdown--;
+
+    if (countdown < 0) {
+        clearInterval(intervalId); // Stoppt das Intervall, wenn der Countdown abgelaufen ist
+        console.log("Countdown beendet!");
+    }
+}, 1000);
+```
+
+In diesem Beispiel wird die Zahl jede Sekunde um eins verringert, und wenn sie null erreicht, wird das Intervall gestoppt.
+
+### Fazit
+
+`setInterval()` ist eine leistungsstarke Methode in JavaScript, um wiederholte Aktionen im Zeitintervall auszuführen. Sie ist vielseitig einsetzbar, von einfachen Animationen bis hin zu komplexen Datenaktualisierungen. Das richtige Management der Intervalle ist wichtig, um unerwartete Ergebnisse oder Performance-Probleme zu vermeiden.
