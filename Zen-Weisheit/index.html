@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen-Weisheiten</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('./zen-1920x1080-interior-tree-25694.jpg');
+            /* Hintergrundbild */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            /* Zentriert die Elemente horizontal */
+            align-items: center;
+            /* Zentriert die Elemente vertikal */
+            height: 100vh;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.1);
+            /* Halbtransparenter Hintergrund für besseren Kontrast */
+            border-radius: 10px;
+            padding: 20px;
+            width: 400px;
+            height: 150px;
+            text-align: center;
+            transition: 60s;
+        }
+
+        .container:hover {
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 10px;
+            transition: 1s;
+        }
+
+        button:hover {
+            background-color: #306d33;
+        }
+
+        audio {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="container" title="60 Sekunden Timer aktiv.">
+            <h1>Finde deine innere Ruhe</h1>
+            <p id="quote"></p>
+        </div>
+            <button onclick="generateQuote()">Erhalte eine Zen-Weisheit</button>
+            <audio controls title="Meditations-Musik">
+                <source src="./Inner Peace.mp3" type="audio/mpeg">
+                Dein Browser unterstützt dieses Audio-Format nicht.
+            </audio>
+    </div>
+
+    <script>
+        const quotes = [
+            "Sei hier, sei jetzt.",
+            "Der Weg ist das Ziel.",
+            "Leer deinen Geist, sei formlos, gestaltlos wie Wasser.",
+            "In der Stille findet man die Antworten, die man in der Hektik des Lebens verpasst.",
+            "Nichts ist besonders, außer der Moment, in dem du lebst.",
+            "Lass los, was du nicht kontrollieren kannst.",
+            "Ein Vogel singt nicht, weil er eine Antwort hat, er singt, weil er ein Lied hat.",
+            "Schau auf den Mond und nicht auf den Finger, der darauf zeigt.",
+            "Wenn du gehst, dann geh. Wenn du sitzt, dann sitz. Aber wanke nicht.",
+            "Der wahre Sieg ist der Sieg über sich selbst.",
+            "Ein Tropfen Wasser kann den Ozean spiegeln.",
+            "Beobachte deine Gedanken, aber sei nicht ihre Gefangener.",
+            "Die Blume fällt, auch wenn wir es nicht wollen. Das Unkraut wächst, auch wenn wir es nicht wollen.",
+            "Du kannst nicht den Weg des Friedens gehen, wenn du im Herzen Krieg führst.",
+            "Ein Schritt vorwärts, ein Schritt zurück – es gibt keinen richtigen Weg.",
+            "Ein voller Magen mag gut sein, aber ein leerer Geist ist besser.",
+            "Lerne, den Lärm der Welt nicht zu hören.",
+            "Der Bambus, der sich biegt, überlebt den Sturm.",
+            "Das größte Wunder ist, alles zu sehen, ohne zu urteilen.",
+            "Die wahre Natur zeigt sich, wenn du nichts mehr suchst.",
+            "Alles, was wir sind, ist das Ergebnis dessen, was wir gedacht haben.",
+            "Stille ist eine Quelle großer Kraft.",
+            "Wer über andere siegt, ist stark. Wer sich selbst besiegt, ist mächtig.",
+            "Glück entsteht oft durch Aufmerksamkeit in kleinen Dingen, Unglück oft durch Vernachlässigung kleiner Dinge.",
+            "Fülle deinen Kopf mit Zen, nicht mit Sorgen.",
+            "Der größte Fehler ist, nichts aus Angst, Fehler zu machen, zu tun.",
+            "Das Leben ist wie ein Fluss, es geht weiter, egal was passiert.",
+            "Auch der längste Weg beginnt mit einem ersten Schritt.",
+            "Denke weniger, fühle mehr.",
+            "Das Leben ist ein Gleichgewicht zwischen Halten und Loslassen.",
+            "Das Gras wächst nicht schneller, wenn man daran zieht.",
+            "Lass das Leben geschehen, ohne es festzuhalten.",
+            "Nicht das Beginnen wird belohnt, sondern einzig und allein das Durchhalten.",
+            "Der weise Mensch lernt mehr aus seinen Feinden als der Tor aus seinen Freunden.",
+            "Die Kunst des Lebens besteht darin, zu lernen, im Regen zu tanzen, statt auf die Sonne zu warten.",
+            "Das Ziel ist nicht in der Ferne, sondern hier und jetzt.",
+            "Akzeptiere, was ist, lass los, was war, und habe Vertrauen in das, was wird.",
+            "Suche das Licht nicht außerhalb von dir, finde es in deinem eigenen Herzen.",
+            "Die Wellen des Ozeans kann man nicht stoppen, aber man kann lernen, auf ihnen zu surfen.",
+            "Das Wasser kann nicht zurückfließen, und dennoch finden wir immer einen Weg weiterzugehen.",
+            "Wer nichts erwartet, kann alles empfangen.",
+            "Der wahre Weg ist einfach, aber die Menschen lieben die Komplikationen.",
+            "Nicht das Ziel ist das Ziel, sondern der Weg dorthin.",
+            "Nur wer seinen eigenen Weg geht, kann von niemandem überholt werden.",
+            "Selbst der mächtigste Baum beginnt als kleiner Samen."
+        ];
+
+        const usedIndexes = new Set();
+        const quoteElement = document.getElementById("quote");
+
+        function generateQuote() {
+            if (usedIndexes.size >= quotes.length) {
+                usedIndexes.clear();
+            }
+
+            while (true) {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+
+                if (usedIndexes.has(randomIndex))
+                    continue;
+
+                const quote = quotes[randomIndex];
+                quoteElement.innerHTML = quote;
+                usedIndexes.add(randomIndex);
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>
