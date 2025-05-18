@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gedächtnistrainer</title> 
+    <link rel="stylesheet" href="#"> 
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            padding: 0;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+        // Initialisiert Variablen: 'zaehler' für die Anzahl der Versuche, 'laenge' für die Länge der Ziffernfolge, 
+        // 'text' für die generierte Ziffernfolge, 'eingabe' für die Benutzereingabe und 'ausgabe' für die Ergebnisse
+        let zaehler = 0, laenge = 3, text, eingabe, ausgabe = "";
+    
+        // Zeigt eine Einführungsnachricht an, die den Benutzer über das Gedächtnistraining informiert
+        alert("Gedächtnis-Training:\n\nMerken Sie sich die Ziffernfolgen, die" 
+              + "gleich erscheinen, und geben Sie sie anschließend ein. Es erscheinen" 
+              + "zunächst dreimal drei Ziffern, dann dreimal vier Ziffern usw. " 
+              + "Sobald Sie eine Ziffernfolge falsch eingegeben haben, ist das Ende " 
+              + "des Trainings erreicht, und es erfolgt eine Bewertung. Wenn Sie die " 
+              + "Internetseite aktualisieren, beginnt das Training wieder von vorn.");
+    
+        // Do-while-Schleife, die das Gedächtnistraining durchführt
+        do {
+            zaehler++; // Erhöht den Zähler für die Anzahl der Versuche
+    
+            // Wenn der Zähler größer als 3 ist, erhöht die Länge der Ziffernfolge um 1 und setzt den Zähler zurück
+            if (zaehler > 3) {
+                laenge++;
+                zaehler = 1;
+            }
+    
+            // Generiert eine neue Ziffernfolge mit der aktuellen Länge
+            text = "";
+            for (let i = 1; i <= laenge; i++) {
+                // Fügt eine zufällige Ziffer (0 bis 9) zur Ziffernfolge hinzu
+                text += Math.floor(Math.random() * 10);
+            }
+    
+            // Zeigt die generierte Ziffernfolge in einem Alert-Fenster an
+            alert("Ziffernfolge: " + text);
+    
+            // Fordert den Benutzer auf, die Ziffernfolge einzugeben
+            eingabe = prompt("Ihre Eingabe");
+    
+            // Fügt die Ziffernfolge und den HTML-Zeilenumbruch zur Ausgabekette hinzu
+            ausgabe += text + "<br>";
+    
+        // Wiederholt die Schleife, solange die Eingabe des Benutzers mit der generierten Ziffernfolge übereinstimmt
+        } while (eingabe == text);
+    
+        // Berechnet die Anzahl der korrekt gemerkten Ziffernfolgen (die letzte Ziffernfolge war falsch, daher -1)
+        let anzahl = laenge - 1;
+        // Wenn die Anzahl kleiner als 3 ist, setzt sie auf 0
+        if (anzahl < 3) {
+            anzahl = 0;
+        }
+    
+        // Fügt die Bewertung zur Ausgabekette hinzu
+        ausgabe += "Sie konnten sich " + anzahl + " Ziffern merken!";
+    
+        // Gibt die Ergebnisse auf der Webseite aus
+        //document.write(ausgabe);
+
+        if (anzahl < 3) {
+            document.write("Sehr schwache Leistung! " + "<br>" + "Die richtige/n Zahl/en lautete/n:" + "<br>" + ausgabe);
+        } else if (anzahl === 4) {
+            document.write("Schwache Leistung!" + "<br>" + "Die richtige/n Zahl/en lautete/n:" + "<br>" + ausgabe);
+        }  else if (anzahl === 5) {
+            document.write("Unterdurchschnittliche Leistung!" + "<br>" + "Die richtige/n Zahl/en lautete/n:" + "<br>" + ausgabe);
+        } else if (anzahl === 6) {
+            document.write("Bessere unterdurschnittliche Leistung!" + "<br>" + "Die richtige/n Zahl/en lautete/n:" + "<br>" + ausgabe);
+        } else if (anzahl === 7) {
+            document.write("Reicht aus, um sich eine Telefonnummer ohne Vorwahl zu merken!" + "<br>" + "Die richtige/n Zahl/en lautete/n:" + "<br>" + ausgabe);
+        } else {
+            document.write("Gut gemacht!" + "<br>" + "Die richtige/n Zahl/en lautete/n:" + "<br>" + ausgabe);
+        };
+
+    </script>
+    
+    
+    
+    <noscript> <p>JavaScript ist deaktiviert.<br> Bitte schalten Sie es ein. Danke!</p> </noscript>
+    <script src="#"></script>
+</body> 
+
+</html>
+
