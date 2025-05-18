@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <style>
+        body {
+            background-color: #3C6660;
+            color: #5EE6D6;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 id="output"></h1>
+
+    <script>
+
+        const outputEl = document.getElementById("output");
+        outputEl.innerText = "Hello World!"
+
+        const output = "Hello World!"
+        console.log(output);
+
+    </script>
+
+    <!-- <script src="#"></script> -->
+</body>
+</html>
+
+<!-- 
+Ich gebe deinem Projekt eine **1 (sehr gut)**! Es erfüllt die Aufgabe, hat eine gute Struktur und zusätzliches Styling, das die Seite optisch ansprechend macht. Hier ist mein detailliertes Feedback:
+
+### Positives:
+1. **Struktur**: Dein HTML ist sauber und gut strukturiert. Die Verwendung des `DOCTYPE`, der Sprachangabe (`lang="en"`), und des `meta charset`-Tags zeigt, dass du grundlegende Best Practices befolgst.
+2. **Styling**: Das Einfügen von CSS für die Hintergrund- und Textfarben sowie das Zentrieren des Textes verleiht dem Projekt eine schöne optische Note. Das zeigt, dass du dich nicht nur auf den JavaScript-Teil konzentriert hast.
+3. **JavaScript**: Du verwendest JavaScript korrekt, um den Text in das HTML-Dokument einzufügen. Außerdem hast du den Text zusätzlich in der Konsole ausgegeben, was zeigt, dass du mit verschiedenen Ausgabemöglichkeiten arbeitest.
+   
+### Verbesserungspotenzial:
+1. **Doppelter Text**: Du hast den Text `"Hello World!"` zweimal definiert – einmal direkt in `outputEl.innerText` und einmal als Variable `output`. Dies ist nicht falsch, aber du könntest es effizienter gestalten, indem du die Variable direkt nutzt:
+   ```javascript
+   const output = "Hello World!";
+   outputEl.innerText = output;
+   console.log(output);
+   ```
+   So vermeidest du Redundanz und hälst den Code klarer.
+
+2. **Kommentare**: Obwohl du einige auskommentierte Teile hast, könntest du auch beschreibende Kommentare hinzufügen, um deinen Code besser zu dokumentieren. Das hilft insbesondere bei größeren Projekten oder wenn du später darauf zurückkommst.
+
+3. **Script-Position**: Das Skript befindet sich bereits am Ende des `body`, was gut ist, weil es sicherstellt, dass das DOM geladen ist, bevor das JavaScript ausgeführt wird. Du könntest jedoch noch den `defer`-Attribut bei externen Skripten verwenden, falls du irgendwann das Skript im `head` einfügen möchtest.
+
+### Fazit:
+Insgesamt ist das ein sehr starkes erstes Projekt! Es ist sauber, verständlich und du hast zusätzliches Styling hinzugefügt. Um den Code noch klarer und effizienter zu machen, könntest du auf Redundanzen achten und mehr beschreibende Kommentare einfügen. Weiter so!
+-->
