@@ -1,0 +1,102 @@
+/* Stylesheet für die Anwendung */
+
+body {
+    background-color: #102a44; /* Dunkles Blau für den Hintergrund */
+    color: #e0e0e0; /* Helle Schriftfarbe für Kontrast */
+    font-family: 'Arial', sans-serif; /* Schriftart */
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Volle Höhe des Viewports */
+}
+
+main {
+    text-align: center; /* Text zentrieren */
+    max-width: 800px; /* Maximale Breite für bessere Lesbarkeit */
+    padding: 40px; /* Innenabstand */
+    background-color: rgba(34, 49, 63, 0.9); /* Tiefes Blau mit Transparenz */
+    border-radius: 20px; /* Abgerundete Ecken */
+    box-shadow: 0 0 20px rgba(0, 153, 102, 0.7); /* Grüner Schatten */
+}
+
+/* Größere Schriftarten für Überschriften */
+h1 {
+    color: #00ffcc; /* Türkisblau für Hauptüberschrift */
+    font-size: 3rem; /* Größere Schriftgröße */
+    margin-bottom: 20px; /* Abstand nach unten */
+}
+
+h2 {
+    color: #33ccff; /* Hellblau für Unterüberschrift */
+    font-size: 2.5rem; /* Größere Schriftgröße */
+    margin: 20px 0; /* Abstand nach oben und unten */
+}
+
+h3 {
+    color: #009999; /* Dunkleres Türkis für Feedback */
+    font-size: 2rem; /* Größere Schriftgröße */
+}
+
+/* Größere Schriftgröße für Absätze */
+p {
+    font-size: 1.2rem; /* Größere Schriftgröße */
+    margin: 15px 0; /* Abstand zwischen Absätzen */
+}
+
+#ergebnis {
+    width: 80%; /* Breite des Eingabefeldes */
+    padding: 15px; /* Innenabstand */
+    margin-top: 15px; /* Abstand nach oben */
+    border: 3px solid #0066cc; /* Blau für Umrandung */
+    border-radius: 10px; /* Abgerundete Ecken */
+    background-color: #1e1e1e; /* Hintergrund für Eingabefeld */
+    color: #e0e0e0; /* Schriftfarbe */
+    font-size: 1.5rem; /* Größere Schriftgröße */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Übergangseffekte */
+}
+
+input {
+    text-align: center;
+}
+
+#ergebnis:focus {
+    border-color: #33ccff; /* Hellblau beim Fokussieren */
+    box-shadow: 0 0 10px rgba(51, 204, 255, 0.5); /* Hellblauer Schatten beim Fokussieren */
+}
+
+.button {
+    background-color: #00cc99; /* Türkisgrün für Schaltflächen */
+    color: #0f0f0f; /* Dunkle Schriftfarbe für Kontrast */
+    border: none; /* Keine Umrandung */
+    border-radius: 10px; /* Abgerundete Ecken */
+    padding: 15px 30px; /* Innenabstand */
+    font-size: 1.5rem; /* Größere Schriftgröße */
+    cursor: pointer; /* Hand-Cursor beim Hover */
+    margin: 15px 5px; /* Abstand zwischen Schaltflächen */
+    transition: background-color 0.3s ease, transform 0.2s; /* Übergangseffekte */
+    box-shadow: 0 0 5px rgba(0, 204, 153, 0.5); /* Grüner Schatten */
+}
+
+.button:hover {
+    background-color: #00ffcc; /* Türkis beim Hover */
+    color: #0f0f0f; /* Dunkle Schriftfarbe beim Hover */
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8); /* Stärkerer Schatten beim Hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Innenabstand für kleinere Bildschirme */
+    }
+    
+    main {
+        padding: 30px; /* Innenabstand für Hauptbereich anpassen */
+    }
+    
+    h1, h2, h3, .button {
+        font-size: 1.5rem; /* Schriftgrößen für kleinere Bildschirme anpassen */
+    }
+}

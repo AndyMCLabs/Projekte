@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de"> <!-- Sprache auf Deutsch geändert -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechnen bis zum Umfallen</title>
+    <link rel="stylesheet" href="style.css"> <!-- Verlinkung zu CSS-Datei für das Styling -->
+</head>
+
+<body>
+    <main>
+        <!-- Hauptbereich mit Titel und Einführungstext -->
+        <section aria-labelledby="main-title">
+            <h1 id="main-title">Bundes-Rechenzentrum</h1>
+            <p>Hier rechnen wir, bis zum Umfallen.</p>
+        </section>
+
+        <!-- Bereich für die Berechnung -->
+        <section aria-labelledby="calculation-title">
+            <h2 id="calculation-title">Bitte rechne aus:</h2>
+            <div id="zahl1" aria-label="Erste Zahl"></div>
+            <span aria-label="Operator" id="operator"></span>
+            <div id="zahl2" aria-label="Zweite Zahl"></div>
+            <span></span>
+            <input id="ergebnis" aria-label="Ergebnis" placeholder="......">
+        </section>
+
+        <!-- Bereich für Lob und Feedback -->
+        <section aria-labelledby="feedback-title">
+            <h3 id="feedback-title"></h3>
+        </section>
+
+        <section>
+            <button class="button" id="pruefe">Prüfe Ergebnis</button>
+            <button class="button" id="generateRechnung">Nächste Rechnung</button>
+        </section>
+    </main>
+
+    <!-- Verlinkung zur JavaScript-Datei für interaktive Funktionen -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
