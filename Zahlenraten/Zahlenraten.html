@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zahlenraten-Spiel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e; /* Dunkler Hintergrund */
+            color: #f4f4f4; /* Helle Schriftfarbe */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #333; /* Dunkleres Grau für den Container */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #fff;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 92%;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background-color: #444; /* Dunklere Eingabefeld-Farbe */
+            color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            background-color: #28a745; /* Grüne Farbe für die Schaltfläche */
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d9534f;
+        }
+        #reloadBtn {
+            background-color: #007bff; /* Blaue Farbe für den Neustart-Button */
+            margin-top: 20px;
+        }
+        #reloadBtn:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕵️‍♂️ Guess the Code 🕵️‍♂️</h1>
+        <p>Rate eine Zahl zwischen 1 und 1000:</p>
+        <input type="number" id="userZahl" placeholder="Gib eine Zahl ein" min="1" max="10">
+        <button onclick="rateZahl()">Prüfen</button>
+        <p class="message" id="message"></p>
+        <button id="reloadBtn" onclick="window.location.reload();">Neustart</button> <!-- Neustart-Button -->
+    </div>
+
+    <script>
+        // Generierung einer Zufallszahl zwischen 1 und 10
+        let zufallsZahl = Math.floor(Math.random() * 1000) + 1;
+        console.log(zufallsZahl); // Nur für Debugging
+
+        let maxVersuche = 7; // Maximale Anzahl der Versuche
+        let versuche = 0; // Zählt die bisherigen Versuche
+
+        function rateZahl() {
+            let userZahl = parseInt(document.getElementById("userZahl").value);
+            versuche++;
+
+            let message = "";
+
+            if (zufallsZahl === userZahl) {
+                message = "Super! Du hast die Zahl erraten!🏆";
+                document.getElementById("message").style.color = "#28a745"; // Grün bei richtigem Tipp
+                disableInput();
+            } else if (userZahl > zufallsZahl) {
+                message = "Deine eingegebene Zahl ist zu groß!";
+            } else if (userZahl < zufallsZahl) {
+                message = "Deine eingegebene Zahl ist zu klein.";
+            } else {
+                message = "Deine Eingabe muss eine Zahl sein!";
+            }
+
+            if (versuche === maxVersuche && zufallsZahl !== userZahl) {
+                message = "Du hast es leider nicht geschafft, die richtige Zahl " + zufallsZahl  +  " zu erraten. 😞" + "Scheinbar ist der Zufallsgenerator nicht dein bester Freund heute.";
+                disableInput();
+            }
+
+            document.getElementById("message").textContent = message;
+        }
+
+        function disableInput() {
+            document.getElementById("userZahl").disabled = true;
+            document.querySelector("button").disabled = true;
+        }
+    </script>
+</body>
+</html>
