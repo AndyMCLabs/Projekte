@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+
+    <style>
+        body {
+            background-color: darkcyan;
+            font-size: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        input {
+            width: 142px;
+            height: 140px;
+            margin: 20px;
+            border-radius: 50%;
+            border: none;
+            background-color: lightcoral;
+            font-size: 2rem;
+            text-align: center;
+            box-shadow: 0 0 1px 1px black;
+        }
+
+        button {
+            width: 150px;
+            height: 140px;
+            margin: 20px;
+            border-radius: 50%;
+            border: none;
+            background-color: orange;
+            transition: 0.5s;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 0 1px 1px black;
+        }
+
+        button:hover {
+            background-color: orangered;
+            border: 5px solid black;
+        }
+
+        #zaehleRunter {
+            background-color: lightgreen;
+            width: 150px;
+            height: 100px;
+            padding-top: 45px;
+            text-align: center;
+            border-radius: 50%;
+            border: none;
+            font-weight: bold;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            box-shadow: 0 0 1px 1px black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Timer</h1>
+    <p>Sekunden eingeben und starten!</p>
+    <input type="number" id="number">
+    <button id="button">Starte Timer</button>
+    <div id="zaehleRunter"></div>
+
+    <script>
+
+        let inputEl = document.getElementById("number");
+        let buttonEl = document.getElementById("button");
+        let zaehleRunterEl = document.getElementById("zaehleRunter");
+        let intervalId;
+
+        buttonEl.addEventListener("click", function () {
+            let inputEl = document.getElementById("number").value;
+            let inputTime = parseInt(inputEl, 10);
+
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+
+            intervalId = setInterval(function () {
+                zaehleRunterEl.textContent = inputTime;
+
+                if (inputTime > 0) {
+                    inputTime = inputTime - 1;
+                    console.log(inputTime);
+                } else if (inputTime === 0) {
+                    zaehleRunterEl.textContent = "0";
+                    zaehleRunterEl.style.color = "red";
+                    zaehleRunterEl.style.backgroundColor = "black";
+                    clearInterval(intervalId);
+                }
+            }, 1000);
+        });
+
+    </script>
+
+    <!-- Feedback 
+    Dein Code sieht schon gut aus, aber es gibt einen kleinen Fehler in der Funktionsweise des setInterval-Timers. Das Problem ist, dass clearInterval() nicht funktioniert, weil du die intervalId-Variable nicht definiert hast.
+
+    Hier ist eine angepasste Version deines Codes, in dem der Timer korrekt funktioniert:
+
+    <script>
+
+        let buttonEl = document.getElementById("button");
+        let zaehleRunterEl = document.getElementById("zaehleRunter");
+        let intervalId; // Definiert die Intervall-ID außerhalb, um sie später zu löschen
+
+        buttonEl.addEventListener("click", function () {
+            let inputEl = document.getElementById("number").value;
+            let inputTime = parseInt(inputEl, 10);
+
+            // Falls der Timer bereits läuft, wird der vorherige gestoppt
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+
+            intervalId = setInterval(function () {
+
+                zaehleRunterEl.textContent = inputTime;
+
+                if (inputTime > 0) {
+                    inputTime = inputTime - 1;
+                } else {
+                    zaehleRunterEl.textContent = "Zeit abgelaufen!";
+                    clearInterval(intervalId);
+                }
+
+            }, 1000);
+        });
+
+    </script>
+
+    Änderungen:
+    1. intervalId-Variable: Ich habe intervalId außerhalb der setInterval-Funktion hinzugefügt, sodass der Timer gestoppt werden kann, wenn die Zeit abgelaufen ist.
+    2. Timer-Reset: Falls der Benutzer den Button mehrmals drückt, wird sichergestellt, dass der alte Timer gestoppt wird, bevor ein neuer startet.
+    
+    -->
+
+</body>
+
+</html>
