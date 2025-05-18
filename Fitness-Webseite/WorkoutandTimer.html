@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zufälliges Workout</title>
+    <link rel="stylesheet" href="../Fitness-Webseite/styles.css">
+    <style>
+        /* styles.css */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    margin: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #004494;
+}
+
+#workout {
+    margin: 20px 0;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#timer {
+    margin-top: 20px;
+}
+
+#time {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00ff00; /* Leuchtendes Grün für bessere Lesbarkeit */
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #333333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    #time {
+        font-size: 28px;
+    }
+
+    #workout {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    #time {
+        font-size: 24px;
+    }
+
+    #workout {
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zufälliges Workout</h1>
+        <div id="workout"></div>
+        <button id="generate">Workout Generieren</button>
+        <div id="timer">
+            <p>Timer: <span id="time">60:00</span></p>
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Zurücksetzen</button>
+        </div>
+    </div>
+    <script>
+        // script.js
+document.addEventListener('DOMContentLoaded', () => {
+    const exercises = [
+        '50 x Kniebeugen', '50 x Liegestütze', '50 x Bergsteiger', 'Plank EOP', '50 x Ausfallschritte',
+        '50 x Hüftheben', '50x Dips', '50 x Crunches', '50x Superman', '50x Seitstütz', '50x Burpees',
+        'Wandsitz EOP', '50 x Hampelmänner'
+    ];
+
+    function getRandomWorkout() {
+        const shuffled = exercises.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 5).join(', ');
+    }
+
+    document.getElementById('generate').addEventListener('click', () => {
+        document.getElementById('workout').innerText = getRandomWorkout();
+    });
+
+    // Timer
+    let timer;
+    let minutes = 60;
+    let seconds = 0;
+
+    function updateTimer() {
+        document.getElementById('time').innerText = 
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    document.getElementById('start').addEventListener('click', () => {
+        if (timer) return;
+        timer = setInterval(() => {
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(timer);
+                    timer = null;
+                    return;
+                }
+                minutes--;
+                seconds = 59;
+            } else {
+                seconds--;
+            }
+            updateTimer();
+        }, 1000);
+    });
+
+    document.getElementById('stop').addEventListener('click', () => {
+        clearInterval(timer);
+        timer = null;
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+        clearInterval(timer);
+        timer = null;
+        minutes = 60;
+        seconds = 0;
+        updateTimer();
+    });
+
+    updateTimer(); // Initiale Timer-Anzeige
+});
+
+    </script>
+</body>
+</html>
