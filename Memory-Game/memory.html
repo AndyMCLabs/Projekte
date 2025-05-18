@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Spiel</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<style>
+    body {
+        background-color: #121212;
+        /* Dunkler Hintergrund */
+        color: #D5D5D5;
+        /* Textfarbe */
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        color: #FF8F3D;
+        /* Farbige Überschrift */
+    }
+
+    .game-board {
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        /* 4 Karten pro Reihe */
+        gap: 50px;
+        /* Abstand zwischen den Karten */
+    }
+
+    .card {
+        width: 100px;
+        height: 100px;
+        background-color: #FFC493;
+        /* Kartenfarbe */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        /* Übergangseffekte */
+        border-radius: 10px;
+    }
+
+    .card:hover {
+        background-color: darkred;
+        /* Hover-Farbe */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        /* Schatteneffekt */
+    }
+
+    .flipped {
+        background-color: seagreen;
+        color: #121212;
+    }
+</style>
+
+<body>
+    <h1>Memory Spiel</h1>
+    <div class="game-board">
+        <div class="card" data-pair="1"></div>
+        <div class="card" data-pair="1"></div>
+        <div class="card" data-pair="2"></div>
+        <div class="card" data-pair="2"></div>
+        <div class="card" data-pair="3"></div>
+        <div class="card" data-pair="3"></div>
+        <div class="card" data-pair="4"></div>
+        <div class="card" data-pair="4"></div>
+    </div>
+
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', flipCard);
+        });
+
+        let firstCard, secondCard;
+        let hasFlippedCard = false; // Korrigiert: "flase" zu "false"
+
+        function flipCard() {
+            this.classList.add('flipped');
+
+            if(!hasFlippedCard) {
+                hasFlippedCard = true;
+                firstCard = this; // Korrigiert: "firstcard" zu "firstCard"
+                return;
+            }
+
+            secondCard = this; // Korrigiert: "secondCard" ist bereits korrekt
+
+            checkForMatch();
+        }
+
+        function checkForMatch() {
+            const isMatch = firstCard.dataset.pair === secondCard.dataset.pair; // Korrigiert: "firstcard" zu "firstCard"
+
+            if(isMatch) {
+                resetCards();
+            } else {
+                setTimeout(() => {
+                    firstCard.classList.remove('flipped'); // Korrigiert: "firstcard" zu "firstCard"
+                    secondCard.classList.remove('flipped');
+                    resetCards();
+                }, 1000);
+            }
+        }
+
+        function resetCards() {
+            [hasFlippedCard, firstCard, secondCard] = [false, null, null]; // Korrigiert: "firstcard" zu "firstCard"
+        }
+
+        let pairsFound = 0; // Neu: Zähler für gefundene Paare
+
+        function checkForMatch() {
+            const isMatch = firstCard.dataset.pair === secondCard.dataset.pair;
+
+            if(isMatch) {
+                pairsFound++; // Erhöhe den Zähler für gefundene Paare
+                resetCards();
+                checkGameOver(); // Überprüfe, ob das Spiel vorbei ist
+            } else {
+                setTimeout(() => {
+                    firstCard.classList.remove('flipped');
+                    secondCard.classList.remove('flipped');
+                    resetCards();
+                }, 1000);
+            }
+        }
+
+        function checkGameOver() {
+            const totalPairs = cards.length / 2; // Gesamtanzahl der Paare
+
+            if(pairsFound === totalPairs) {
+                alert("Herzlichen Glückwunsch! Du hast alle Paare gefunden!"); // Spiel beenden
+            }
+        }
+
+    </script>
+
+
+
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>
