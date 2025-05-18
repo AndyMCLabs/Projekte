@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <!-------------------------------------->
+    <style>
+        body {
+            background-color: #2144AE;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial Narrow Bold', sans-serif;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        p {
+            width: 400px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        #zaehler {
+            background-color: grey;
+            border: 1px solid black;
+            width: 50px;
+            padding: 50px;
+            text-align: center;
+            font-size: 2rem;
+            font-size: bold;
+            border-radius: 50%;
+            user-select: none;
+            transition: color 0.5s ease;
+        }
+
+        #countUp {
+            background-color: #CF9E8A;
+            border: 1px solid black;
+            width: 100px;
+            padding: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-size: bold;
+            border-radius: 30px;
+            margin: 10px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #countUp:active {
+            background-color: grey;
+        }
+
+        #countDown {
+            background-color: #4779C3;
+            border: 1px solid black;
+            width: 100px;
+            padding: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-size: bold;
+            border-radius: 30px;
+            margin: 10px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #countDown:active {
+            background-color: grey;
+        }
+
+        #reset {
+            background-color: #B7056E;
+            border: 1px solid black;
+            width: 100px;
+            padding: 50px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-size: bold;
+            border-radius: 30px;
+            margin: 10px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #reset:active {
+            background-color: red;
+        }
+
+        #buttons {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #message {
+            font-size: 1.3rem;
+            color: #bb5490;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pop {
+            animation: pop 0.3s ease-in-out;
+        }
+
+        /* Schütteln-Effekt */
+    </style>
+    <!-------------------------------------->
+</head>
+
+<body>
+
+    <!-------------------------------------->
+    <h1>Counter App</h1>
+    <p>In einer magischen Uhr lebte Tikk, der Hüter der Zeit. Er zählte jeden Moment sorgfältig, damit die Welt im
+        Gleichgewicht blieb. Eines Tages entdeckte er, dass die Zeit schneller lief, weil ein Lehrling die Zahnräder
+        verstellt hatte. Gemeinsam brachten sie die Uhr wieder in Ordnung und verstanden, dass jeder gezählte Moment
+        kostbar ist.</p>
+    <div id="zaehler" title="Aktueller Zählerstand"></div>
+    <div id="message">Drücke einen der Buttons.</div>
+    <div id="buttons">
+        <div id="countUp" title="Zählt 1 rauf.">⬆️</div>
+        <div id="countDown" title="Zählt 1 runter.">⬇️</div>
+        <div id="reset" title="Reset">🔄</div>
+    </div>
+
+    <!-------------------------------------->
+
+    <!-------------------------------------->
+    <script>
+
+        // Variablen
+        const zaehlerEl = document.getElementById("zaehler");
+        const countUpEl = document.getElementById("countUp");
+        const countDown = document.getElementById("countDown");
+        const resetEl = document.getElementById("reset");
+        const upperLimit = 10;
+        const lowerLimit = -10;
+        const messageEl = document.getElementById("message");
+
+
+        let counter = loadCounter();
+        updateCounterDisplay(counter);
+
+        // Klick auf Button +1
+        countUpEl.addEventListener("click", function () {
+            if (counter < upperLimit) {
+                counter = counter + 1;
+            } else {
+                warnungAnzeigen("Obergrenze erreicht!")
+            }
+
+            zaehlerEl.innerText = counter;
+
+            zaehlerEl.classList.add('pop');
+
+            setTimeout(() => {
+                zaehlerEl.classList.remove('pop');
+            }, 300);
+
+            if (counter > 0) {
+                zaehlerEl.style.color = "green";
+            } else if (counter < 0) {
+                zaehlerEl.style.color = "#7F3164";
+            } else {
+                zaehlerEl.style.color = "black";
+            }
+
+            saveCounter(counter);
+        });
+
+
+
+        // Klick auf Button -1
+        countDown.addEventListener("click", function () {
+            if (counter > lowerLimit) {
+                counter = counter - 1;
+            } else {
+                warnungAnzeigen("Untergrenze erreicht!")
+            };
+
+            zaehlerEl.innerText = counter;
+
+            zaehlerEl.classList.add('pop');
+
+            setTimeout(() => {
+                zaehlerEl.classList.remove('pop');
+            }, 300);
+
+            if (counter > 0) {
+                zaehlerEl.style.color = "green";
+            } else if (counter < 0) {
+                zaehlerEl.style.color = "#7F3164";
+            } else {
+                zaehlerEl.style.color = "black";
+            }
+
+            saveCounter(counter);
+        });
+
+
+
+        // Klick auf Button Reset
+        resetEl.addEventListener("click", function () {
+            counter = 0;
+            updateCounterDisplay();
+            saveCounter(counter);
+        });
+
+
+
+        // Speichern im localStorage
+        function saveCounter(zaehler) {
+            localStorage.setItem('counter', zaehler);
+        };
+
+
+
+        // Laden aus dem local Storage
+        function loadCounter() {
+            const storedCounter = localStorage.getItem('counter');
+            return storedCounter ? parseInt(storedCounter, 10) : 0;
+        };
+
+
+
+        // Aktualisieren der Counter Anzeige
+        function updateCounterDisplay() {
+            zaehlerEl.innerText = counter;
+
+            if (counter > 0) {
+                zaehlerEl.style.color = "green";
+            } else if (counter < 0) {
+                zaehlerEl.style.color = "#7F3164";
+            } else {
+                zaehlerEl.style.color = "black";
+            }
+        };
+
+
+
+        //Warnung anzeigen
+        function warnungAnzeigen(message) {
+            messageEl.textContent = message;
+            messageEl.style.display = "block";
+
+            setTimeout(() => {
+                messageEl.style.display = "none"
+            }, 3000);
+        };
+
+
+    </script>
+    <!-------------------------------------->
+
+    <!-- <script src="#"></script> -->
+</body>
+
+<!--
+Dein Code für die **Counter App** sieht bereits sehr gut aus! Hier sind einige Anmerkungen und Verbesserungsvorschläge, die dir helfen können, deinen Code noch weiter zu optimieren:
+
+### 1. HTML-Struktur
+- Deine HTML-Struktur ist übersichtlich. Gut gemacht!
+- Du hast das Stylesheet im `<head>`-Bereich direkt eingebunden. Überlege, ob du in Zukunft externe Stylesheets verwenden möchtest, um die Trennung von Inhalt und Design zu verbessern.
+
+### 2. CSS-Stil
+- Du hast ansprechende Farben und Animationen gewählt. Der `pop`-Effekt bringt eine schöne visuelle Rückmeldung!
+- Die Verwendung von `user-select: none;` ist sinnvoll, um das Markieren von Text in den Buttons zu verhindern.
+
+### 3. JavaScript-Funktionalität
+- Du hast die grundlegende Funktionalität gut implementiert. Die Nutzung von `localStorage` zum Speichern des Zählers ist eine hervorragende Idee.
+- Die Funktionalität zum Zählen (hoch und runter) sowie das Zurücksetzen funktionieren gut.
+
+### 4. Optimierungen und Vorschläge
+Hier sind einige spezifische Verbesserungsvorschläge:
+
+#### a. Vermeide Wiederholungen
+Du hast einige wiederholte Codeblöcke, besonders in den Event-Listenern für die Buttons. Du könntest eine gemeinsame Funktion für das Aktualisieren der Anzeige und das Speichern des Zählers erstellen, um den Code zu verkürzen:
+
+```javascript
+function aktualisiereZaehler(increment) {
+    counter += increment;
+
+    if (counter > upperLimit) {
+        counter = upperLimit;
+        warnungAnzeigen("Obergrenze erreicht!");
+    } else if (counter < lowerLimit) {
+        counter = lowerLimit;
+        warnungAnzeigen("Untergrenze erreicht!");
+    }
+
+    updateCounterDisplay();
+    saveCounter(counter);
+}
+```
+
+Dann könntest du die Buttons folgendermaßen anpassen:
+
+```javascript
+countUpEl.addEventListener("click", () => aktualisiereZaehler(1));
+countDown.addEventListener("click", () => aktualisiereZaehler(-1));
+```
+
+#### b. `updateCounterDisplay` Funktion
+Du kannst die Funktion `updateCounterDisplay` direkt aufrufen, nachdem du den Zähler aktualisiert hast, um sicherzustellen, dass die Anzeige immer synchron ist.
+
+#### c. Reset-Funktion optimieren
+Die Reset-Funktion könnte die `updateCounterDisplay`-Funktion direkt aufrufen, anstatt die Logik erneut zu schreiben:
+
+```javascript
+resetEl.addEventListener("click", function () {
+    counter = 0;
+    updateCounterDisplay();
+});
+```
+
+#### d. Einfache Fehlerbehandlung
+Es könnte hilfreich sein, beim Laden des Zählers eine Prüfung hinzuzufügen, um sicherzustellen, dass die gespeicherte Zahl gültig ist:
+
+```javascript
+function loadCounter() {
+    const storedCounter = localStorage.getItem('counter');
+    const loadedCounter = storedCounter ? parseInt(storedCounter, 10) : 0;
+    return Math.max(lowerLimit, Math.min(upperLimit, loadedCounter)); // Begrenzung auf die Limits
+}
+```
+
+### 5. Benutzerfreundlichkeit
+- Es könnte nützlich sein, den Benutzer visuell darauf hinzuweisen, wenn die Ober- oder Untergrenze erreicht ist, zum Beispiel durch das Blinken des Zählerfelds oder das Färben der Schrift.
+  
+### 6. Kommentare
+- Du hast einige Kommentare in deinem Code, was großartig ist! Achte darauf, dass sie konsistent und hilfreich sind. Du könntest zum Beispiel die Funktionen auch kurz beschreiben, damit es für andere Entwickler (oder für dich selbst in der Zukunft) einfacher ist, den Code zu verstehen.
+
+### Zusammenfassung
+Insgesamt hast du eine solide Grundlage für deine Counter App geschaffen. Mit diesen Optimierungen kannst du deinen Code kürzer und lesbarer gestalten und gleichzeitig die Benutzererfahrung verbessern. Gute Arbeit! Wenn du Fragen zu den Änderungen oder zu spezifischen Punkten hast, lass es mich wissen!
+
+-->
+
+</html>
