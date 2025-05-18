@@ -1,0 +1,295 @@
+body {
+    background-color: #102B22;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #E5C5CF;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.gameContainer {
+    background-color: #4B4EC3;
+    padding: 2.5%;
+    margin: 2.5%;
+    border-radius: 2rem;
+    border: 1px solid black;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.ueberschrift {
+    background-color: #AB2C6B;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1%;
+    border-radius: 2rem;
+    margin-bottom: 2%;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.spielbeschreibung {
+    background-color: #AB2C6B;
+    padding: 0.5%;
+    margin: 0.5%;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+    text-align: center;
+    margin-bottom: 2%;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+#ergebnisRunde {
+    background-color: #AB2C6B;
+    padding: 2.5%;
+    margin: 0.5%;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    text-align: center;
+    margin-bottom: 2%;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.buttonContainer {
+    background-color: #AB2C6B;
+    padding: 0.5%;
+    margin: 0.5%;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2%;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    background-color: #FAF055;
+    border: 1px solid #102B22;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    padding: 1%;
+    margin: 1%;
+    width: 35%;
+    margin-bottom: 2%;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #faef55af;
+    transform: scale(1.05);
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+
+}
+
+#auswahlComputer {
+    background-color: #AB2C6B;
+    padding: 2.5%;
+    margin: 0.5%;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    text-align: center;
+    margin-bottom: 2%;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+
+.ergebnisse {
+    background-color: #AB2C6B;
+    padding: 0.5%;
+    margin: 0.5%;
+    border-radius: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2%;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.newGame {
+    background-color: #AB2C6B;
+    padding: 0.5%;
+    margin: 0.5%;
+    border-radius: 2rem;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: #102B22;
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        color: #E5C5CF;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .gameContainer {
+        background-color: #4B4EC3;
+        padding: 2.5%;
+        margin: 2.5%;
+        border-radius: 2rem;
+        border: 1px solid black;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .ueberschrift {
+        background-color: #AB2C6B;
+        font-size: 0.6rem;
+        text-align: center;
+        padding: 1%;
+        border-radius: 2rem;
+        margin-bottom: 2%;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .spielbeschreibung {
+        background-color: #AB2C6B;
+        padding: 0.5%;
+        margin: 0.5%;
+        font-size: 1.2rem;
+        border-radius: 2rem;
+        text-align: center;
+        margin-bottom: 2%;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    #ergebnisRunde {
+        background-color: #AB2C6B;
+        padding: 0.5%;
+        margin: 0.5%;
+        font-size: 1.5rem;
+        border-radius: 2rem;
+        text-align: center;
+        margin-bottom: 2%;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .buttonContainer {
+        background-color: #AB2C6B;
+        padding: 0.5%;
+        margin: 0.5%;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2%;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    button {
+        background-color: #FAF055;
+        border: 1px solid #102B22;
+        font-size: 1.5rem;
+        border-radius: 2rem;
+        padding: 1%;
+        margin: 1%;
+        width: 35%;
+        margin-bottom: 2%;
+    }
+
+    button:active {
+        background-color: #faef55af;
+        transform: scale(1.05);
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    #auswahlComputer {
+        background-color: #AB2C6B;
+        padding: 2.5%;
+        margin: 0.5%;
+        font-size: 1.5rem;
+        border-radius: 2rem;
+        text-align: center;
+        margin-bottom: 2%;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .ergebnisse {
+        background-color: #AB2C6B;
+        padding: 0.5%;
+        margin: 0.5%;
+        border-radius: 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 2%;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .newGame {
+        background-color: #AB2C6B;
+        padding: 0.5%;
+        margin: 0.5%;
+        border-radius: 2rem;
+        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #newGameButton {
+        font-size: 1.2rem;
+    }
+}
+
+/*
+Ich werde den CSS-Code bewerten und dir detailliertes Feedback geben.
+
+### Bewertung (CSS):
+
+**Note: 2+ (gut bis sehr gut)**
+
+### Stärken:
+1. **Konsistentes Farbschema**:
+   - Du hast eine kohärente Farbpalette (mit verschiedenen Schattierungen von Blau, Lila und Pink), die das Design stimmig und ästhetisch ansprechend macht. 
+
+2. **Flexbox Layout**:
+   - Sehr gute Nutzung von Flexbox für das Layout, besonders bei der Zentrierung von Elementen und dem responsiven Verhalten. Das sorgt dafür, dass die Elemente gut auf verschiedenen Bildschirmgrößen angezeigt werden.
+
+3. **Responsives Design**:
+   - Durch die Verwendung von Media Queries passt sich dein Design gut an kleinere Bildschirme an. Das ist für moderne Webentwicklung unerlässlich und funktioniert hier gut.
+
+4. **Hover- und Active-Effekte**:
+   - Deine Effekte bei Buttons wie das Skalieren beim Hover und der Hintergrundfarbwechsel verleihen deinem Design eine dynamische und interaktive Benutzeroberfläche.
+
+### Verbesserungsmöglichkeiten:
+1. **Konsistenz in Größenangaben**:
+   - An manchen Stellen sind die Abstände und Schriftgrößen etwas uneinheitlich, z. B. hast du manchmal 1.5rem und manchmal 0.5% als Padding oder Schriftgröße. Du könntest einheitlichere Maßeinheiten verwenden (z. B. überall `rem` oder `%` für Padding), um das Layout konsistenter zu machen.
+
+2. **Schattierungen und Tiefe**:
+   - Die häufige Verwendung von Box-Shadows ist grundsätzlich gut, aber da du sie fast überall einsetzt, könnte es das Design etwas überladen wirken lassen. Vielleicht könntest du an einigen Stellen auf die Schatten verzichten oder sie subtiler gestalten, um das Design „leichter“ wirken zu lassen.
+
+3. **Optimierung für Barrierefreiheit**:
+   - Die Farbkontraste sind okay, könnten aber für Benutzer mit Sehschwierigkeiten verbessert werden. Besonders der gelbe Button-Hintergrund auf dunkelgrünem Hintergrund könnte schwer zu lesen sein. Du könntest eine Farbanalyse (z.B. mit Tools wie WAVE oder Contrast Checker) durchführen, um sicherzustellen, dass der Kontrast hoch genug ist.
+
+4. **Code Wiederholungen reduzieren**:
+   - Viele CSS-Regeln werden sowohl im Hauptteil als auch im Media Query wiederholt (z. B. in den Styles für `body`, `.gameContainer`, etc.). Du könntest diese Redundanzen verringern, indem du globale Styles aus dem Media Query herausziehst und nur die speziellen Anpassungen für kleine Bildschirme in den Media Query packst.
+
+### Fazit:
+Dein CSS ist insgesamt sehr gut strukturiert und zeigt ein solides Verständnis von Flexbox, responsivem Design und Interaktivität. Es gibt nur kleinere Verbesserungsmöglichkeiten bei der Vereinheitlichung der Einheiten, der Reduktion von Wiederholungen und der Optimierung für Barrierefreiheit. Ansonsten eine starke Leistung!
+*/

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stein - Schere - Papier</title>
+    <link rel="stylesheet" href="steinscherepapier.css">
+</head>
+
+<body>
+    
+    <!-- Gesamtcontainer -->
+    <div class="gameContainer">
+
+        <!-- Überschrift -->
+        <div class="ueberschrift">
+            <h1 aria-label="Überschrift">Stein - Schere - Papier - Brunnen</h1>
+        </div>
+
+        <!-- Spielbeschreibung -->
+        <div class="spielbeschreibung">
+            <p aria-label="Spielbeschreibung">Willkommen bei der App „Schere, Stein, Papier, Brunnen“ – dem Klassiker mit einem unerwarteten Twist!</p>
+        </div>
+
+        <!-- Buttoncontainer und Buttons -->
+        <div class="buttonContainer">
+            <button aria-label="Button Schere" class="button" id="schere">✂️</button>
+            <button aria-label="Button Stein" class="button" id="stein">🪨</button>
+            <button aria-label="Button Papier" class="button" id="papier">📄</button>
+            <button aria-label="Button Brunnen" class="button" id="brunnen">⛲</button>
+        </div>
+
+        <!-- Auswahl Computer -->
+        <div id="auswahlComputer">
+            <div aria-label="Computerauswahl">Computer wählt:</div>
+        </div>
+
+        <!-- Ergebnis Runde -->
+        <div aria-label="Ergebnis der Runde" id="ergebnisRunde">Ergebnis:</div>
+
+        <!-- Gesamtergebnisse -->
+        <div class="ergebnisse">
+            <span aria-label="Spieler Gewinne" class="ergebnis" id="ergebnisSpieler">Gesamt Spieler:</span>
+            <span aria-label="Computer Gewinne" class="ergebnis" id="ergebnisComputer">Gesamt Computer:</span>
+            <span aria-label="Runden gesamt" class="ergebnis" id="anzahlRunden">Gesamt Runden:</span>
+        </div>
+
+        <!-- Button für neues Spiel -->
+        <div class="newGame">
+            <button aria-label="Button Neues Spiel" id="newGameButton" class="button">New Game</button>
+        </div>
+    </div>
+
+    <script src="steinscherepapier.js"></script>
+</body>
+
+</html>
+
+<!--
+### Bewertung (HTML):
+
+**Note: 1- (sehr gut)**
+
+### Stärken:
+1. **Struktur und Semantik**: 
+   - Du verwendest eine sehr klare und gut organisierte Struktur mit sinnvollen Elementen und klaren IDs/Klassen, was die Lesbarkeit und Wartbarkeit des Codes erleichtert.
+   
+2. **Aria-Labels**: 
+   - Die Nutzung von `aria-label` für Barrierefreiheit ist ein großer Pluspunkt. Das zeigt, dass du an die Zugänglichkeit für Screenreader denkst, was eine sehr gute Praxis ist.
+
+3. **Verwendung von Meta-Tags**: 
+   - Die Verwendung von `meta charset` und `viewport` ist korrekt und wichtig für internationale Zeichenkodierungen und responsives Design.
+
+### Verbesserungsmöglichkeiten:
+1. **Fehlende Alt-Texte für Emoji-Buttons**: 
+   - Zwar hast du `aria-label` verwendet, aber da Emojis wie `✂️`, `🪨`, `📄`, und `⛲` als Symbole agieren, könnte es für manche Benutzer vorteilhaft sein, auch zusätzliche Erklärungen (Alt-Texte oder Tooltips) zu diesen Emojis zu haben. Das könnte die Benutzererfahrung weiter verbessern.
+
+2. **Mehr Kommentare für Übersichtlichkeit**:
+   - Du hast zwar schon einige Kommentare, aber du könntest noch etwas detaillierter kommentieren, um den Code für andere (oder für dein zukünftiges Ich) noch leichter nachvollziehbar zu machen. Zum Beispiel bei der Struktur für die Ergebnis-Anzeige oder dem Container für die Buttons.
+
+### Fazit:
+Der HTML-Code ist strukturell sehr sauber und durchdacht. Lediglich kleine Verbesserungen bei der Kommentierung und noch spezifischere Unterstützung für Barrierefreiheit könnten hinzugefügt werden. Ansonsten sehr gute Arbeit!
+-->
