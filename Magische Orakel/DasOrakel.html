@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magisches Orakel</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        
+        body {
+    font-family: 'Georgia', serif; /* Klassische Schriftart für ein edles Gefühl */
+    background: linear-gradient(to bottom, #2c003e, #4a1f6b); /* Verlauf von tiefem Lila zu mystischem Blau */
+    color: #f5f5f5; /* Helles Grau für die Schriftfarbe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    border: 3px solid #c0c0c0; /* Silberner Rand für edle Akzente */
+    border-radius: 10px;
+    padding: 20px;
+    background: rgba(34, 34, 34, 0.8); /* Transparenter dunkler Hintergrund für den Container */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9); /* Tiefere Schatten für einen mystischen Effekt */
+}
+
+h1 {
+    color: #e0b0ff; /* Helles, magisches Violett für die Überschrift */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: 2px solid #c0c0c0; /* Silberner Rand für das Eingabefeld */
+    border-radius: 5px;
+    background: #333; /* Dunkles Grau für das Eingabefeld */
+    color: #f5f5f5; /* Helle Schriftfarbe für das Eingabefeld */
+    margin-bottom: 10px;
+    width: 80%;
+    font-size: 1em;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #6a0dad; /* Magisches Violett für den Button */
+    color: #f5f5f5; /* Helle Schriftfarbe für den Button */
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background: #4b0082; /* Dunkleres Violett beim Hover-Effekt */
+    transform: scale(1.05); /* Leichtes Vergrößern beim Hover-Effekt */
+}
+
+.answer {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e0b0ff; /* Helles, magisches Violett für die Antwort */
+}
+
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔮 Das geheimnisvolle Orakel 🔮</h1>
+        <input type="text" id="question" placeholder="Stelle eine Frage, die sich mit ja oder nein bantworten lässt...">
+        <button onclick="getAnswer()">Antwort erhalten</button>
+        <div id="answer" class="answer"></div>
+    </div>
+
+    <script>
+
+    function getAnswer() {
+    const userName = "Andreas";
+    const userQuestion = document.getElementById('question').value;
+    const answerDiv = document.getElementById('answer');
+
+    if (!userQuestion) {
+        answerDiv.innerText = 'Bitte stelle eine Frage!';
+        return;
+    }
+
+    console.log(`${userName} fragt: ${userQuestion}`);
+
+    const randomNumber = Math.floor(Math.random() * 20); // Zufallszahl zwischen 0 und 19
+
+    let answer = "";
+
+    switch (randomNumber) {
+        case 0:
+            answer = 'Es ist sicher.';
+            break;
+        case 1:
+            answer = 'Es ist eindeutig so.';
+            break;
+        case 2:
+            answer = 'Die Antwort ist unklar, versuche es erneut.';
+            break;
+        case 3:
+            answer = 'Kann jetzt nicht vorhersagen.';
+            break;
+        case 4:
+            answer = 'Verlasse dich nicht darauf.';
+            break;
+        case 5:
+            answer = 'Meine Quellen sagen nein.';
+            break;
+        case 6:
+            answer = 'Die Aussichten sind nicht gut.';
+            break;
+        case 7:
+            answer = 'Anzeichen sprechen dafür.';
+            break;
+        case 8:
+            answer = 'Unmöglich zu sagen.';
+            break;
+        case 9:
+            answer = 'Die Zukunft ist unsicher.';
+            break;
+        case 10:
+            answer = 'Höchstwahrscheinlich ja.';
+            break;
+        case 11:
+            answer = 'Die Zeichen stehen günstig.';
+            break;
+        case 12:
+            answer = 'Ich bin mir nicht sicher.';
+            break;
+        case 13:
+            answer = 'Alles deutet darauf hin, dass es klappt.';
+            break;
+        case 14:
+            answer = 'Die Antwort liegt im Dunkeln.';
+            break;
+        case 15:
+            answer = 'Meine magischen Quellen sind unentschlossen.';
+            break;
+        case 16:
+            answer = 'Vielleicht, aber es wird schwierig.';
+            break;
+        case 17:
+            answer = 'Es sieht eher nach einem Nein aus.';
+            break;
+        case 18:
+            answer = 'Warte auf ein besseres Zeichen.';
+            break;
+        case 19:
+            answer = 'Die Antwort wird bald klarer sein.';
+            break;
+    }
+
+    answerDiv.innerText = answer;
+}
+
+    </script>
+</body>
+
+</html>
