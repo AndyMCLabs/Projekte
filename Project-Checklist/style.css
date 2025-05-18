@@ -1,0 +1,160 @@
+/* Reset grundlegender Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Grundlegende Schriftarten und Farben */
+body {
+    font-family: 'Arial', sans-serif; /* Angenehme Schriftart für Lesbarkeit */
+    background-color: #1a1a1a; /* Dunkler Hintergrund */
+    color: #e0e0e0; /* Helle Schriftfarbe */
+    word-wrap: break-word;
+}
+
+a {
+    color: darkcyan;
+}
+
+code {
+    color: #07e938;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+/* Header-Stile */
+header {
+    background-color: #2e2e2e; /* Dunkler Header */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #007acc; /* Akzentfarbe */
+}
+
+/* Hauptinhalt-Stile */
+main {
+    padding: 20px;
+    max-width: 800px; /* Maximale Breite für den Inhalt */
+    margin: auto; /* Zentriert den Inhalt */
+}
+
+/* Abschnittsüberschriften */
+h2 {
+    color: #00ff7f; /* Helle, inspirierende Farbe */
+    margin-bottom: 15px;
+    text-align: center; /* Zentriert die Überschrift */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Leichter Schatten für Tiefe */
+}
+
+/* Listenstil */
+ul {
+    list-style-type: none; /* Keine Aufzählungszeichen */
+    padding: 0; /* Kein Padding für die Liste */
+}
+
+/* Listenelemente */
+li {
+    margin: 15px 0; /* Abstand zwischen den Listenelementen */
+    background-color: #3c3c3c; /* Dunkler Hintergrund für Listenelemente */
+    border-radius: 8px; /* Abgerundete Ecken */
+    padding: 15px; /* Innenabstand */
+    display: flex; /* Flexbox für Layout */
+    justify-content: left; /* Elemente gleichmäßig verteilen */
+    align-items: center; /* Zentriert den Inhalt vertikal */
+    transition: background-color 0.3s; /* Übergangseffekt */
+}
+
+/* Checkbox-Style */
+input[type="checkbox"] {
+    width: 20px; /* Breite der Checkbox */
+    height: 20px; /* Höhe der Checkbox */
+    margin-left: 10px; /* Abstand nach links */
+    cursor: pointer; /* Zeiger zeigt an, dass die Checkbox anklickbar ist */
+}
+
+/* Hover-Effekt für Listenelemente */
+li:hover {
+    background-color: #007acc; /* Heller Hintergrund bei Hover */
+    color: #ffffff; /* Helle Schriftfarbe bei Hover */
+}
+
+/* Footer-Stile */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #2e2e2e; /* Dunkler Footer */
+    color: #e0e0e0; /* Helle Schriftfarbe im Footer */
+    margin-top: 20px; /* Abstand nach oben */
+}
+
+/* Stil für das Textfeld */
+#pseudoCode {
+    width: 100%;
+    height: 200px;
+    background-color: black;
+    color: limegreen;
+    font-family: monospace;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+/* Stil für die Buttons */
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: limegreen;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto; /* Zentriert den Button */
+    display: block; /* Block-Element, damit margin funktioniert */
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: green;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+
+    body {
+        font-family: 'Arial', sans-serif;
+        font-size: 67%; /* Kleinere Schriftgröße */
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        padding: 10px; /* Weniger Padding für mehr Platz */
+    }
+
+    input[type="checkbox"] {
+        width: 15px; /* Optimale Größe für Touch-Geräte */
+        height: 15px;
+        cursor: pointer;
+    }
+
+    li {
+        padding: 8px; /* Weniger Innenabstand für kompaktere Listenelemente */
+        font-size: 85%; /* Kleinere Schrift für mehr Übersicht */
+        margin-bottom: 10px; /* Leicht reduzierte Abstände */
+        border-radius: 5px; /* Abgerundete Ecken für eleganten Look */
+    }
+
+    button {
+        margin: 15px auto; /* Mittig platzierte Buttons */
+        width: 75%; /* Breitere Buttons für bessere Erreichbarkeit */
+        padding: 8px; /* Kleinere Button-Größe */
+        font-size: 90%; /* Kleinere Schrift im Button */
+    }
+
+    #pseudoCode {
+        height: 120px; /* Kleinere Höhe für das Textfeld */
+        padding: 8px; /* Weniger Padding im Textfeld */
+    }
+
+    code {
+        font-size: 90%; /* Kleinere Schrift im Code-Bereich */
+    }
+}
