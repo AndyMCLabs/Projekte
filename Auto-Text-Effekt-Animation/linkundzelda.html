@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Text-Effekt-Animation (Zelda Edition)</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #3b4371, #f3904f);
+            background-image: url('./Zelda.jpeg');
+            /* Zelda-themed background */
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Noto Serif Display', serif;
+            color: #6be771;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(30, 46, 8, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.5;
+        }
+
+        button {
+            background-color: #2E8B57;
+            /* Mittelgrün für den Hintergrund */
+            border: 2px solid #006400;
+            /* Dunkelgrüner Rand */
+            color: #FFFFFF;
+            /* Weißer Text */
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 0;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Permanent Marker', cursive;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3CB371;
+            /* Helleres Grün beim Hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+            transform: translateX(-50%) scale(1.05);
+        }
+
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Text wird hier angezeigt -->
+    </div>
+    <button onclick="restartText()">Erneut beginnen mit Audio</button>
+
+    <script>
+        const containerEl = document.querySelector(".container");
+
+        const story = [
+            "In einem weit entfernten Land namens Hyrule,",
+            "lebte ein mutiger junger Krieger namens Link.",
+            "Link trug das legendäre Schwert und den Schild, die nur von Helden geführt werden konnten.",
+            "Er war auserwählt, das Königreich vor dunklen Mächten zu schützen.",
+            "An seiner Seite stand Prinzessin Zelda, die Wächterin des Triforce der Weisheit.",
+            "Gemeinsam kämpften sie gegen das Böse, das Hyrule bedrohte.",
+            "Eines Tages hörten sie von einem alten Fluch, der in den Tiefen des verlorenen Waldes lag.",
+            "Link zögerte nicht und machte sich sofort auf den Weg, um den Fluch zu brechen.",
+            "Mit Mut und Entschlossenheit durchquerte er dunkle Höhlen und gefährliche Labyrinthe.",
+            "Unterwegs traf er auf mystische Kreaturen und löste uralte Rätsel.",
+            "Währenddessen versuchte Zelda, das Volk von Hyrule zu beruhigen und Hoffnung zu verbreiten.",
+            "Nach vielen Abenteuern und Herausforderungen fand Link schließlich den Ursprung des Fluches.",
+            "Mit einem letzten, heldenhaften Schlag besiegte er die Quelle des Bösen und brach den Fluch.",
+            "Zurück im Schloss feierten die Menschen von Hyrule die Rückkehr ihres Helden.",
+            "Link und Zelda standen gemeinsam auf den Schlossmauern und blickten in die Ferne.",
+            "Die Sonne ging auf und Hyrule war erneut in Frieden gehüllt.",
+            "Doch sie wussten, dass ihr Abenteuer noch nicht vorbei war.",
+            "Denn so lange es Dunkelheit gibt, wird auch das Licht immer einen Helden brauchen.",
+            "Ende"
+        ];
+
+        let storyIndex = 0;
+        let characterIndex = 0;
+        let timeoutId;
+        let zeldaAudio = new Audio('./Zelda_Main_Theme_Song.mp3');
+
+        function updateText() {
+            characterIndex++;
+            containerEl.innerHTML = `<h1>${story[storyIndex].slice(0, characterIndex)}</h1>`;
+
+            if (characterIndex === story[storyIndex].length) {
+                storyIndex++;
+                characterIndex = 0;
+            }
+
+            if (storyIndex < story.length) {
+                timeoutId = setTimeout(updateText, 218);
+            }
+        }
+
+        function restartText() {
+            storyIndex = 0;
+            characterIndex = 0;
+            containerEl.innerHTML = "";
+            clearTimeout(timeoutId);
+            updateText();
+            zeldaAudio.currentTime = 0;
+            zeldaAudio.play();
+        }
+
+        // Start the text animation initially
+        updateText();
+
+    </script>
+</body>
+
+</html>

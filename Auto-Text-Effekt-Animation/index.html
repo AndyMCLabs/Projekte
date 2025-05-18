@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Text-Effekt-Animation</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+            background-color: salmon;
+            font-family: "Permanent Marker", cursive;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+    </div>
+
+    <script>
+
+        const containerEl = document.querySelector(".container");
+
+        const careers = ["YouTuber", "Web Developer", "Freelancer", "Instructor"];
+
+        let careerIndex = 0;
+
+        let characterIndex = 0;
+
+        updateText();
+
+        function updateText() {
+            characterIndex++;
+            containerEl.innerHTML = `
+        <h1>I am ${careers[careerIndex].slice(0, 1) === "I" ? "an" : "a"} ${careers[careerIndex].slice(0, characterIndex)}</h1>
+        `;
+
+            if (characterIndex === careers[careerIndex].length) {
+                careerIndex++;
+                characterIndex = 0;
+            }
+            if (careerIndex === careers.length) {
+                careerIndex = 0;
+            }
+            setTimeout(updateText, 300);
+        }
+
+    </script>
+</body>
+
+</html>
