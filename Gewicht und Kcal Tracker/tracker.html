@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalorien-Tracker</title>
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: darkgreen;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+main {
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px; /* Setzen Sie eine maximale Breite für bessere Darstellung */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: forestgreen;
+    border-radius: 8px;
+    text-align: center;
+}
+
+section {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    margin: 1rem auto; /* Zentriert jede Sektion horizontal */
+}
+
+.form-section input,
+.form-section button {
+    display: block;
+    width: calc(100% - 2rem);
+    margin: 0.5rem auto;
+}
+
+button {
+    background-color: #004d00;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003300;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.summary-section, .history-section {
+    text-align: center;
+}
+
+h1 {
+    padding-top: 50px;
+    color: whitesmoke;
+}
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Mein Kalorien-Tracker</h1>
+        <section id="weight-entry" class="form-section">
+            <h2>Gewicht Eintragen</h2>
+            <input type="date" id="date" placeholder="Datum">
+            <input type="number" id="weight" placeholder="Gewicht (kg)">
+            <button onclick="saveWeight()">Speichern</button>
+        </section>
+        <section id="meal-entry" class="form-section">
+            <h2>Mahlzeiten Eintragen</h2>
+            <input type="date" id="meal-date" placeholder="Datum">
+            <input type="text" id="meal" placeholder="Mahlzeit">
+            <input type="number" id="calories" placeholder="Kalorien">
+            <button onclick="saveMeal()">Speichern</button>
+        </section>
+        <section id="summary" class="summary-section">
+            <h2>Zusammenfassung</h2>
+            <p id="total-calories"><b>Gesamte Kalorien: 0</b></p>
+        </section>
+        <section id="history" class="history-section">
+            <h2>Verlauf</h2>
+            <div id="weight-history">
+                <h3>Gewicht Verlauf</h3>
+                <ul id="weight-list"></ul>
+            </div>
+            <div id="meal-history">
+                <h3>Mahlzeiten Verlauf</h3>
+                <ul id="meal-list"></ul>
+            </div>
+        </section>
+    </main>
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    function saveWeight() {
+        const date = document.getElementById('date').value;
+        const weight = document.getElementById('weight').value;
+        if (date && weight) {
+            let weightHistory = JSON.parse(localStorage.getItem('weightHistory')) || [];
+            weightHistory.push({ date, weight });
+            localStorage.setItem('weightHistory', JSON.stringify(weightHistory));
+            loadData();
+        } else {
+            alert('Bitte geben Sie Datum und Gewicht ein.');
+        }
+    }
+
+    function saveMeal() {
+        const date = document.getElementById('meal-date').value;
+        const meal = document.getElementById('meal').value;
+        const calories = parseInt(document.getElementById('calories').value, 10);
+        if (date && meal && calories) {
+            let mealHistory = JSON.parse(localStorage.getItem('mealHistory')) || [];
+            mealHistory.push({ date, meal, calories });
+            localStorage.setItem('mealHistory', JSON.stringify(mealHistory));
+            loadData();
+        } else {
+            alert('Bitte geben Sie Datum, Mahlzeit und Kalorien ein.');
+        }
+    }
+
+    function loadData() {
+        const weightHistory = JSON.parse(localStorage.getItem('weightHistory')) || [];
+        const mealHistory = JSON.parse(localStorage.getItem('mealHistory')) || [];
+        
+        const totalCalories = mealHistory.reduce((total, entry) => total + entry.calories, 0);
+        document.getElementById('total-calories').innerText = `Gesamte Kalorien: ${totalCalories}`;
+
+        const weightList = document.getElementById('weight-list');
+        weightList.innerHTML = '';
+        weightHistory.forEach(entry => {
+            const li = document.createElement('li');
+            li.textContent = `${entry.date}: ${entry.weight} kg`;
+            weightList.appendChild(li);
+        });
+
+        const mealList = document.getElementById('meal-list');
+        mealList.innerHTML = '';
+        mealHistory.forEach(entry => {
+            const li = document.createElement('li');
+            li.textContent = `${entry.date}: ${entry.meal} - ${entry.calories} Kalorien`;
+            mealList.appendChild(li);
+        });
+    }
+
+    loadData();
+
+    document.querySelector('button[onclick="saveWeight()"]').addEventListener('click', saveWeight);
+    document.querySelector('button[onclick="saveMeal()"]').addEventListener('click', saveMeal);
+});
+
+
+    </script>
+</body>
+</html>
