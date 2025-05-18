@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto Zahlengenerator</title>
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to top, red, white, red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+.numbers {
+    font-size: 24px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.number {
+    background-color: #007bff;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    font-size: 20px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deine Lotto-Zahlen</h1>
+        <div id="numbers" class="numbers">
+            <!-- Lottozahlen werden hier angezeigt -->
+        </div>
+        <button id="generateButton">Ziehe Lottozahlen</button>
+    </div>
+    <script>
+
+document.getElementById('generateButton').addEventListener('click', function() {
+    const numbers = generateUniqueNumbers(6, 1, 45);
+    numbers.sort((a, b) => a - b); // Sortiert die Zahlen von klein nach groß
+    displayNumbers(numbers);
+});
+
+function generateUniqueNumbers(count, min, max) {
+    const numbers = new Set();
+    while (numbers.size < count) {
+        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        numbers.add(randomNumber);
+    }
+    return Array.from(numbers);
+}
+
+function displayNumbers(numbers) {
+    const numbersContainer = document.getElementById('numbers');
+    numbersContainer.innerHTML = '';
+    numbers.forEach(num => {
+        const numberElement = document.createElement('div');
+        numberElement.className = 'number';
+        numberElement.textContent = num;
+        numbersContainer.appendChild(numberElement);
+    });
+}
+
+    </script>
+</body>
+</html>
