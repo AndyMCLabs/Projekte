@@ -1,0 +1,37 @@
+body {
+    margin: 10%;
+}
+
+h1, h2 {
+    text-align: left;
+    font-size: 2.5rem;
+    color: #8A2BE2; /* Mystisches Violett */
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(138, 43, 226, 0.5); /* Leichter Schein um die Überschrift */
+}
+
+p {
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #E0E0E0; /* Helleres Grau für den Text */
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2); /* Leichter Schein für den Text */
+}
+
+code {
+    color: #2E8B57;
+}
+
+ul, ol, li {
+    text-align: left;
+}
+
+pre {
+    text-align: left;
+}
+
+a {
+    color: #2369ff
+    
+}

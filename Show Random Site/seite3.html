@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorlagen-Seite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="template.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Einführung in JavaScript</h1>
+        <p><strong>JavaScript</strong> ist eine Skriptsprache, die verwendet wird, um Webseiten interaktiv zu machen.
+            Mit JavaScript kannst du Benutzereingaben verarbeiten, Inhalte dynamisch ändern und viele andere interaktive
+            Funktionen implementieren.</p>
+
+        <h2>Grundlegende JavaScript-Syntax</h2>
+        <p>JavaScript wird häufig in HTML-Dokumenten innerhalb von <code>&lt;script&gt;</code>-Tags eingebettet. Hier
+            ist ein einfaches Beispiel:</p>
+        <pre>
+<code>&lt;script&gt;
+    // Dies ist ein Kommentar
+    alert('Hallo, Welt!');
+&lt;/script&gt;</code>
+        </pre>
+
+        <h2>Ein einfaches Beispiel</h2>
+        <p>Hier ist ein Beispiel für ein JavaScript-Skript, das auf einen Button-Klick reagiert:</p>
+        <pre>
+<code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;JavaScript Beispiel&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button onclick="zeigeNachricht()"&gt;Klicke mich&lt;/button&gt;
+
+    &lt;script&gt;
+        function zeigeNachricht() {
+            alert('Du hast den Button geklickt!');
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+        </pre>
+
+        <p>Dieses Beispiel zeigt, wie du eine Funktion definierst, die eine Nachricht anzeigt, wenn der Button auf der
+            Seite geklickt wird.</p>
+
+        <h2>Weitere Ressourcen</h2>
+        <p>Für mehr Informationen über JavaScript kannst du folgende Ressourcen besuchen:</p>
+        <ul>
+            <li><a href="https://www.w3schools.com/js/" target="_blank">W3Schools JavaScript Tutorial</a></li>
+            <li><a href="https://developer.mozilla.org/de/docs/Web/JavaScript" target="_blank">MDN Web Docs über
+                    JavaScript</a></li>
+        </ul>
+
+        <button id="random-button">Lüfte ein weiteres Geheimnis!</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
