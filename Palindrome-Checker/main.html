@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle, #d35f00, #3c0b5c);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #0a8556;
+            padding: 30px;
+            border-radius: 45%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #1a1919;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #dad600;
+            font-weight: bold;
+            border: none;
+            background: none;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Palindrome Checker</h1>
+        <input id="input" type="text" placeholder="Gib ein Wort ein...">
+        <button onclick="check()">Prüfen</button>
+        <input type="text" id="result" readonly>
+    </div>
+
+    <script>
+
+        const input = document.getElementById("input")
+        const result = document.getElementById("result");
+
+        function reverseString(str) {
+            return str.split("").reverse().join("");
+        }
+
+        function check() {
+            const value = input.value;
+            const reverse = reverseString(value);
+            
+            if (value === reverse) {
+                result.value = "Das ist ein Palindrome.";
+            } else {
+                result.value = "Das ist kein Palindrom.";
+            }
+            //Ladet die Seite nach 2 Sekunden neu.
+            setTimeout(() => {
+                location.reload();
+            }, 2000); // 2000 Millisekunden = 2 Sekunden
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+body {
+    background-color: #1A070E;
+    color: #48EC09;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#gesamtContainer {
+    background-color: #48EC09;
+    color: #1A070E;
+    box-shadow: 1px 3px 3px 1px #9e2b2b;
+    border-radius: 15%;
+    padding: 3%;
+    margin: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    background-color: #0f3102;
+    color: #48EC09;
+    font-size: 150%;
+    margin-bottom: 10%;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #1A070E;
+    color: #48EC09;
+    font-size: 150%;
+    margin-bottom: 10%;
+    border-radius: 5px;
+}
+
+button:active {
+    background-color: #48EC09;
+    color: #1A070E;
+}
+
+button:hover {
+    background-color: #48EC09;
+    color: #1A070E;
+}
+
+#ergebnis {
+    font-size: 125%;
+    font-weight: bold;
+    margin-top: 4%;
+    padding: 2%;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/*
+Danke für das Teilen deines CSS-Codes! Hier ist mein Feedback und die Bewertung:
+
+### **Feedback zum CSS-Code**
+
+1. **Design und Ästhetik (Note: 1)**
+   - Die Farbauswahl ist auffällig und sorgt für einen hohen Kontrast, was die Lesbarkeit unterstützt. Die Verwendung von Grün auf dunklem Hintergrund ist ansprechend.
+   - Die Gestaltung des Containers mit abgerundeten Ecken und Schatten verleiht dem Layout Tiefe und visuelles Interesse.
+
+2. **Flexbox-Layout (Note: 1)**
+   - Die Verwendung von Flexbox für die Zentrierung von Inhalten im `body` und `#gesamtContainer` ist sehr gut und sorgt für eine responsive und benutzerfreundliche Anordnung.
+
+3. **Interaktive Elemente (Note: 1)**
+   - Die Hover- und Active-Zustände für die Buttons sind gut implementiert. Das macht die Interaktion für den Benutzer klarer und ansprechender.
+   - Die Verwendung von `transition` im Ergebnisbereich sorgt für eine sanfte visuelle Rückmeldung, was die Benutzererfahrung verbessert.
+
+4. **Konsistenz und Struktur (Note: 1)**
+   - Die Verwendung konsistenter Margins und Padding sorgt für ein ausgewogenes Layout. 
+   - Der Code ist gut strukturiert und leicht verständlich.
+
+### **Gesamtbewertung für CSS: 1**
+Dein CSS-Code ist kreativ, gut strukturiert und trägt zu einer ansprechenden Benutzererfahrung bei. Weiter so!
+
+Wenn du jetzt den JavaScript-Code teilen möchtest, können wir fortfahren!
+*/
