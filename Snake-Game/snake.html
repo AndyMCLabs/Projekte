@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake-Spiel</title>
+    <style>
+body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            background-image: url("https://cdna.artstation.com/p/assets/images/images/067/229/744/large/onnue-tbrender-026.jpg?1694862686");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        
+        #gameCanvas {
+            margin-bottom: 18%;
+            margin-right: 1%;
+            border-radius: 5px;
+            border: 5px solid #5e6f8d; /* Heller blauer Rahmen */
+            background-color: #6daa81; /* Dunkler Hintergrund für das Spielfeld */
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #score {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="580" height="350"></canvas>
+    <div id="score">Punkte: 0</div>
+
+
+
+<script>
+    // Spielfeld und Kontext initialisieren
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Snake und andere Variablen definieren
+    let snake = [{ x: 10, y: 10 }];
+    let snakeLength = 1; // Snake beginnt mit einer Länge von 1
+    let direction = { x: 1, y: 0 }; // Snake beginnt, sich nach rechts zu bewegen
+    
+    // Objekte für die Frucht
+    let fruit = { x: 0, y: 0 };
+    let score = 0; //Punktezahl
+    let speed = 125; //Initiale Geschwindigkeit
+    let gameInterval; // Timer-Identifikator
+
+    // Spiel starten
+    function startGame() {
+        generateFruit(); // Frucht generieren
+        document.addEventListener('keydown', changeDirection);
+        setInterval(updateGame, speed);
+    }
+
+    // Spiellogik aktualisieren
+    function updateGame() {
+        if (checkCollision()) {
+            alert("Spiel beendet! Klicke OK, um neu zu starten.");
+            resetGame();
+        } else {
+            moveSnake();
+            checkFruitCollision(); // Überprüfen, ob die Snake die Frucht gegessen hat
+            drawGame();
+            document.getElementById('score').innerText = `Punkte: ${score}`; // Punktzahl aktualisieren
+        }
+    }
+
+    // Snake bewegen
+    function moveSnake() {
+        const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+        snake.unshift(head); // Kopf der Snake hinzufügen
+        if (snake.length > snakeLength) {
+            snake.pop(); // Das letzte Segment entfernen, wenn die Snake zu lang wird
+        }
+    }
+
+    // Überprüfen, ob die Snake die Frucht gegessen hat
+    function checkFruitCollision() {
+        const head = snake[0];
+        if (head.x === fruit.x && head.y === fruit.y) {
+            snakeLength++; // Snake verlängern
+            score++; //Punkte erhöhen
+            speed = Math.max(50, speed - 0.5); // Geschwindigkeit erhöhem (max 50ms)
+            clearInterval(gameInterval); // vorherigen Timer löschen
+            gameInterval = setInterval(updateGame, speed); // neuen Timer setzen
+            generateFruit(); // Neue Frucht generieren
+        }
+    }
+
+    // Überprüfen, ob die Snake gegen sich selbst oder die Wand gestoßen ist
+    function checkCollision() {
+        const head = snake[0];
+
+        // Wandkollision
+        if (head.x < 0 || head.x >= canvas.width / 10 || head.y < 0 || head.y >= canvas.height / 10) {
+            return true;
+        }
+
+        // Selbstkollision
+        for (let i = 1; i < snake.length; i++) {
+            if (head.x === snake[i].x && head.y === snake[i].y) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Spiel zurücksetzen
+    function resetGame() {
+        snake = [{ x: 10, y: 10 }];
+        snakeLength = 1; // Snake zurücksetzen auf Länge 1
+        direction = { x: 1, y: 0 }; // Snake beginnt nach rechts
+        score = 0; // Punktezahl zurück setzen
+        speed = 125; // Geschwindigkeit zurück setzen
+        generateFruit(); // Neue Frucht generieren
+    }
+
+    // Frucht generieren
+    function generateFruit() {
+        fruit.x = Math.floor(Math.random() * (canvas.width / 10));
+        fruit.y = Math.floor(Math.random() * (canvas.height / 10));
+    }
+
+    // Spiel zeichnen
+    function drawGame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvas löschen
+        snake.forEach((segment) => {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(segment.x * 10, segment.y * 10, 10, 10); // Snake zeichnen
+        });
+
+        // Frucht zeichnen
+        ctx.fillStyle = 'red';
+        ctx.fillRect(fruit.x * 10, fruit.y * 10, 10, 10); // Frucht zeichnen
+    }
+
+    // Richtung ändern
+    function changeDirection(event) {
+        switch (event.key) {
+            case 'ArrowUp':
+                if (direction.y === 0) direction = { x: 0, y: -1 }; // Verhindern, dass die Snake sich umkehrt
+                break;
+            case 'ArrowDown':
+                if (direction.y === 0) direction = { x: 0, y: 1 }; // Verhindern, dass die Snake sich umkehrt
+                break;
+            case 'ArrowLeft':
+                if (direction.x === 0) direction = { x: -1, y: 0 }; // Verhindern, dass die Snake sich umkehrt
+                break;
+            case 'ArrowRight':
+                if (direction.x === 0) direction = { x: 1, y: 0 }; // Verhindern, dass die Snake sich umkehrt
+                break;
+        }
+    }
+
+    // Spiel starten
+    startGame();
+</script>
+
+    
+    
+</body>
+
+</html>
