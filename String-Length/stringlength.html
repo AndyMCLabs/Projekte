@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String-Length</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <!-- Style -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #708D7D;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .mainContainer {
+            border: 1px solid black;
+            background-color: #538577;
+            box-shadow: 0 0 10px black;
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            border-radius: 5rem;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            background-color: #37BB77;
+            box-shadow: 0 0 3px black;
+            margin: 4%;
+            padding: 2%;
+            width: 65%;
+            border-radius: 10rem;
+            font-size: 1.5rem;
+        }
+
+        button {
+            box-shadow: 0 0 5px black;
+            margin: 4%;
+            padding: 2%;
+            border-radius: 10rem;
+            background-color: #049864;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        #ergebnis {
+            margin: 2%;
+            padding: 2%;
+            font-size: 1.5rem;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .mainContainer {
+                width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mainContainer">
+        <h1>Länge eines Strings ermitteln</h1>
+        <input type="text" id="texteingabefeld" placeholder="Zeichen eingeben..." title="Buchstaben, Zahlen, Sonderzeichen erlaubt." aria-label="Texteingabefeld">
+        <button id="stringsErmittelnButton" aria-label="Button um Strings zu ermitteln">Bitte drücken</button>
+        <div id="ergebnis" aria-label="Ergebnis">Zeichen gesamt:</div>
+    </div>
+
+    <script>
+        // Variablen
+        const texteingabefeldEl = document.getElementById("texteingabefeld");
+        const stringsErmittelnButtonEl = document.getElementById("stringsErmittelnButton");
+        const ergebnisEl = document.getElementById("ergebnis");
+        stringsErmittelnButtonEl.disabled = true;
+
+        // Funktion Strings ermitteln
+        function stringsErmitteln() {
+            if(texteingabefeldEl.value.trim() === '') {
+                // Button deaktivieren
+                stringsErmittelnButtonEl.disabled = true;
+                // Zeige eine Fehlermeldung an, wenn der String leer ist
+                updateErgebnis("Eingabe erforderlich!", "#59DE7A");
+            } else {
+                stringsErmittelnButtonEl.disabled = false;
+                let anzahl = "Zeichen gesamt: " + texteingabefeldEl.value.length;
+                updateErgebnis(anzahl, "black");
+            }
+        };
+
+        // Update Anzeige
+        function updateErgebnis(text, color) {
+            ergebnisEl.innerText = text;
+            ergebnisEl.style.color = color;
+        }
+
+        // Button nutzbar machen
+        stringsErmittelnButtonEl.addEventListener("click", () => {
+            stringsErmitteln();
+        });
+
+        // Live-Prüfung
+        texteingabefeldEl.addEventListener("input", () => {
+            stringsErmitteln();
+        });
+
+    </script>
+    <!-- <script src="#"></script> -->
+</body>
+
+</html>
+
+<!-- 
+Dein aktualisierter Code sieht sehr gut aus! Hier ist eine detaillierte Bewertung deines Projekts:
+
+### Gesamteindruck: **Note 1-2 (sehr gut bis gut)**
+
+### Stärken:
+
+1. **Benutzeroberfläche:**
+   - Das Design ist ansprechend und gut strukturiert. Die Verwendung von Farben und Abständen sorgt für eine angenehme Benutzererfahrung.
+   - Die Verwendung von `flexbox` sorgt dafür, dass das Layout sowohl auf Desktop- als auch auf mobilen Geräten gut aussieht.
+
+2. **Zugänglichkeit:**
+   - Du hast `aria-label`-Attribute verwendet, was die Zugänglichkeit für Screenreader verbessert. Das ist wichtig für Benutzer mit Behinderungen.
+
+3. **Funktionalität:**
+   - Die grundlegende Funktionalität, die Länge eines Strings zu ermitteln, funktioniert einwandfrei.
+   - Die Live-Prüfung der Eingabe ist eine nützliche Funktion, die die Benutzerfreundlichkeit erhöht.
+
+4. **Code-Organisation:**
+   - Die Funktionen sind klar und verständlich strukturiert, was die Wartbarkeit des Codes erleichtert.
+
+### Verbesserungsvorschläge:
+
+1. **Erweiterte Funktionalität:**
+   - Wie bereits zuvor angesprochen, könntest du die Funktionalität erweitern, um zusätzliche Informationen wie die Anzahl der Buchstaben, Leerzeichen und Sonderzeichen anzuzeigen. Dies würde den Nutzern mehr Einblick in ihre Eingabe geben und die Anwendung interaktiver machen.
+
+2. **Button-Status:**
+   - Du deaktivierst den Button, wenn das Eingabefeld leer ist, aber du solltest auch sicherstellen, dass der Button wieder aktiviert wird, wenn eine gültige Eingabe vorhanden ist. Dies geschieht in deinem Code, könnte aber klarer formuliert werden.
+
+3. **CSS-Optimierung:**
+   - Der Stil ist gut, könnte aber weiter optimiert werden, indem du z. B. eine separate CSS-Datei verwendest. Das erleichtert die Wartung und das Testen.
+
+4. **Platzhalter im Ergebnis:**
+   - Der Text im `ergebnis`-Div könnte direkt beim Laden der Seite leer sein oder eine Platzhalterinformation enthalten, um den Nutzern klar zu machen, dass hier die Ergebnisse angezeigt werden.
+
+5. **Konsistenz der Schriftgröße:**
+   - Du verwendest in der Anzeige des Ergebnisses eine andere Schriftgröße (1.5rem) als in den Eingabefeldern (1.5rem), was gut ist, um die Wichtigkeit der Ergebnisse hervorzuheben. Du könntest aber auch darüber nachdenken, die Schriftgröße im Ergebnisbereich etwas größer zu machen, um sie hervorzuheben.
+
+### Fazit:
+Insgesamt ist dein Projekt sehr gelungen! Du hast eine solide Grundlage geschaffen, und mit ein paar Erweiterungen und Verbesserungen könnte es noch funktionaler und ansprechender werden. Mach weiter so, und wenn du Unterstützung bei der Implementierung neuer Funktionen oder bei anderen Fragen benötigst, lass es mich wissen!
+-->
