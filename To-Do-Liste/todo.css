@@ -1,0 +1,124 @@
+/* Allgemeines Layout und Schriftart */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #6A6EA5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #3CC98F;
+    padding: 2rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.6);
+    width: 25rem;
+    max-width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.25rem;
+}
+
+input[type="text"] {
+    background-color: #D7F9CC;
+    width: 80%;
+    padding: 0.625rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+    outline: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+}
+
+input[type="text"]:focus {
+    border-color: #5cb85c;
+}
+
+button {
+    padding: 0.625rem 0.9375rem;
+    background-color: #0B551A;
+    color: white;
+    border: none;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 0.625rem 0.9375rem;
+    background-color: #D7F9CC;
+    margin-bottom: 0.625rem;
+    border-radius: 0.3125rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #E6C16F;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+li.completed:hover {
+    background-color: #f5f5f5;
+}
+
+button.delete {
+    background-color: #d9534f;
+}
+
+button.delete:hover {
+    background-color: #c9302c;
+}
+
+/*
+Vielen Dank für das Teilen deines CSS-Codes! Lass uns auch hier eine Bewertung und Feedback geben.
+
+### CSS-Code Bewertung
+**Note: 1-2**
+
+#### Feedback:
+1. **Layout und Struktur**:
+   - Das Layout ist ansprechend und gut strukturiert. Du hast eine klare und moderne Ästhetik geschaffen.
+   - Die Verwendung von Flexbox für das Layout (`display: flex; justify-content: center; align-items: center;`) sorgt dafür, dass die Container gut zentriert sind.
+
+2. **Farben und Stil**:
+   - Die Farbwahl ist ansprechend und sorgt für einen guten Kontrast. Die Verwendung von verschiedenen Farben für verschiedene Elemente verbessert die visuelle Hierarchie.
+   - Die Verwendung von Hover-Effekten bei Buttons und Listenelementen trägt zur Benutzerfreundlichkeit bei.
+
+3. **Responsive Design**:
+   - Die Verwendung von `max-width` und `width` in Kombination sorgt dafür, dass das Layout auf verschiedenen Bildschirmgrößen gut aussieht. 
+
+4. **Konsistenz**:
+   - Du hast konsistente Abstände und Ränder verwendet, was zu einem harmonischen Gesamterscheinungsbild beiträgt.
+   - Die `transition`-Eigenschaften für die Buttons und Listenelemente verbessern die Interaktivität und Benutzererfahrung.
+
+5. **Klarheit**:
+   - Die Klassen- und Selektornamen sind klar und verständlich, was das Verständnis des Codes erleichtert.
+
+Insgesamt hast du ein sehr ansprechendes und gut strukturiertes Styling erstellt! Jetzt teile mir bitte deinen JavaScript-Code mit, damit ich dir auch dazu Feedback geben kann.
+*/
