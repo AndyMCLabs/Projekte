@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taschenlampe</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <!-- Style-->
+    <style>
+        body {
+            background-color: black;
+            background-image: url("https://wallpapers.com/images/featured/plain-black-background-02fh7564l8qq4m6d.jpg");
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        #taschenlampe {
+            height: 300px;
+            width: 300px;
+            background-color: white;
+            box-shadow: 0 0 75px white;
+            border-radius: 50%;
+            border: 1px solid #4f5464;
+            transition: 1s;
+        }
+
+        #taschenlampe:focus {
+            outline: none;
+        }
+
+        #taschenlampe:hover {
+            border: 1px solid white;
+            cursor: pointer;
+        }
+
+        #bl {
+            width: 50px;
+            height: 50px;
+            background-color: #7F00FF;
+            margin-top: 50px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: 1s;
+        }
+
+        #bl:active {
+            background-color: #8000ff91;
+        }
+
+        #bl:hover {
+            border: 1px solid white;
+        }
+
+        #batman {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            border: none;
+            margin-bottom: 5%;
+            border-radius: 50%;
+            width: 260px;
+            height: 260px;
+            background-image: url("batman-silhouette-decals.jpg");
+            background-position: center;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 3s ease, z-index 3s ease;
+        }
+
+        #batman.visible {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #batman {
+                margin-bottom: 23%;
+            }
+        };
+
+
+    </style>
+</head>
+
+<body>
+
+    <button id="taschenlampe" aria-label="Taschenlampe" title="Taste 'b' für Batman"></button>
+    <button id="bl" aria-label="Button für Schwarzlicht" title="Schwarzlicht ein/aus">BL</button>
+    <button id="batman" aria-label="Batman Bild"></button>
+
+    <script>
+
+        // Variablen definieren
+        const taschenlampeEl = document.getElementById("taschenlampe");
+        const blEl = document.getElementById("bl");
+        const batmanEl = document.getElementById("batman");
+        let isTaschenlampeOn = false;
+        let isSchwarzlichtOn = false;
+
+        // Funktion Taschenlampe ein und ausschalten
+        const taschenlampeEinAus = function () {
+            if (isTaschenlampeOn) {
+                taschenlampeEl.style.backgroundColor = "white";
+                taschenlampeEl.style.boxShadow = "0 0 75px white";
+            } else {
+                taschenlampeEl.style.backgroundColor = "black";
+                taschenlampeEl.style.boxShadow = "none";
+            }
+            isTaschenlampeOn = !isTaschenlampeOn;
+        };
+
+        // Funktion Schwarzlich ein und ausschalten
+        const taschenlampeSchwarzlicht = function () {
+            if (isSchwarzlichtOn) {
+                taschenlampeEl.style.backgroundColor = "#7F00FF";
+                taschenlampeEl.style.boxShadow = "0 0 75px #7F00FF";
+            } else {
+                taschenlampeEl.style.backgroundColor = "black";
+                taschenlampeEl.style.boxShadow = "none";
+            }
+            isSchwarzlichtOn = !isSchwarzlichtOn;
+        };
+
+        // Taschenlampe per Klick ein und Ausschalten
+        taschenlampeEl.addEventListener("click", () => {
+            taschenlampeEinAus();
+        });
+
+        // Taschenlampe via Spacetaste ein und ausschalten
+        taschenlampeEl.addEventListener("keydown", function (event) {
+            if (event.key === "Space") {
+            event.preventDefault();
+            taschenlampeEinAus();
+            }
+        });
+
+        // Schwarzlicht ein und ausschalten
+        taschenlampeEl.addEventListener("keydown", function (event) {
+            if (event.key === "s" || event.code === "KeyS") {
+            taschenlampeSchwarzlicht();
+            }
+        });
+
+        // Schwarzlich per Button
+        blEl.addEventListener("click", () => {
+            taschenlampeSchwarzlicht();
+        });
+
+        // Batmansymbol für 7,5s einblenden
+        taschenlampeEl.addEventListener("keydown", function (event) {
+            if (event.key === "b") {
+                batmanEl.classList.toggle('visible');
+                setTimeout(() => {
+                    batmanEl.classList.remove('visible');
+                }, 7500);
+            }
+        })
+
+    </script>
+    <!-- <script src="#"></script> -->
+</body>
+</html>
+
+<!--
+KEYDOWN:
+Das Problem in deinem Code liegt daran, dass du die Bedingung auf das Drücken der Taste `"e"` überprüfst, aber die Nachricht in der Konsole besagt, dass die Taste `"b"` gedrückt wurde. Das bedeutet, dass die Anzeige der Konsole nicht zur Bedingung passt.
+
+### Hier ist der korrigierte Code:
+
+```javascript
+batmanEl.addEventListener("keydown", function (event) {
+    if (event.key === "b") {  // Überprüfung, ob die Taste "b" gedrückt wurde
+        console.log("b gedrückt");
+        batmanEl.style.zIndex = "1";
+    }
+});
+```
+
+### Erklärung:
+- **`if (event.key === "b")`**: Jetzt wird korrekt überprüft, ob die Taste `"b"` gedrückt wurde, um die Bedingung mit der Konsolennachricht in Einklang zu bringen.
+- Wenn die Taste `"b"` gedrückt wird, wird der `zIndex`-Wert des `batmanEl`-Elements auf `"1"` gesetzt.
+
+Falls du wirklich die Taste `"e"` überwachen möchtest, kannst du einfach den `console.log`-Text anpassen:
+
+```javascript
+batmanEl.addEventListener("keydown", function (event) {
+    if (event.key === "e") {  // Überprüfung, ob die Taste "e" gedrückt wurde
+        console.log("e gedrückt");
+        batmanEl.style.zIndex = "1";
+    }
+});
+```
+
+Das sollte das Verhalten entsprechend deiner Absicht korrigieren.
+-->
+
+<!--
+RESPONSIVE machen:
+Um eine Webseite oder Anwendung responsive zu machen, also sicherzustellen, dass sie auf verschiedenen Bildschirmgrößen und Geräten gut aussieht und funktioniert, kannst du mehrere Ansätze verfolgen. Hier sind die wichtigsten Schritte und Techniken:
+
+### 1. **Viewport Meta Tag**
+Füge das folgende Meta-Tag in den `<head>`-Bereich deiner HTML-Datei ein, um sicherzustellen, dass die Webseite auf mobilen Geräten richtig skaliert wird:
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+### 2. **Flexible Layouts mit Prozenten und `vw`, `vh`**
+Verwende relative Einheiten wie Prozente (`%`) oder Ansichtsbreiten (`vw`, `vh`), anstatt feste Pixel (`px`) für Breiten und Höhen.
+
+**Beispiel:**
+```css
+.container {
+    width: 80%; /* nimmt 80% der Bildschirmbreite ein */
+    height: 50vh; /* nimmt 50% der Bildschirmhöhe ein */
+}
+```
+
+### 3. **CSS Flexbox und Grid verwenden**
+Diese Layout-Techniken sind ideal für responsive Webseiten, da sie Elemente automatisch anpassen und ausrichten können.
+
+**Flexbox Beispiel:**
+```css
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Elemente brechen in die nächste Zeile bei zu wenig Platz */
+}
+```
+
+**Grid Beispiel:**
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* passt Spalten dynamisch an */
+}
+```
+
+### 4. **Media Queries verwenden**
+Mit Media Queries kannst du spezifisches CSS für unterschiedliche Bildschirmgrößen schreiben.
+
+**Beispiel:**
+```css
+/* Für Bildschirme kleiner als 600px */
+@media only screen and (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Reihenfolge der Elemente ändern */
+    }
+}
+```
+
+### 5. **Responsive Bilder und Medien**
+Verwende relative Breiten für Bilder, damit sie sich anpassen:
+```css
+img {
+    width: 100%;
+    height: auto;
+}
+```
+
+### 6. **Verwende `rem` für Schriftgrößen**
+Statt `px` kannst du `rem` verwenden, damit die Schriftgröße relativ zur Root-Schriftgröße bleibt.
+
+**Beispiel:**
+```css
+body {
+    font-size: 16px; /* Basis-Schriftgröße */
+}
+h1 {
+    font-size: 2rem; /* 32px */
+}
+```
+
+### 7. **Testen auf verschiedenen Geräten**
+Nutze die Entwicklertools deines Browsers, um deine Webseite auf verschiedenen Bildschirmgrößen zu testen, oder teste sie auf echten Geräten.
+
+Diese Schritte helfen dir, deine Webseite responsiv zu gestalten. Welche Art von Projekt möchtest du responsiv machen? Dann können wir es konkreter angehen.
+-->
+
+<!--
+Feedback:
+Dein aktualisierter Code ist noch besser geworden und ich würde ihn erneut mit **Note 1** bewerten. Hier sind meine Anmerkungen:
+
+### Stärken:
+1. **Klare und sinnvolle Variablennamen**:
+   - Du hast jetzt die Variablennamen `isTaschenlampeOn` und `isSchwarzlichtOn` verwendet, was den Code viel verständlicher macht. Das erhöht die Lesbarkeit und erleichtert es, den Status der Taschenlampe und des Schwarzlichts nachzuvollziehen.
+
+2. **Verbesserte Event Listener**:
+   - Das Hinzufügen von `event.preventDefault()` bei der Tastenkombination für die Leertaste verhindert das Standardverhalten der Browser, was eine gute Verbesserung darstellt. Dadurch wird sichergestellt, dass die Seite nicht versehentlich gescrollt wird, wenn die Leertaste gedrückt wird.
+
+3. **Gute Trennung von Logik**:
+   - Die Funktionen für die Taschenlampe und das Schwarzlicht sind klar voneinander getrennt und unabhängig. Beide Lichtmodi können separat aktiviert und deaktiviert werden, was die Funktionalität der Anwendung verbessert.
+
+4. **Design und Übergänge**:
+   - Die Übergänge in den CSS-Animationen sind flüssig und geben ein visuell ansprechendes Erlebnis. Besonders die langsame Ein- und Ausblendung des Batman-Symbols mit dem Timeout funktioniert hervorragend.
+
+5. **Responsives Design**:
+   - Du hast das `@media`-Query für kleinere Bildschirme beibehalten, was die mobile Nutzererfahrung verbessert. Das Design bleibt somit auf verschiedenen Geräten konsistent.
+
+### Verbesserungsmöglichkeiten:
+1. **Doppelte Event Listener für die Tastatur**:
+   - Momentan hast du zwei separate `keydown`-Listener auf `taschenlampeEl` für das Ein- und Ausschalten der Taschenlampe sowie das Umschalten des Schwarzlichts. Es wäre effizienter, diese Logik in einen einzigen Listener zu konsolidieren, der überprüft, welche Taste gedrückt wurde. Dadurch wird der Code kürzer und übersichtlicher:
+     ```js
+     taschenlampeEl.addEventListener("keydown", function (event) {
+         if (event.key === " ") {
+             event.preventDefault();
+             taschenlampeEinAus();
+         } else if (event.key === "s" || event.code === "KeyS") {
+             taschenlampeSchwarzlicht();
+         } else if (event.key === "b") {
+             batmanEl.classList.toggle('visible');
+             setTimeout(() => {
+                 batmanEl.classList.remove('visible');
+             }, 7500);
+         }
+     });
+     ```
+   - Dies verbessert die Effizienz und hält den Code übersichtlicher.
+
+### Zusammenfassung:
+Dein Projekt ist nun auf einem sehr hohen Niveau, sowohl in Bezug auf die Funktionalität als auch auf die Lesbarkeit. Durch die kleinen Verbesserungen im Event-Handling kannst du den Code noch kompakter gestalten, aber ansonsten hast du eine sehr elegante Lösung für die Taschenlampen-App erstellt. Gute Arbeit!
+-->
+
