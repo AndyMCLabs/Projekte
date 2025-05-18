@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maßeinheiten umrechnen</title>
+</head>
+
+<!-- Style -->
+<style>
+    body {
+        background-color: dimgrey;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #mainContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid black;
+        padding: 12%;
+        border-radius: 2rem;
+        background-color: darkolivegreen;
+        font-weight: bold;
+        box-shadow: 0 0px 3px 3px rgba(0, 0, 0, .6);
+    }
+
+    label {
+        padding: 3%;
+        margin: 3%;
+    }
+
+    select {
+        padding: 3%;
+        margin: 3%;
+        border-radius: 0.5rem;
+        background-color: lightgray;
+    }
+
+    input {
+        padding: 3%;
+        margin: 3%;
+        border-radius: 0.5rem;
+        background-color: lightgray;
+    }
+</style>
+
+<body>
+
+    <!-- Main Container-->
+    <div id="mainContainer">
+
+        <!-- Select-Element für Feld 1 -->
+        <label for="select1">Eingabe-Einheit:</label>
+        <select id="select1" aria-label="Einheit für Umrechnung">
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="mm">Milimeter</option>
+            <option value="cm">Zentimeter</option>
+        </select>
+
+        <!-- Eingabefeld 1 -->
+        <input type="number" id="userInput1" placeholder="Eingabefeld 1" aria-label="Eingabe Wert für Umrechnung">
+
+        <!-- Select-Element für Feld 2 -->
+        <label for="select2">Ausgabe-Einheit:</label>
+        <select id="select2" aria-label="Einheit für Umrechnung">
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="mm">Milimeter</option>
+            <option value="cm">Zentimeter</option>
+        </select>
+
+        <!-- Eingabefeld 2 -->
+        <input type="text" id="userInput2" placeholder="Eingabefeld 2" disabled aria-label="Ausgabe Wert für Umrechnung">
+    </div>
+
+    <!-- Script -->
+    <script>
+        // Greife auf die Select-Elemente und Eingabefelder zu
+        const select1 = document.getElementById('select1');
+        const select2 = document.getElementById('select2');
+        const userInput1Field = document.getElementById('userInput1');
+        const userInput2Field = document.getElementById('userInput2');
+
+        // Eingabefeld 1
+        function userInput1Result() {
+            userInput2Field.value = "";
+            // console.log("Eingabe 1 erfolgt");
+            // console.log(select1.value);
+            // console.log(userInput1Field.value);
+
+            if (isNaN(userInput1Field.value)) {
+                userInput2Field.value = ("Bitte gültige Zahl eingeben.");
+            } else if(select1.value === "px" && select2.value === "px") {
+                userInput2Field.value = userInput1Field.value;
+            } else if(select1.value === "px" && select2.value === "em") {
+                userInput2Field.value = userInput1Field.value * 16;
+            } else if(select1.value === "px" && select2.value === "rem") {
+                userInput2Field.value = userInput1Field.value * 16;
+            } else if(select1.value === "em" && select2.value === "px") {
+                userInput2Field.value = userInput1Field.value / 16;
+            } else if(select1.value === "em" && select2.value === "em") {
+                userInput2Field.value = userInput1Field.value;
+            } else if(select1.value === "em" && select2.value === "rem") {
+                userInput2Field.value = userInput1Field.value;
+            } else if(select1.value === "rem" && select2.value === "px") {
+                userInput2Field.value = userInput1Field.value / 16;
+            } else if(select1.value === "rem" && select2.value === "em") {
+                userInput2Field.value = userInput1Field.value;
+            } else if(select1.value === "rem" && select2.value === "rem") {
+                userInput2Field.value = userInput1Field.value;
+            } else if(select1.value === "mm" && select2.value === "mm") {
+                userInput2Field.value = userInput1Field.value;
+            } else if(select1.value === "mm" && select2.value === "cm") {
+                userInput2Field.value = userInput1Field.value / 10;
+            } else if(select1.value === "cm" && select2.value === "mm") {
+                userInput2Field.value = userInput1Field.value * 10;
+            } else if(select1.value === "cm" && select2.value === "cm") {
+                userInput2Field.value = userInput1Field.value;
+            }
+        };
+
+        // Event-Listener für Eingabefeld 1
+        userInput1Field.addEventListener("input", () => {
+            userInput1Result();
+        });
+
+    </script>
+</body>
+
+</html>
+
+<!--
+### Bewertung nach Schulnoten:
+
+1. **Funktionalität (Note: 2)**  
+   Dein Einheitenumrechner funktioniert gut für die gegebenen Maßeinheiten. Die Umrechnung erfolgt korrekt, aber der Code könnte optimiert werden, um die vielen `if-else`-Bedingungen zu vermeiden. Dies würde die Erweiterbarkeit und Übersichtlichkeit verbessern.
+
+2. **Code-Struktur und Sauberkeit (Note: 2)**  
+   Der HTML- und CSS-Code ist übersichtlich und gut strukturiert. Die Trennung von Struktur und Stil ist korrekt, aber es wäre noch besser, wenn das CSS in eine separate Datei ausgelagert würde. Der JavaScript-Code funktioniert, könnte jedoch durch die Nutzung eines Umrechnungsobjekts oder einer Lookup-Tabelle für die Einheitenumrechnungen aufgeräumt werden.
+
+3. **Design und Benutzerfreundlichkeit (Note: 3)**  
+   Das Design ist funktional, aber es könnte benutzerfreundlicher und optisch ansprechender sein. Die Verwendung von `lightgray` für die Eingabefelder ist in Ordnung, aber vielleicht wäre ein kontrastreicheres Farbschema sinnvoll, um die Lesbarkeit zu verbessern. Zusätzlich könntest du Platzhaltertexte spezifischer machen, z.B. „Geben Sie den Wert ein“.
+
+4. **Fehlerbehandlung (Note: 3)**  
+   Du hast eine grundlegende Validierung eingebaut, die überprüft, ob die Eingabe eine Zahl ist, was gut ist. Es gibt jedoch noch Raum für Verbesserung, wie z.B. eine detailliertere Fehlermeldung oder visuelle Hinweise, wenn eine ungültige Eingabe erfolgt.
+
+### Gesamtwertung: **78/100**
+
+**Feedback:**
+- **Positiv:**  
+  Du hast die Grundidee gut umgesetzt, und das Projekt ist funktional. Deine Struktur und Trennung von HTML, CSS und JavaScript sind gut, und der Ansatz für die Event-Listener ist richtig.
+  
+- **Verbesserungsvorschläge:**  
+  - Verwende ein Objekt oder eine Map, um Umrechnungsfaktoren zu speichern und den `if-else`-Block zu reduzieren.
+  - Optimiere das Design für bessere Benutzerfreundlichkeit, z.B. mit verbesserten Farben oder Layouts.
+  - Eine detaillierte Fehlermeldung und klarere Eingabehinweise könnten das Benutzererlebnis verbessern.
+  - Überlege, dein CSS auszulagern, um den HTML-Code übersichtlicher zu machen.
+
+Insgesamt ist es ein solides Projekt, das durch kleine Verbesserungen deutlich professioneller wirken kann!
+-->
