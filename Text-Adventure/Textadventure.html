@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Textadventure</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to top, #8B4513, #228B22, #87CEFA);
+            color: #f0f8ff;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #4a8a4a;
+            color: #f0f8ff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5cb85c;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            background-color: #4a8a4a;
+            transform: translateY(1px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(to top, #8B4513, #228B22, #87CEFA);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .modal-content p {
+            font-size: 1.2rem;
+        }
+
+        .modal-content input {
+            font-size: 1rem;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+        }
+
+        .modal-content button {
+            margin-top: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Willkommen zum geheimnisvollen Waldabenteuer!</h1>
+        <button id="myButton">Spiel starten</button>
+    </div>
+
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <input type="text" id="modalInput" placeholder="Deine Eingabe" style="display: none;">
+            <button id="modalButton">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Modal-Funktionalität
+        const modal = document.getElementById("myModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalMessage = document.getElementById("modalMessage");
+        const modalInput = document.getElementById("modalInput");
+        const closeBtn = document.querySelector(".close");
+        const modalButton = document.getElementById("modalButton");
+
+        function showModal(title, message, showInput, callback) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modalInput.style.display = showInput ? "block" : "none";
+            modal.style.display = "flex";
+            modalButton.onclick = function () {
+                modal.style.display = "none";
+                const inputValue = modalInput.value;
+                if (callback) callback(inputValue);
+            };
+        }
+
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var button = document.getElementById("myButton");
+            button.addEventListener("click", startScript);
+        });
+
+        function startScript() {
+            showModal("Willkommen", "Willkommen zum geheimnisvollen Waldabenteuer!", false, function () {
+                showModal("Ziel", "Dein Ziel ist es, den richtigen Weg zu finden, um den Wald zu verlassen.", false, function () {
+                    showModal("Anleitung", "Triff kluge Entscheidungen, um die Herausforderungen zu meistern!", false, function () {
+                        zeigeInventar();
+                        ersteEntscheidung();
+                    });
+                });
+            });
+        }
+
+        function ersteEntscheidung() {
+            showModal("Entscheidung", "Du stehst am Anfang eines Pfades. Dieser teilt sich in mehrere Wege auf. Möchtest du dem Pfad links 'l', rechts 'r' oder in der Mitte 'm' folgen?", true, function (entscheidung) {
+                entscheidung = entscheidung.toLowerCase();
+
+                if (entscheidung === "l") {
+                    showModal("Fund", "Du bist nach links gegangen und hast einen Schlüssel gefunden.", false, function () {
+                        gegenstandHinzufuegen("Schlüssel");
+                        eulenEntscheidung();
+                    });
+                } else if (entscheidung === "r") {
+                    showModal("Geräusch", "Du bist nach rechts gegangen und hast ein lautes Gebrüll gehört.", false, bärenEntscheidung);
+                } else if (entscheidung === "m") {
+                    showModal("Brücke", "Du folgst den mittleren Weg. Dieser führt zu einer alten, maroden Hängebrücke", false, brueckenEntscheidung);
+                } else {
+                    showModal("Fehler", "Ungültige Entscheidung. Bitte wähle 'l', 'r' oder 'm'.", false, ersteEntscheidung);
+                }
+            });
+        }
+
+        function eulenEntscheidung() {
+            zeigeInventar();
+            showModal("Eule", "Du stehst vor einer Tür. Möchtest du den Schlüssel verwenden (v) oder weitergehen (w)?", true, function (entscheidung) {
+                entscheidung = entscheidung.toLowerCase();
+
+                if (entscheidung === "v") {
+                    if (inventar.includes("Schlüssel")) {
+                        showModal("Erfolg", "Du hast den Schlüssel verwendet und die Tür geöffnet.", false, endeErreicht);
+                        gegenstandEntfernen("Schlüssel");
+                    } else {
+                        showModal("Fehler", "Du hast keinen Schlüssel im Inventar!", false, eulenEntscheidung);
+                    }
+                } else if (entscheidung === "w") {
+                    showModal("Verlaufen", "Du bist weitergegangen und hast dich im Wald verlaufen.", false, spielEnde);
+                    gegenstandEntfernen("Schlüssel");
+                } else {
+                    showModal("Fehler", "Ungültige Entscheidung. Bitte wähle 'v' oder 'w'.", false, eulenEntscheidung);
+                }
+            });
+        }
+
+        function bärenEntscheidung() {
+            showModal("Bär", "Du siehst einen großen Bären. Möchtest du rennen (r) oder kämpfen (k)?", true, function (entscheidung) {
+                entscheidung = entscheidung.toLowerCase();
+
+                if (entscheidung === "r") {
+                    showModal("Sicher", "Du bist schnell weggelaufen und hast einen sicheren Ort gefunden.", false, endeErreicht);
+                } else if (entscheidung === "k") {
+                    showModal("Kämpfen", "Der Bär war zu stark. Du wurdest getötet.", false, spielEnde);
+                } else {
+                    showModal("Fehler", "Ungültige Eingabe. Gib bitte 'r' oder 'k' ein.", false, bärenEntscheidung);
+                }
+            });
+        }
+
+        function brueckenEntscheidung() {
+            showModal("Brücke", "Du stehst vor einer Brücke, die so aussieht, als würde sie gleich einbrechen. Möchtest du über die Brücke gehen 'j' oder einen anderen 'a' Weg suchen?", true, function (entscheidung) {
+                entscheidung = entscheidung.toLowerCase();
+
+                if (entscheidung === "j") {
+                    showModal("Überquert", "Du nimmst all deinen Mut zusammen und gehst über die Brücke. Danach siehst du auch schon den Ausgang aus dem Wald.", false, endeErreicht);
+                    gegenstandEntfernen("Schlüssel");
+                } else if (entscheidung === "a") {
+                    showModal("Verirrt", "Du suchst nach einem anderen Weg und verirrst dich.", false, spielEnde);
+                    gegenstandEntfernen("Schlüssel");
+                } else {
+                    showModal("Fehler", "Ungültige Eingabe. Gib bitte 'j' oder 'a' ein.", false, brueckenEntscheidung);
+                }
+            });
+        }
+
+        function endeErreicht() {
+            showModal("Glückwunsch", "Herzlichen Glückwunsch! Du hast den Wald erfolgreich verlassen.", false, nochmalSpielen);
+        }
+
+        function spielEnde() {
+            showModal("Leider", "Du hast das Spiel verloren! Versuche es noch einmal.", false, nochmalSpielen);
+        }
+
+        function nochmalSpielen() {
+            showModal("Erneut spielen", "Möchtest du noch einmal spielen? (ja/nein)", true, function (erneutSpielen) {
+                erneutSpielen = erneutSpielen.toLowerCase();
+
+                if (erneutSpielen === "ja") {
+                    startScript();
+                } else if (erneutSpielen === "nein") {
+                    showModal("Abschied", "Danke fürs Spielen! Bis zum nächsten Mal.");
+                } else {
+                    showModal("Fehler", "Ungültige Eingabe. Bitte gib 'ja' oder 'nein' ein.", false, nochmalSpielen);
+                }
+            });
+        }
+
+        let inventar = [];
+
+        function gegenstandHinzufuegen(gegenstand) {
+            inventar.push(gegenstand);
+            console.log(`${gegenstand} wurde dem Inventar hinzugefügt.`);
+        }
+
+        function gegenstandEntfernen(gegenstand) {
+            const index = inventar.indexOf(gegenstand);
+            if (index !== -1) {
+                inventar.splice(index, 1);
+                console.log(`${gegenstand} wurde aus dem Inventar entfernt.`);
+            }
+        }
+
+        function zeigeInventar() {
+            if (inventar.length === 0) {
+                showModal("Inventar", "Dein Inventar ist leer.");
+            } else {
+                showModal("Inventar", "Dein Inventar enthält: " + inventar.join(", "));
+            }
+        }
+    </script>
+</body>
+</html>
