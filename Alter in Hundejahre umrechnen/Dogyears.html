@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alter in Hundejahren</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden; /* Verhindert Scrollen bei Bewegung */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #000;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #000;
+        }
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./_0c521f29-1019-4c85-a80e-4f72d2c57692.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            animation: moveBackground 150s linear infinite;
+            z-index: -1;
+        }
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 0 100%;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <h1>Dein Alter in Hundejahren!</h1>
+        <div class="input-group">
+            <label for="age">Gib dein Alter in Jahren ein:</label>
+            <input type="number" id="age" min="0" placeholder="Alter eingeben">
+        </div>
+        <button onclick="calculateDogYears()">Berechnen</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateDogYears() {
+            const age = parseInt(document.getElementById('age').value);
+            if (isNaN(age) || age < 0) {
+                document.getElementById('result').textContent = 'Bitte gib ein gültiges Alter ein!';
+                return;
+            }
+
+            const earlyYears = 2 * 10.5;
+            const laterYears = (age - 2) * 4;
+            const ageInDogYears = earlyYears + laterYears;
+            
+            document.getElementById('result').textContent = `In Hundejahren bist du ${ageInDogYears} Jahre alt!`;
+        }
+    </script>
+</body>
+</html>
