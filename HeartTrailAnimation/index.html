@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Trail Animation</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+
+        body {
+            /* Entfernt den Standardaußenabstand (margin) um den Body */
+            margin: 0;
+
+            /* Setzt die Höhe des Body auf die gesamte Höhe des Viewports */
+            height: 100vh;
+
+            /* Setzt einen Farbverlauf von Grün zu Blau als Hintergrund */
+            background: linear-gradient(to top, green, blue);
+
+            /* Verhindert das Scrollen des Inhalts, der über den Viewport hinausgeht */
+            overflow: hidden;
+        }
+
+        span {
+            /* Setzt ein Hintergrundbild für das <span>-Element */
+            background: url("https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_54-256.png");
+
+            /* Setzt die Breite und Höhe des <span>-Elements auf 100px */
+            width: 100px;
+            height: 100px;
+
+            /* Positioniert das <span>-Element absolut im Bezug zum nächstgelegenen Positionierungsbezug */
+            position: absolute;
+
+            /* Deaktiviert Mausereignisse für das <span>-Element, damit es keine Klicks abfängt */
+            pointer-events: none;
+
+            /* Skaliert das Hintergrundbild, um das gesamte <span>-Element zu füllen */
+            background-size: cover;
+
+            /* Setzt die Ausgangsposition des <span>-Elements in die Mitte des Bildschirms */
+            left: 50%;
+            top: 50%;
+
+            /* Zentriert das <span>-Element genau auf den 50% Positionen */
+            transform: translate(-50%, -50%);
+
+            /* Wendet eine Animation namens "animate" auf das <span>-Element an, die 12 Sekunden dauert und linear verläuft */
+            animation: animate 12s linear;
+        }
+
+        @keyframes animate {
+            /* Definiert die Animation mit dem Namen "animate" */
+
+            0% {
+                /* Startzustand der Animation: Element bleibt zentriert, sichtbar, und hat keinen Farbfilter */
+                transform: translate(-50%, -50%);
+                opacity: 1;
+                filter: hue-rotate(0);
+            }
+
+            100% {
+                /* Endzustand der Animation: Element bewegt sich weit außerhalb des Sichtbereichs nach oben, wird unsichtbar, und hat einen Farbwechsel von 720 Grad */
+                transform: translate(-50%, -5000%);
+                opacity: 0;
+                filter: hue-rotate(720deg);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // Wählt das <body>-Element des Dokuments aus und speichert es in der Variablen bodyEl
+        const bodyEl = document.querySelector("body")
+
+        // Fügt einen Event Listener hinzu, der bei jeder Bewegung der Maus über das <body> ausgelöst wird
+        bodyEl.addEventListener("mousemove", (event) => {
+            // Speichert die X- und Y-Koordinaten der Mausposition relativ zum <body>-Element
+            const xPos = event.offsetX
+            const yPos = event.offsetY
+
+            // Erstellt ein neues <span>-Element
+            const spanEl = document.createElement("span");
+
+            // Setzt die linke und obere Position des <span>-Elements basierend auf den Mauskoordinaten
+            spanEl.style.left = xPos + "px";
+            spanEl.style.top = yPos + "px";
+
+            // Generiert eine zufällige Größe für das <span>-Element zwischen 0 und 100 Pixel
+            const size = Math.random() * 100;
+            spanEl.style.width = size + "px";
+            spanEl.style.height = size + "px";
+
+            // Fügt das <span>-Element als Kind zum <body> hinzu
+            bodyEl.appendChild(spanEl);
+
+            // Entfernt das <span>-Element nach 3 Sekunden (3000 Millisekunden) wieder aus dem <body>
+            setTimeout(() => {
+                spanEl.remove();
+            }, 3000)
+        });
+    </script>
+
+    <script src="./index.js"></script>
+    
+</body>
+
+</html>
