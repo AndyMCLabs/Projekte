@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development Guide</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <h1>Web Development Guide</h1>
+  <div class="checklist">
+    <!-- Module 1: HTML-Grundlagen -->
+    <div class="module" id="module1">
+      <h2>Modul 1: Grundlagen HTML</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="1-1"> <a href="#">HTML-Grundgerüst</a></label></li>
+        <li><label><input type="checkbox" data-id="1-2"> Wichtige Tags (z. B. &lt;h1&gt;, &lt;p&gt;,
+            &lt;div&gt;)</label></li>
+        <li><label><input type="checkbox" data-id="1-3"> Listen und Tabellen</label></li>
+        <li><label><input type="checkbox" data-id="1-4"> Formulare</label></li>
+        <li><label><input type="checkbox" data-id="1-5"> Semantisches HTML</label></li>
+        <li><label><input type="checkbox" data-id="1-6"> Medien einbinden</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 2: CSS-Grundlagen, JavaScript-Grundlagen usw. -->
+    <div class="module" id="module2">
+      <h2>Modul 2: Grundlagen CSS</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="2-1"> CSS-Basics</label></li>
+        <li><label><input type="checkbox" data-id="2-2"> CSS-Box-Modell</label></li>
+        <li><label><input type="checkbox" data-id="2-3"> Positionierung und Layout</label></li>
+        <li><label><input type="checkbox" data-id="2-4"> Flexbox und Grid</label></li>
+        <li><label><input type="checkbox" data-id="2-5"> Responsive Design</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 3: JavaScript -->
+    <div class="module" id="module3">
+      <h2>Modul 3: Grundlagen JavaScript</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="3-1"> Grundlagen der Programmierung</label></li>
+        <li><label><input type="checkbox" data-id="3-2"> Funktionen</label></li>
+        <li><label><input type="checkbox" data-id="3-3"> DOM (Document Object Model) Manipulation</label></li>
+        <li><label><input type="checkbox" data-id="3-4"> Events</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 4: Erweiterte HTML und CSS Techniken -->
+    <div class="module" id="module4">
+      <h2>Modul 4: Erweiterte HTML und CSS Techniken</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="4-1"> Fortgeschrittenes CSS</label></li>
+        <li><label><input type="checkbox" data-id="4-2"> Accessibility und Webstandards</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 5: Erweiterte Erweiterte JavaScript Konzepte -->
+    <div class="module" id="module5">
+      <h2>Modul 5: Erweiterte JavaScript Konzepte</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="5-1"> Asynchrone Programmierung</label></li>
+        <li><label><input type="checkbox" data-id="5-2"> Fortgeschrittene DOM-Manipulation</label></li>
+        <li><label><input type="checkbox" data-id="5-3"> Erstellung und Einfügen neuer Elemente</label></li>
+        <li><label><input type="checkbox" data-id="5-4"> Dynamische Styles mit JavaScript und Klassenmanipulation</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 6: Frontend-Projekte und Übung -->
+    <div class="module" id="module6">
+      <h2>Modul 6: Frontend-Projekte und Übung</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="6-1"> Übungsprojekte</label></li>
+        <li><label><input type="checkbox" data-id="6-2"> Fortgeschrittene Übungsprojekte</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 7: Moderne JavaScript-Techniken und Frameworks -->
+    <div class="module" id="module7">
+      <h2>Modul 7: Moderne JavaScript-Techniken und Frameworks</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="7-1"> ES6+ Features</label></li>
+        <li><label><input type="checkbox" data-id="7-2"> JavaScript-Module</label></li>
+        <li><label><input type="checkbox" data-id="7-3"> Async Programming mit Fetch API</label></li>
+        <li><label><input type="checkbox" data-id="7-4"> Einführung in JavaScript-Frameworks</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 8: Fortgeschrittene CSS- und JavaScript-Techniken -->
+    <div class="module" id="module8">
+      <h2>Modul 8: Fortgeschrittene CSS- und JavaScript-Techniken</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="8-1"> Fortgeschrittene CSS-Architektur</label></li>
+        <li><label><input type="checkbox" data-id="8-2"> Fortgeschrittene JavaScript-Frameworks</label></li>
+        <li><label><input type="checkbox" data-id="8-3"> Testing</label></li>
+        <li><label><input type="checkbox" data-id="8-4"> Projektorganisation</label></li>
+      </ul>
+    </div>
+
+    <!-- Modul 9: Deployment und Performance-Optimierung -->
+    <div class="module" id="module9">
+      <h2>Modul 9: Fortgeschrittene CSS- und JavaScript-Techniken</h2>
+      <ul>
+        <li><label><input type="checkbox" data-id="9-1"> Web Performance Optimierung</label></li>
+        <li><label><input type="checkbox" data-id="9-2"> Deployment</label></li>
+        <li><label><input type="checkbox" data-id="9-3"> SEO-Grundlagen</label></li>
+      </ul>
+    </div>
+
+
+  </div>
+
+  <script>
+    // Module ein- und ausklappen
+    document.querySelectorAll('.module h2').forEach(header => {
+      header.addEventListener('click', () => {
+        const ul = header.nextElementSibling;
+        ul.style.display = ul.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Checkliste mit Local Storage speichern
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      // Status der Checkbox beim Laden setzen
+      const id = checkbox.getAttribute('data-id');
+      checkbox.checked = localStorage.getItem(id) === 'true';
+
+      // Status der Checkbox speichern
+      checkbox.addEventListener('change', () => {
+        localStorage.setItem(id, checkbox.checked);
+      });
+    });
+  </script>
+
+</body>
+
+</html>
