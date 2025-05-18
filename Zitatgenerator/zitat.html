@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zitat-Generator</title>
+    <style>
+        body {
+            background-color: lightgreen;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 10%;
+            font-size: 3rem;
+        }
+
+        div {
+            background-color: rgba(26, 27, 26, 0.5);
+            height: 150px;
+            width: 600px;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.5rem;
+            padding: 20px;
+        }
+
+        button {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        button:hover {
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Zitat Generator</h1>
+
+    <div id="zitatContainer">Zitat</div>
+
+    <button id="generiereZitat">Generiere Zitat</button>
+
+
+
+    <script>
+
+        const zitatContainerEl = document.getElementById("zitatContainer");
+        const generiereZitatEl = document.getElementById("generiereZitat");
+        const zitate = [
+            "Das Leben ist, was passiert, während du fleißig dabei bist, andere Pläne zu machen. - John Lennon",
+            "Die beste Zeit, einen Baum zu pflanzen, war vor 20 Jahren. Die zweitbeste Zeit ist jetzt. - Chinesisches Sprichwort",
+            "Nichts ist so konstant wie der Wandel. - Heraklit",
+            "Der einzige Weg, großartige Arbeit zu leisten, ist, die Arbeit zu lieben, die du tust. - Steve Jobs",
+            "Das Leben ist entweder ein gewagtes Abenteuer oder nichts. - Helen Keller"
+        ];
+
+        function zufaelligesZitat() {
+            const randomIndex = Math.floor(Math.random() * zitate.length);
+            return zitate[randomIndex];
+        }
+
+
+        function zeigeZitat() {
+            zitatContainerEl.textContent = zufaelligesZitat();
+        }
+
+        generiereZitatEl.addEventListener("click", zeigeZitat);
+
+    </script>
+
+<!--
+Dein Zufalls-Zitat-Generator sieht großartig aus und ist für einen Anfänger gut geeignet! Hier ist mein Feedback zu verschiedenen Aspekten:
+
+### 1. **HTML-Struktur**
+- **Gut:** Die Struktur ist klar und einfach. Du hast die notwendigen Elemente wie Überschrift, Zitat-Container und Button gut angeordnet.
+- **Verbesserung:** Du könntest dem Zitat-Container ein `aria-live`-Attribut hinzufügen, um die Zugänglichkeit für Bildschirmleser zu verbessern.
+
+### 2. **CSS-Styling**
+- **Gut:** Die Verwendung von Flexbox sorgt für ein zentriertes Layout, und die Farbwahl schafft einen angenehmen Kontrast.
+- **Verbesserung:** 
+  - Du könntest die Farben harmonisieren, z.B. den Hintergrund etwas dunkler gestalten, um den Kontrast zu erhöhen.
+  - Überlege, dem Button eine breitere Hover-Animation hinzuzufügen, um die Benutzererfahrung zu verbessern.
+
+### 3. **JavaScript-Funktionalität**
+- **Gut:** Die Logik zur Auswahl eines zufälligen Zitats ist klar und einfach. Die Verwendung von `addEventListener` ist eine gute Praxis.
+- **Verbesserung:**
+  - Du könntest eine Überprüfung hinzufügen, um sicherzustellen, dass der Zitat-Container nicht leer ist, falls die Funktion mehrfach aufgerufen wird.
+  - Es wäre sinnvoll, die Zitate in ein externes JSON-Dokument oder eine API zu laden, um das Projekt in Zukunft zu erweitern.
+
+### 4. **Allgemeine Benutzererfahrung**
+- **Gut:** Die Benutzeroberfläche ist einfach und benutzerfreundlich.
+- **Verbesserung:** 
+  - Ein kleiner Lade- oder Wechsel-Effekt, wenn ein neues Zitat angezeigt wird, könnte die Benutzererfahrung verbessern.
+  - Eine Möglichkeit zur Anpassung (z.B. einen Theme-Umschalter) könnte das Projekt interaktiver machen.
+
+### 5. **Lernaspekt**
+- **Gut:** Das Projekt deckt grundlegende HTML-, CSS- und JavaScript-Konzepte ab, was für einen Anfänger wichtig ist.
+- **Verbesserung:** Stelle sicher, dass du nach dem Abschluss des Projekts weitere Funktionen oder Designs hinzufügst, um dein Wissen zu vertiefen.
+
+Insgesamt hast du einen soliden Start hingelegt! Experimentiere mit den Verbesserungsvorschlägen, um deine Fähigkeiten weiter auszubauen. Wenn du mehr Unterstützung oder spezifische Anleitungen benötigst, lass es mich wissen!
+-->
+
+</body>
+
+</html>
