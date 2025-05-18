@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #E20074, #000000); /* Farbverlauf von Magenta zu Schwarz */
+}
+
+#calculator {
+    font-family: Arial, sans-serif;
+    background-color: rgb(32, 32, 32);
+    border-radius: 15px;
+    max-width: 500px;
+    overflow: hidden;
+    border: #D1D1D1 1px solid;
+    width: 90%; /* Passt die Breite für kleinere Bildschirme an */
+    box-sizing: border-box; /* Verhindert, dass der Rand die Breite überschreitet */
+}
+
+#display {
+    width: 100%;
+    padding: 20px;
+    font-size: 4rem;
+    text-align: left;
+    border: none;
+    background-color: #E20074;
+    color: #D1D1D1;
+}
+
+#keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 25px;
+}
+
+button {
+    width: 100%;
+    height: 70px;
+    border-radius: 50px;
+    border: none;
+    background-color: #D1D1D1;
+    color: #E20074;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #B3B3B3;
+}
+
+button:active {
+    background-color: #999999;
+}
+
+.operator-btn {
+    background-color: #E20074;
+    color: white;
+}
+
+.operator-btn:hover {
+    background-color: #C20062;
+}
+
+.operator-btn:active {
+    background-color: #A00050;
+}
+
+/* Media Queries für unterschiedliche Bildschirmgrößen */
+@media (min-width: 768px) {
+    #display {
+        font-size: 5rem; /* Größere Schriftgröße für Tablets und Laptops */
+    }
+    
+    button {
+        height: 100px; /* Größere Buttons für größere Bildschirme */
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #calculator {
+        max-width: 500px; /* Maximale Breite für Laptops */
+    }
+}
