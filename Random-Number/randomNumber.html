@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random-Number</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <style>
+        body {
+            background-color: lightslategray;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 5%;
+        }
+
+        button {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: aqua;
+            border: 1px solid black;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: aquamarine;
+        }
+
+        div {
+            margin-top: 3%;
+            font-weight: bold;
+            font-size: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Random-Number-Generator</h1>
+    <button id="generateNumber">Generiere Zufallszahl</button>
+    <div id="showNumber"></div>
+
+
+    <script>
+
+        const generateNumberEl = document.getElementById("generateNumber");
+        const showNumberEl = document.getElementById("showNumber");
+    
+        function randomNumber() {
+            let getrandomNumber = Math.floor(Math.random() * 100) + 1;
+            showNumberEl.innerText = getrandomNumber;
+        };
+
+        generateNumberEl.addEventListener("click", randomNumber);
+
+    </script>
+    <!--
+    Feedback:
+
+    Dein Code sieht schon sehr gut aus! Hier sind ein paar kleine Hinweise und Korrekturen:
+
+    1. HTML-Fehler: In der <html>-Tag öffnest du das Attribut lang nicht korrekt. Es sollte lang="de" sein, und der zusätzliche Zeilenumbruch sollte entfernt werden.
+    2. Random Number Generation: Die Zufallszahl wird korrekt generiert, aber es wäre besser, die Zahl zwischen 1 und 100 (inklusive) zu generieren. Das kannst du tun, indem du die Formel in Math.random() anpasst.
+    3. Variable Benennung: Du hast die Variable getrandomnumber deklariert, aber nicht verwendet. Du solltest die korrekte Variable für die Zufallszahl in der randomNumber-Funktion verwenden.
+    
+    <script>
+        const generateNumberEl = document.getElementById("generateNumber");
+        const showNumberEl = document.getElementById("showNumber");
+
+        function randomNumber() {
+            // Generiere eine Zufallszahl zwischen 1 und 100 (einschließlich)
+            let getrandomNumber = Math.floor(Math.random() * 100) + 1; 
+            showNumberEl.innerText = getrandomNumber;
+        }
+
+        generateNumberEl.addEventListener("click", randomNumber);
+    </script>
+
+    Änderungen:
+    - Zufallszahl: Der Math.random()-Wert wird nun mit Math.floor() verwendet, um eine ganze Zahl zwischen 1 und 100 zu erhalten.
+    - HTML-Tag: Korrektur des lang-Attributs.
+    - Event Listener: Die Funktion randomNumber wird jetzt direkt als Callback an addEventListener übergeben, was den Code etwas vereinfacht.
+    -->
+
+    <!-- <script src="#"></script> -->
+</body>
+
+</html>
