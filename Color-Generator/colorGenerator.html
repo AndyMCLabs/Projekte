@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farben-Generator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.5s;
+            overflow: hidden;
+        }
+
+        h1 {
+            margin-top: 10%;
+        }
+
+        button {
+            padding: 20px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px black;
+        }
+
+        button:active {
+            color: white;
+            background-color: black;
+        }
+
+        div {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        #containers {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        #colorContainer1,
+        #colorContainer2,
+        #colorContainer3,
+        #colorContainer4,
+        #colorContainer5,
+        #colorContainer6 {
+            width: 200px;
+            padding: 50px;
+            margin: 20px;
+            border-radius: 10px;
+            color: black;
+            text-align: center;
+            box-shadow: 0 0 1px 1px black;
+        }
+    </style>
+</head>
+
+<body id="body">
+
+    <h1>Farben-Generator</h1>
+    <button id="generateColor">Push me!</button>
+    <div id="colorCode"></div>
+
+    <div id="containers">
+        <div id="colorContainer1"></div>
+        <div id="colorContainer2"></div>
+        <div id="colorContainer3"></div>
+        <div id="colorContainer4"></div>
+        <div id="colorContainer5"></div>
+        <div id="colorContainer6"></div>
+    </div>
+
+    <script>
+
+        const generateColorEl = document.getElementById("generateColor");
+        const colorCodeEl = document.getElementById("colorCode");
+        const bodyEl = document.getElementById("body");
+
+        const colorContainer1El = document.getElementById("colorContainer1");
+        const colorContainer2El = document.getElementById("colorContainer2");
+        const colorContainer3El = document.getElementById("colorContainer3");
+        const colorContainer4El = document.getElementById("colorContainer4");
+        const colorContainer5El = document.getElementById("colorContainer5");
+        const colorContainer6El = document.getElementById("colorContainer6");
+
+        function farbeGenerieren() {
+            //RGB Farben gehen von 1-9 und von AF, wir brauchen 6 Zeichen und davor eine #
+            let zeichen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "A", "B", "C", "D", "E", "F"];
+            let zufaelligeZeichen = "";
+            let zufaelligeZeichen1 = "";
+            let zufaelligeZeichen2 = "";
+            let zufaelligeZeichen3 = "";
+            let zufaelligeZeichen4 = "";
+            let zufaelligeZeichen5 = "";
+            let zufaelligeZeichen6 = "";
+
+            for (let i = 0; i < 6; i++) {
+                let randomIndex = Math.floor(Math.random() * zeichen.length);
+                let randomIndex1 = Math.floor(Math.random() * zeichen.length);
+                let randomIndex2 = Math.floor(Math.random() * zeichen.length);
+                let randomIndex3 = Math.floor(Math.random() * zeichen.length);
+                let randomIndex4 = Math.floor(Math.random() * zeichen.length);
+                let randomIndex5 = Math.floor(Math.random() * zeichen.length);
+                let randomIndex6 = Math.floor(Math.random() * zeichen.length);
+
+                zufaelligeZeichen = zufaelligeZeichen + zeichen[randomIndex];
+                zufaelligeZeichen1 = zufaelligeZeichen1 + zeichen[randomIndex1];
+                zufaelligeZeichen2 = zufaelligeZeichen2 + zeichen[randomIndex2];
+                zufaelligeZeichen3 = zufaelligeZeichen3 + zeichen[randomIndex3];
+                zufaelligeZeichen4 = zufaelligeZeichen4 + zeichen[randomIndex4];
+                zufaelligeZeichen5 = zufaelligeZeichen5 + zeichen[randomIndex5];
+                zufaelligeZeichen6 = zufaelligeZeichen6 + zeichen[randomIndex6];
+            }
+
+            zufaelligeZeichenMitHash = "#" + zufaelligeZeichen;
+            zufaelligeZeichenMitHash1 = "#" + zufaelligeZeichen1;
+            zufaelligeZeichenMitHash2 = "#" + zufaelligeZeichen2;
+            zufaelligeZeichenMitHash3 = "#" + zufaelligeZeichen3;
+            zufaelligeZeichenMitHash4 = "#" + zufaelligeZeichen4;
+            zufaelligeZeichenMitHash5 = "#" + zufaelligeZeichen5;
+            zufaelligeZeichenMitHash6 = "#" + zufaelligeZeichen6;
+
+            bodyEl.style.backgroundColor = zufaelligeZeichenMitHash;
+            colorCodeEl.innerText = zufaelligeZeichenMitHash;
+
+            colorContainer1El.style.backgroundColor = zufaelligeZeichenMitHash1;
+            colorContainer1El.innerText = zufaelligeZeichenMitHash1;
+            colorContainer2El.style.backgroundColor = zufaelligeZeichenMitHash2;
+            colorContainer2El.innerText = zufaelligeZeichenMitHash2;
+            colorContainer3El.style.backgroundColor = zufaelligeZeichenMitHash3;
+            colorContainer3El.innerText = zufaelligeZeichenMitHash3;
+            colorContainer4El.style.backgroundColor = zufaelligeZeichenMitHash4;
+            colorContainer4El.innerText = zufaelligeZeichenMitHash4;
+            colorContainer5El.style.backgroundColor = zufaelligeZeichenMitHash5;
+            colorContainer5El.innerText = zufaelligeZeichenMitHash5;
+            colorContainer6El.style.backgroundColor = zufaelligeZeichenMitHash6;
+            colorContainer6El.innerText = zufaelligeZeichenMitHash6;
+        };
+
+        generateColorEl.addEventListener("click", farbeGenerieren);
+
+    </script>
+
+    <!-- Feedback
+    
+    Feedback:
+    Code-Logik: Sehr sauber strukturiert, und der Ablauf funktioniert wie gewünscht.
+    Style: Klar und übersichtlich. Wenn du das Projekt weiter ausbauen möchtest, könntest du auch den Button-Stil noch etwas anpassen (z.B. Hover-Effekte).
+    JavaScript: Gute Verwendung der Schleife und der Math.random()-Funktion. Die Korrektur bei der Variablen macht den Code noch etwas effizienter.
+    Gut gemacht, das Projekt ist ein schöner Schritt nach vorn!
+    
+    -->
+</body>
+
+</html>
