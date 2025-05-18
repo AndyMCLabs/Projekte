@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechenmaschine</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <!-- Style -->
+    <style>
+        body {
+            background-color: #287D4D;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        .input {
+            width: 280px;
+            margin: 20px;
+            padding: 10px;
+            font-size: 1.5rem;
+            background-color: #9E9999;
+            border-radius: 10px;
+        }
+
+        button {
+            width: 300px;
+            margin: 20px;
+            padding: 10px;
+            font-size: 1.5rem;
+            background-color: #06B89F;
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        button:hover {
+            background-color: #06b8a0b4;
+        }
+
+        div {
+            width: 300px;
+            margin: 20px;
+            padding: 10px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Inputfelder -->
+    <input type="number" class="input" id="input1" aria-label="Zahl 1" placeholder="Zahl 1 eingeben">
+    <input type="number" class="input" id="input2" aria-label="Zahl 2" placeholder="Zahl 2 eingeben">
+    <button id="buttonBerechnen" aria-label="Button Berechnen">Addiere</button>
+    <div id="ausgabeErgebnis">Ergebnis:</div>
+    <button id="buttonReset" aria-label="Button Reset">Reset</button>
+
+
+
+    <!-- <script src="#"></script> -->
+
+    <!-- Script -->
+    <script>
+
+        // Variablen definieren
+        const input1EL = document.getElementById("input1");
+        const input2EL = document.getElementById("input2");
+        const buttonBerechnenEl = document.getElementById("buttonBerechnen");
+        const ausgabeErgebnisEl = document.getElementById("ausgabeErgebnis");
+        const buttonResetEl = document.getElementById("buttonReset");
+        buttonBerechnenEl.disabled = true;
+
+        // Werte holen, in Zahlen umwandeln und in 'ergebnis' speichern. Ergebnis ausgeben.
+        buttonBerechnenEl.addEventListener("click", () => {
+            if (input1EL.value === "" && input2EL.value === "") {
+                ausgabeErgebnisEl.innerText = "Eingabefelder sind leer!"
+                ausgabeErgebnisEl.style.color = "#F0CE94";
+            } else if (input1EL.value === "") {
+                ausgabeErgebnisEl.innerText = "Eingabefeld 1 ist leer!"
+                ausgabeErgebnisEl.style.color = "#F0CE94";
+            } else if (input2EL.value === "") {
+                ausgabeErgebnisEl.innerText = "Eingabefeld 2 ist leer!"
+                ausgabeErgebnisEl.style.color = "#F0CE94";
+            } else {
+                let ergebnis = Number(input1EL.value) + Number(input2EL.value);
+                ausgabeErgebnisEl.innerText = ergebnis;
+                ausgabeErgebnisEl.style.color = "black";
+            }
+            event.preventDefault();
+            setTimeout(() => {
+                input1EL.value = "";
+                input2EL.value = "";
+                ausgabeErgebnisEl.innerText = "Ergebnis:";
+                ausgabeErgebnisEl.style.color = "black";
+                buttonBerechnenEl.disabled = true;
+            }, 4000)
+        });
+
+        // Reset-Funktion
+        buttonResetEl.addEventListener("click", () => {
+            input1EL.value = "";
+            input2EL.value = "";
+            ausgabeErgebnisEl.innerText = "Ergebnis:";
+            ausgabeErgebnisEl.style.color = "black";
+            buttonBerechnenEl.disabled = true;
+        });
+
+        // Check Inputs
+        function checkInputs() {
+            if (input1EL.value.trim() !== "" && input2EL.value.trim() !== "") {
+                buttonBerechnenEl.disabled = false;
+            } else {
+                buttonBerechnenEl.disabled = true;
+            }
+        };
+
+        input1EL.addEventListener("input", checkInputs);
+        input2EL.addEventListener("input", checkInputs);
+
+
+    </script>
+</body>
+
+</html>
+
+<!-- 
+Info:
+'event.preventDefault()' ist eine nützliche Methode, um die Standardaktion eines Ereignisses zu verhindern und benutzerdefinierte Logik auszuführen. Es wird häufig in der Formulardatenverarbeitung und der Benutzerinteraktion verwendet. Achte darauf, sie nur dann zu verwenden, wenn es sinnvoll ist, das Standardverhalten zu verhindern, um ein positives Benutzererlebnis zu gewährleisten.
+
+Die 'trim()'-Methode ist eine integrierte JavaScript-Funktion, die verwendet wird, um Leerzeichen (Whitespace) von Anfang und Ende eines Strings zu entfernen. Diese Methode ist besonders nützlich, um sicherzustellen, dass die Eingaben eines Benutzers oder andere Strings keine unerwünschten Leerzeichen enthalten, die die Verarbeitung oder den Vergleich von Strings beeinträchtigen könnten.
+-->
+
+<!--
+### Bewertung deines Projekts
+
+**Note: 1-2 (Sehr gut bis gut)**
+
+### Feedback:
+
+#### **Positives:**
+1. **Layout und Design:**
+   - Das Design ist ansprechend und klar. Die Verwendung von Farben und die Anordnung der Elemente sind gut gelungen.
+   - Die Flexbox-Implementierung sorgt dafür, dass das Layout auf verschiedenen Bildschirmgrößen gut aussieht.
+
+2. **Funktionalität:**
+   - Die Rechenmaschine erfüllt die Grundfunktionen wie Addition und Eingabewertüberprüfung gut.
+   - Die Validierung der Eingaben und die klare Rückmeldung bei leeren Feldern sind positiv und verbessern die Benutzererfahrung.
+
+3. **Benutzerfreundlichkeit:**
+   - Der Reset-Button ist eine nützliche Funktion, die die Benutzererfahrung verbessert.
+   - Die Deaktivierung des Berechnungsbuttons, solange die Eingabefelder leer sind, ist ebenfalls eine gute Idee.
+
+#### **Verbesserungsvorschläge:**
+1. **Code-Struktur:**
+   - Achte darauf, `event.preventDefault()` innerhalb des Event Handlers für den Button-Klick zu verwenden, indem du `event` als Parameter übergibst. Derzeit wird es nicht richtig aufgerufen, da `event` nicht definiert ist.
+   - Du könntest die Anzeige der Fehlermeldungen in eine separate Funktion auslagern, um den Code übersichtlicher zu gestalten.
+
+2. **Styling:**
+   - Überlege, ob du die Eingabefelder und den Button bei einem erfolgreichen Berechnungsergebnis in einer anderen Farbe hervorheben möchtest, um ein visuelles Feedback zu geben.
+   - Es könnte hilfreich sein, den Text "Ergebnis:" etwas prominenter zu gestalten (z.B. durch eine größere Schriftgröße oder eine andere Farbe), um ihn hervorzuheben.
+
+3. **Weitere Funktionen:**
+   - Du könntest in Zukunft weitere Funktionen implementieren, wie z.B. Subtraktion, Multiplikation oder Division, um die Rechenmaschine vielseitiger zu machen.
+   - Ein Verlauf der letzten Berechnungen könnte auch interessant sein, um den Nutzern mehr Möglichkeiten zu bieten.
+
+### Fazit
+Insgesamt ist dein Projekt sehr gut umgesetzt und zeigt ein solides Verständnis der Grundlagen von HTML, CSS und JavaScript. Mit ein paar kleinen Verbesserungen könnte es noch benutzerfreundlicher und ansprechender werden. Mach weiter so! Wenn du noch weitere Funktionen hinzufügen möchtest oder Fragen hast, lass es mich wissen!
+-->
