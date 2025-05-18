@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Metadaten für Zeichensatz und responsive Design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titel des Dokuments -->
+    <title>BMI Information</title>
+    <!-- Verlinkung der externen CSS-Datei -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        BMI Berechnung
+    </header>
+
+    <!-- Einführung in den BMI -->
+    <section id="section1" aria-labelledby="intro-heading">
+        <h1 id="intro-heading">Einführung in den BMI</h1>
+        <p><b>Definition des BMI:</b><br> Der Body-Mass-Index (BMI) ist eine Kennzahl, die das Körpergewicht im
+            Verhältnis zur Körpergröße bewertet. Er wird verwendet, um festzustellen, ob eine Person untergewichtig,
+            normalgewichtig, übergewichtig oder fettleibig ist.</p>
+        <p><b>Geschichte des BMI:</b><br> Der Body-Mass-Index (BMI) wurde im Jahr 1832 von dem belgischen Mathematiker
+            Adolphe Quetelet entwickelt. Ziel war, das Körpergewicht in der allgemeinen Bevölkerung zu bewerten. Später
+            wurde der BMI im 20. Jahrhundert populär gemacht, um Gesundheitsrisiken zu erkennen.</p>
+    </section>
+
+    <!-- BMI-Berechnung mit Textfeldern für Eingabe der Körpergröße und des Körpergewichts -->
+    <section id="section2" aria-labelledby="bmi-calculation-heading">
+        <h2 id="bmi-calculation-heading">Berechnung des BMI</h2>
+        <!-- Label und Eingabefeld für Körpergröße -->
+        <label for="groesse">Körpergröße:</label><br>
+        <input type="text" id="groesse" placeholder="Körpergröße in cm:" aria-label="Körpergröße in Zentimetern eingeben"><br>
+
+        <!-- Label und Eingabefeld für Körpergewicht -->
+        <label for="gewicht">Körpergewicht:</label><br>
+        <input type="text" id="gewicht" placeholder="Körpergewicht:" aria-label="Körpergewicht in Kilogramm eingeben"><br>
+
+        <!-- Button zur Berechnung des BMI -->
+        <button id="berechneBMI" aria-label="Berechne BMI">BMI berechnen</button>
+        <!-- Bereich zur Anzeige des BMI-Ergebnisses -->
+        <div id="ergebnis" aria-live="polite" aria-atomic="true">Ergebnis</div>
+    </section>
+
+    <section>
+        <p><strong>Empfehlung:</strong></p>
+        <p id="empfehlung"></p>
+    </section>
+
+    <!-- Erklärung der BMI-Formel und Rechenschritte -->
+    <section id="section3" aria-labelledby="bmi-formula-heading">
+        <h3 id="bmi-formula-heading">BMI-Formel</h3>
+        <p><b>Erklärung der Berechnung:</b><br> Der BMI wird wie folgt berechnet: BMI = Körpergewicht(kg) / 
+            (Körpergröße(cm)/100)²</p>
+        <p>Beispiel für die Berechnung des BMI bei einer Körpergröße von 170 cm und einem Gewicht von 70 kg.</p>
+        <p>
+            <strong>Formel:</strong><br>
+            BMI = Gewicht (kg) / (Körpergröße (m))²
+        </p>
+    </section>
+
+    <!-- BMI-Klassifizierung in verschiedene Gewichtskategorien -->
+    <section id="section4" aria-labelledby="bmi-classification-heading">
+        <h4 id="bmi-classification-heading">BMI-Klassifizierung</h4>
+        <p><b>BMI-Kategorien:</b><br> Liste mit den verschiedenen Gewichtskategorien:</p>
+        <!-- Liste der BMI-Kategorien -->
+        <ul aria-label="BMI-Kategorien">
+            <li>Unter 18.5: Untergewicht</li>
+            <li>18.5–24.9: Normalgewicht</li>
+            <li>25.0–29.9: Übergewicht</li>
+            <li>Ab 30: Adipositas</li>
+        </ul>
+    </section>
+
+    <!-- Informationen zu den Limitierungen des BMI -->
+    <section id="section5" aria-labelledby="bmi-limitations-heading">
+        <h5 id="bmi-limitations-heading">Limitierungen des BMI</h5>
+        <p><b>BMI ist nicht perfekt:</b><br> Der BMI unterscheidet nicht zwischen Muskel- und Fettmasse, was bei
+            bestimmten Bevölkerungsgruppen (z.B. Sportler, ältere Menschen) zu ungenauen Ergebnissen führen kann.</p>
+    </section>
+
+    <!-- Gesundheitliche Auswirkungen eines zu niedrigen oder zu hohen BMIs -->
+    <section id="section6" aria-labelledby="health-impact-heading">
+        <h6 id="health-impact-heading">Gesundheitliche Auswirkungen</h6>
+        <p><b>Warum ist der BMI wichtig?</b> Erklärung der gesundheitlichen Risiken im Zusammenhang mit einem zu
+            niedrigen oder zu hohen BMI.</p>
+        <!-- Liste der Tipps zur Gewichtskontrolle -->
+        <p>Tipps zur Gewichtskontrolle:</p>
+        <ul aria-label="Tipps zur Gewichtskontrolle">
+            <li>Gesunde Ernährung</li>
+            <li>Regelmäßige Bewegung</li>
+            <li>Ausreichend Wasser trinken</li>
+            <li>Erholung</li>
+        </ul>
+    </section>
+
+    <!-- Verlinkung zur externen JavaScript-Datei -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
+<!-- Document checking completed. No errors or warnings to show. -->
+
+<!--
+HTML:
+Verbesserungspotenziale:
+
+Einige Texte könnten in weiteren semantischen Containern wie main umschlossen werden, um die Hauptinhalte klarer zu trennen.
+Bei den input-Feldern für Körpergröße und -gewicht könnte statt text-Feldern der Typ number verwendet werden, um Benutzern das Eingeben von Zahlen zu erleichtern und Validierung zu verbessern.
+Für einige Abschnitte, z.B. den Bereich „Ergebnis“ oder „Empfehlung“, könnte eine weitergehende semantische Umrahmung sinnvoll sein, z.B. durch ein aside oder output-Tag für die Anzeige des BMI-Werts.
+Schulnote: 1 (Sehr gut)
+Punkte: 95/100
+Der HTML-Code ist fast perfekt strukturiert und sehr gut zugänglich. Kleine Verbesserungen könnten den Code noch optimieren.
+
+CSS:
+Verbesserungspotenziale:
+
+Die Breite der Eingabefelder ist mit 50% etwas knapp bemessen. Bei größeren Bildschirmen könnte dies zu viel Leerraum führen. Eine dynamische Breite könnte helfen (z. B. min-width oder max-width).
+Statt input[type="text"] wäre input[type="number"] sinnvoll, um die Eingabe der Körpergröße und des Gewichts besser zu handhaben.
+Der Hintergrund der Abschnitte und des Headers verwendet ähnliche Farbtöne, was ein wenig eintönig wirken kann. Ein stärkerer Kontrast zwischen den Sektionen könnte die Lesbarkeit und visuelle Abwechslung erhöhen.
+Schulnote: 1- (Sehr gut)
+Punkte: 92/100
+Das Styling ist sehr gut umgesetzt und zeigt einen klaren, modernen Ansatz. Es gibt nur wenige Bereiche, die durch Detailanpassungen noch etwas verbessert werden könnten.
+
+JS:
+Verbesserungspotenziale:
+
+Die Funktion checkValue gibt dieselbe Fehlermeldung sowohl für Größe als auch für Gewicht aus. Hier könnte eine spezifischere Fehlermeldung für beide Fälle hilfreich sein, um dem Benutzer genauere Hinweise zu geben.
+Es wäre sinnvoll, auch sicherzustellen, dass die Eingaben wirklich numerisch sind, z.B. durch eine zusätzliche Überprüfung mit isNaN(), um Fehler bei der Eingabe von nicht-numerischen Werten zu verhindern.
+Die Überprüfung von Gewicht und Größe (checkValue) könnte vor der BMI-Berechnung erfolgen, um unnötige Berechnungen bei ungültigen Eingaben zu vermeiden.
+Schulnote: 1- (Sehr gut)
+Punkte: 93/100
+Der Code ist sehr gut und fast fehlerfrei. Kleinere Verbesserungen bei der Eingabevalidierung und Fehlermeldungen könnten die Benutzerfreundlichkeit noch weiter erhöhen.
+-->
