@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <!-- <link rel="stylesheet" href="#"> Optional für Styling -->
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            background-image: url("https://wallpapercave.com/wp/wakb7vL.gif");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            margin: 10px 0;
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin-bottom: 20px;
+            /* Abstand unter dem Spielfeld */
+        }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            font-size: 2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* Übergang für Hover-Effekte */
+        }
+
+        .cell:hover {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            /* Grüner Hintergrund für den Reset-Button */
+            color: white;
+            /* Weißer Text */
+            border: none;
+            border-radius: 5px;
+            /* Abgerundete Ecken */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* Übergang für Hover-Effekte */
+        }
+
+        button:hover {
+            background-color: #218838;
+            /* Dunklerer Grünton beim Hover */
+        }
+
+        label {
+            margin-right: 10px;
+            /* Abstand zwischen Label und Auswahlfeld */
+        }
+
+        select {
+            padding: 5px;
+            /* Padding für das Auswahlfeld */
+            font-size: 1em;
+            /* Schriftgröße anpassen */
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="game-board">
+        <div class="cell" id="cell-0"></div>
+        <div class="cell" id="cell-1"></div>
+        <div class="cell" id="cell-2"></div>
+        <div class="cell" id="cell-3"></div>
+        <div class="cell" id="cell-4"></div>
+        <div class="cell" id="cell-5"></div>
+        <div class="cell" id="cell-6"></div>
+        <div class="cell" id="cell-7"></div>
+        <div class="cell" id="cell-8"></div>
+        <button id="reset-button">Neues Spiel</button>
+    </div>
+    <div>
+        <h2 id="status">Spieler X ist am Zug</h2>
+        <label for="difficulty">Schwierigkeit:</label>
+        <select id="difficulty">
+            <option value="easy">Einfach</option>
+            <option value="hard">Schwer</option>
+        </select>
+    </div>
+
+
+    <script>
+        const cells = document.querySelectorAll('.cell'); // Alle Zellen auswählen
+        let currentPlayer = 'X'; // Spieler X beginnt
+        let gameActive = true; // Spiel ist aktiv
+
+        // Spielstatus
+        const gameState = ['', '', '', '', '', '', '', '', '', ''];
+
+        // Gewinnbedingungen
+        const winningConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        // Funktion zum Handhaben von Zellen-klicks
+        function handleCellClick(event) {
+            const clickedCell = event.target;
+            const clickedCellIndex = parseInt(clickedCell.id.split('-')[1]);
+
+            if (gameState[clickedCellIndex] !== '' || !gameActive) {
+                return; // Zelle bereits besetzt oder Spiel ist nicht aktiv
+            }
+
+            gameState[clickedCellIndex] = currentPlayer;
+            clickedCell.innerText = currentPlayer;
+
+            checkResult(); // Ergebnis nach dem Spielerzug prüfen
+
+            // Computerzug ausführen, wenn das Spiel aktiv ist
+            if (gameActive) {
+                currentPlayer = 'O'; // Computer ist jetzt am Zug
+                computerMove(); // Computerzug durchführen
+                currentPlayer = 'X'; // Spieler wieder am Zug
+            }
+        };
+
+        // Ergebnisprüfung
+        function checkResult() {
+            let roundWon = false;
+
+            for (let i = 0; i < winningConditions.length; i++) {
+                const [a, b, c] = winningConditions[i];
+                if (gameState[a] === '' || gameState[b] === '' || gameState[c] === '') {
+                    continue; // Zelle ist leer
+                }
+                if (gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                alert(`Spieler ${currentPlayer} hat gewonnen!`);
+                gameActive = false;
+                return;
+            }
+
+            if (!gameState.includes('')) {
+                alert('Unentschieden!');
+                gameActive = false;
+            }
+
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X'; // Spieler wechseln
+        }
+
+        // Event-Listener zu den Zellen hinzufügen
+        cells.forEach(cell => {
+            cell.addEventListener('click', handleCellClick);
+        });
+
+        // Funktion für den Computerzug
+        function computerMove() {
+            let emptyCells = gameState.map((state, index) => state === '' ? index : null).filter(index => index !== null);
+            if (emptyCells.length === 0) return; // Keine leeren Zellen mehr
+
+            const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            gameState[randomIndex] = 'O';
+            document.getElementById(`cell-${randomIndex}`).innerText = 'O';
+
+            checkResult(); // Ergebnis nach dem Computerzug prüfen
+        }
+
+        // Funktion zum Zurücksetzen des Spiels
+        function resetGame() {
+            gameActive = true;
+            currentPlayer = 'X'; // Spieler 'X' beginnt wieder
+            gameState.fill(''); // Alle Felder zurücksetzen
+            cells.forEach(cell => {
+                cell.innerText = ''; // Text in den Zellen zurücksetzen
+            });
+        }
+
+        // Event-Listener für den Reset-Button hinzufügen
+        document.getElementById('reset-button').addEventListener('click', resetGame);
+
+        const statusDisplay = document.getElementById('status');
+        let difficulty = 'easy'; // Standard-Schwierigkeitsgrad
+
+        // Event-Listener für die Schwierigkeitsauswahl
+        document.getElementById('difficulty').addEventListener('change', (event) => {
+            difficulty = event.target.value;
+        });
+
+        // Aktualisiere die Anzeige des aktuellen Spielstands
+        function updateStatusDisplay() {
+            statusDisplay.innerText = `Spieler ${currentPlayer} ist am Zug`;
+        }
+
+        // Aktualisierte Funktion für den Computerzug
+        function computerMove() {
+            let emptyCells = gameState.map((state, index) => state === '' ? index : null).filter(index => index !== null);
+            if (emptyCells.length === 0) return; // Keine leeren Zellen mehr
+
+            let randomIndex;
+
+            if (difficulty === 'hard') {
+                // Hier könnte eine Strategie für den Computer implementiert werden,
+                // um einen möglichen Gewinn zu verhindern.
+                // Für Einfachheit wählen wir weiterhin zufällig.
+                randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            } else {
+                // Einfacher Zug (z. B. zufällig)
+                randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            }
+
+            gameState[randomIndex] = 'O';
+            document.getElementById(`cell-${randomIndex}`).innerText = 'O';
+            updateStatusDisplay(); // Aktualisiere die Anzeige nach dem Zug des Computers
+            checkResult(); // Ergebnis nach dem Computerzug prüfen
+        }
+
+        // Aktualisierte Funktion für den Spielzug des Spielers
+        function handleCellClick(event) {
+            const clickedCell = event.target;
+            const clickedCellIndex = parseInt(clickedCell.id.split('-')[1]);
+
+            if (gameState[clickedCellIndex] !== '' || !gameActive) {
+                return; // Zelle bereits besetzt oder Spiel ist nicht aktiv
+            }
+
+            gameState[clickedCellIndex] = currentPlayer;
+            clickedCell.innerText = currentPlayer;
+            updateStatusDisplay(); // Aktualisiere die Anzeige nach dem Spielerzug
+            checkResult(); // Ergebnis nach dem Spielerzug prüfen
+
+            // Computerzug ausführen, wenn das Spiel aktiv ist
+            if (gameActive) {
+                currentPlayer = 'O'; // Computer ist jetzt am Zug
+                computerMove(); // Computerzug durchführen
+                currentPlayer = 'X'; // Spieler wieder am Zug
+            }
+        }
+
+    </script>
+
+
+
+    <!-- <script src="#"></script> Skript für die Spiellogik -->
+</body>
+
+</html>
