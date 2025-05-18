@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3rem;
+    background: linear-gradient(to top, purple, yellow, orangered);
+    height: 100vh;
+    font-family: 'Times New Roman', Times, serif
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+li {
+    list-style: none;
+    margin: 2%;
+}
+
+li a {
+    color: black;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: yellow;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 15%;
+}
+
+h1 {
+    color: orangered;
+}
+
+h2 {
+    text-align: center;
+    color: orange;
+    font-size: 5rem;
+}
+
+button {
+    margin-top: 50px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: orange;
+    border: solid 1px yellow;
+    color: orangered;
+    font-weight: bold;
+    transition: 2.5s;
+    font-style: italic;
+}
+
+button:hover {
+    background-color: yellow;
+    border: solid 1px white;
+    box-shadow: 1px 2px 3px white;
+    color: yellow;
+    cursor: pointer;
+}

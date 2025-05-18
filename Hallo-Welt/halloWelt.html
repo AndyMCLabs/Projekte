@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallo Welt</title>
+    <!-- <link rel="stylesheet" href="halloWelt.css"> -->
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1.3rem;
+            background: linear-gradient(to top, purple, yellow, orangered);
+            height: 100vh;
+            font-family: 'Times New Roman', Times, serif
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        li {
+            list-style: none;
+            margin: 2%;
+        }
+
+        li a {
+            color: black;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            color: yellow;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5% 15%;
+        }
+
+        h1 {
+            color: orangered;
+        }
+
+        h2 {
+            text-align: center;
+            color: orange;
+            font-size: 5rem;
+        }
+
+        button {
+            margin-top: 50px;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: orange;
+            border: solid 1px yellow;
+            color: orangered;
+            font-weight: bold;
+            transition: 2.5s;
+            font-style: italic;
+        }
+
+        button:hover {
+            background-color: yellow;
+            border: solid 1px white;
+            box-shadow: 1px 2px 3px white;
+            color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Startseite</a></li>
+                <li><a href="#">Über uns</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Ein Sonnenaufgang ist so schön!</h1>
+        <p>Der Sonnenaufgang ist wie ein sanftes Versprechen des neuen Tages. Wenn die ersten Strahlen über den Horizont
+            klettern, erinnern sie uns daran, dass jeder Tag eine neue Chance ist. Egal, wie schwer die Nacht war oder
+            wie viele Herausforderungen gestern auf uns gewartet haben – mit dem Aufgang der Sonne kommt Hoffnung, Licht
+            und frische Energie. Der Himmel leuchtet in warmen Farben und lädt uns ein, alles hinter uns zu lassen, was
+            uns zurückhält. Ein neuer Anfang, gefüllt mit Möglichkeiten, wartet auf uns. Lass uns diesen Tag mit offenen
+            Armen empfangen und das Beste daraus machen!</p>
+        <button id="btn">Klick</button>
+    </main>
+
+    <script>
+        let button = document.getElementById("btn");
+        let hwElement;
+
+        button.addEventListener("click", function() {
+            if(!hwElement) {
+                hwElement = document.createElement("h2");
+                hwElement.innerText = "Mache das Beste aus dem Tag!";
+                document.body.appendChild(hwElement);
+
+
+                setTimeout(function name() {
+                    hwElement.remove();
+                    hwElement = null;
+                }, 3000);
+            }
+        });
+
+    </script>
+
+    <!-- <script src="halloWelt.js"></script> -->
+</body>
+
+</html>
