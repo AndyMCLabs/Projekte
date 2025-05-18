@@ -1,0 +1,110 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1c1f24; /* Dunklerer Hintergrund */
+    color: #fefefe; /* Helle Schriftfarbe */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.2rem;
+}
+
+section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #f9d900; /* Gelb */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Schatten für Tiefe */
+}
+
+p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container {
+    background-color: #173c8d; /* Blau für den Container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 90%; /* Responsive Breite */
+    max-width: 400px; /* Maximale Breite */
+    margin-bottom: 100px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #f9d900; /* Gelb für Labels */
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f9d900; /* Gelber Rahmen */
+    border-radius: 5px;
+    background-color: #2a2d34; /* Dunkler Hintergrund für Eingabefelder */
+    color: #fefefe; /* Helle Schriftfarbe */
+}
+
+#amount {
+    width: 94%;
+}
+
+input[type="number"]::placeholder {
+    color: #a1a1a1; /* Heller Platzhalter */
+}
+
+button {
+    background-color: #f9d900; /* Gelber Button */
+    color: #2a2d34; /* Dunkle Schriftfarbe */
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #e6c400; /* Etwas dunkleres Gelb beim Hover */
+}
+
+h2 {
+    margin-top: 20px;
+    color: #f9d900; /* Gelb für das Ergebnis */
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em; /* Kleinere Schriftgröße für mobile Geräte */
+    }
+
+    p {
+        font-size: 1em; /* Kleinere Schriftgröße für mobile Geräte */
+    }
+
+    button {
+        font-size: 1em; /* Kleinere Schriftgröße für mobile Geräte */
+    }
+
+    h2 {
+        font-size: 1.2em; /* Kleinere Schriftgröße für mobile Geräte */
+    }
+}

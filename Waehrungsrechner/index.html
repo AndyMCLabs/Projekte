@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Währungsumrechner</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Verknüpfe hier deine CSS-Datei -->
+</head>
+<body>
+    <section>
+        <h1>Währungsumrechner</h1>
+        <p>Ein Währungsumrechner ist ein praktisches Tool, das es Nutzern ermöglicht, Beträge zwischen verschiedenen Währungen umzurechnen. Er wird häufig verwendet, um den aktuellen Wechselkurs zu berücksichtigen, was besonders wichtig ist für Reisende, Online-Shopper oder Unternehmen, die international tätig sind.</p>
+    </section>
+    <div class="container">
+        <div>
+            <label for="amount">Betrag:</label>
+            <input type="number" id="amount" placeholder="Betrag eingeben" />
+        </div>
+        <div>
+            <label for="fromCurrency">Von:</label>
+            <select id="fromCurrency">
+                <!-- Optionen für die Ausgangswährung werden hier hinzugefügt -->
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="CHF">CHF</option>
+            </select>
+        </div>
+        <div>
+            <label for="toCurrency">Nach:</label>
+            <select id="toCurrency">
+                <!-- Optionen für die Zielwährung werden hier hinzugefügt -->
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="CHF">CHF</option>
+            </select>
+        </div>
+        <button id="convertButton">Umrechnen</button>
+        <h2 id="result"></h2> <!-- Hier wird das Ergebnis angezeigt -->
+    </div>
+    <script src="script.js"></script> <!-- Verknüpfe hier deine JavaScript-Datei -->
+</body>
+</html>
