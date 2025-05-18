@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-Do Liste</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #2e2e2e;
+        color: #e0e0e0;
+        margin: 0;
+        padding: 20px;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content:center;
+        align-items: baseline;
+        height: 100vh;
+        text-align: center;
+      }
+      h1 {
+        color: magenta;
+        margin-bottom: 20px;
+      }
+      .container {
+        max-width: 500px;
+        width: 100%;
+      }
+      input[type="text"],
+      input[type="date"],
+      button {
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      input[type="text"],
+      input[type="date"] {
+        background-color: #3b3b3b;
+        color: #e0e0e0;
+        width: calc(100% - 22px);
+      }
+      button {
+        background-color: magenta;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+      button:hover {
+        background-color: darkmagenta;
+      }
+      #taskList {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+      .task {
+        background-color: #3b3b3b;
+        border: 1px solid #4a4a4a;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 5px 0;
+        color: #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .completed {
+        text-decoration: line-through;
+        color: #8c8c8c;
+      }
+      .deleteButton {
+        background: none;
+        font-weight: bold;
+        border: none;
+        color: #e74c3c;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .deleteButton:hover {
+        color: #c0392b;
+        background-color: #4a4a4a;
+        font-weight: bold;
+      }
+      .taskDate {
+        font-size: 12px;
+        color: #9e9e9e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>To-Do Liste</h1>
+      <input type="text" id="taskInput" placeholder="Neue Aufgabe hinzufügen" />
+      <input type="date" id="dueDate" />
+      <button onclick="addTask()">Hinzufügen</button>
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      // Funktion zum Laden der Aufgaben aus dem Local Storage
+      function loadTasks() {
+        var taskList = document.getElementById("taskList");
+        var tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        tasks.forEach(function (task) {
+          var listItem = createTaskElement(
+            task.text,
+            task.completed,
+            task.dueDate
+          );
+          taskList.appendChild(listItem);
+        });
+      }
+
+      // Funktion zum Erstellen eines Aufgaben-Elements
+      function createTaskElement(text, completed, dueDate) {
+        var listItem = document.createElement("li");
+        listItem.className = "task";
+        if (completed) {
+          listItem.classList.add("completed");
+        }
+
+        var taskText = document.createElement("span");
+        taskText.textContent = text;
+        listItem.appendChild(taskText);
+
+        if (dueDate) {
+          var dateText = document.createElement("span");
+          dateText.className = "taskDate";
+          dateText.textContent = `Fällig: ${new Date(
+            dueDate
+          ).toLocaleDateString()}`;
+          listItem.appendChild(dateText);
+        }
+
+        var deleteButton = document.createElement("button");
+        deleteButton.textContent = "Löschen";
+        deleteButton.className = "deleteButton";
+        deleteButton.addEventListener("click", function () {
+          listItem.remove();
+          saveTasks(); // Speichern nach dem Löschen
+        });
+        listItem.appendChild(deleteButton);
+
+        listItem.addEventListener("click", function () {
+          this.classList.toggle("completed");
+          saveTasks(); // Speichern nach dem Markieren/Entmarkieren
+        });
+
+        return listItem;
+      }
+
+      // Funktion zum Hinzufügen einer Aufgabe
+      function addTask() {
+        var taskInput = document.getElementById("taskInput");
+        var dueDateInput = document.getElementById("dueDate");
+        var taskValue = taskInput.value.trim();
+        var dueDateValue = dueDateInput.value;
+
+        if (taskValue === "") {
+          return;
+        }
+
+        var listItem = createTaskElement(taskValue, false, dueDateValue);
+        var taskList = document.getElementById("taskList");
+        taskList.appendChild(listItem);
+
+        taskInput.value = "";
+        dueDateInput.value = "";
+        saveTasks(); // Speichern nach dem Hinzufügen
+      }
+
+      // Funktion zum Speichern der Aufgaben im Local Storage
+      function saveTasks() {
+        var taskList = document.getElementById("taskList");
+        var tasks = [];
+
+        Array.from(taskList.children).forEach(function (listItem) {
+          tasks.push({
+            text: listItem.querySelector("span").textContent,
+            completed: listItem.classList.contains("completed"),
+            dueDate: listItem.querySelector(".taskDate")
+              ? new Date(
+                  listItem
+                    .querySelector(".taskDate")
+                    .textContent.replace("Fällig: ", "")
+                )
+                  .toISOString()
+                  .split("T")[0]
+              : null,
+          });
+        });
+
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      // Beim Laden der Seite Aufgaben aus dem Local Storage laden
+      window.onload = function () {
+        loadTasks();
+      };
+    </script>
+  </body>
+</html>
