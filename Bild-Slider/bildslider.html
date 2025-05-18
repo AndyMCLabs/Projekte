@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bild-Slider</title>
+
+    <!-- Style -->
+    <style>
+        body {
+            background-color: #2D201E;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .bildContainer {
+            background-color: #3E4369;
+            width: 600px;
+            height: 400px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            /* Versteckt die Bilder, die außerhalb des Containers sind */
+            box-shadow: 0 0 4px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .bildContainer img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            /* Unsichtbar zu Beginn */
+            transition: opacity 2s ease;
+            /* Füge eine Übergangsanimation hinzu */
+        }
+
+        .bildContainer img.active {
+            opacity: 1;
+            /* Voll sichtbar */
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #3E4369;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        button:hover {
+            background-color: #5A5E8C;
+        }
+
+        .buttonContainer {
+            display: flex;
+            justify-content: center;
+            /* Zentriere die Buttons */
+            margin-top: 20px;
+            /* Abstand zum Bildcontainer */
+        }
+
+        @media only screen and (max-width: 600px) {
+            .bildContainer {
+                width: 400px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Bild Container mit Bildern -->
+    <div class="bildContainer">
+        <img src="./bilder/Puzzle-10001.jpg" alt="Bild von Puzzle" class="active">
+        <img src="./bilder/Puzzle-10002.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10003.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10004.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10005.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10006.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10007.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10008.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-10009.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100010.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100011.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100012.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100013.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100014.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100015.jpg" alt="Bild von Puzzle">
+        <img src="./bilder/Puzzle-100016.jpg" alt="Bild von Puzzle">
+    </div>
+
+    <div class="buttonContainer">
+        <button id="prevButton">Zurück</button>
+        <button id="nextButton">Vorwärts</button>
+    </div>
+
+    <!-- Script -->
+    <script>
+        const alleBilder = document.querySelectorAll('.bildContainer img');
+        let bildindex = 0;
+
+        function bildSliden() {
+            // Aktuelles Bild ausblenden
+            alleBilder[bildindex].classList.remove("active");
+
+            // Bildindex erhöhen
+            bildindex = (bildindex + 1) % alleBilder.length; // Gehe zum nächsten Bild, dann wieder zu 0
+
+            // Neues Bild anzeigen
+            alleBilder[bildindex].classList.add("active");
+        };
+
+        setInterval(() => {
+            bildSliden();
+        }, 5000); // Ändere das Bild alle 5 Sekunden
+
+        function bildVorwaerts() {
+            // Aktuelles Bild ausblenden
+            alleBilder[bildindex].classList.remove("active");
+            // Bildindex erhöhen
+            bildindex = (bildindex + 1) % alleBilder.length;
+            // Neues Bild anzeigen
+            alleBilder[bildindex].classList.add("active");
+        }
+
+        function bildRueckwaerts() {
+            // Aktuelles Bild ausblenden
+            alleBilder[bildindex].classList.remove("active");
+            // Bildindex verringern
+            bildindex = (bildindex - 1 + alleBilder.length) % alleBilder.length; // Sorgen für Kreisbewegung
+            // Neues Bild anzeigen
+            alleBilder[bildindex].classList.add("active");
+        }
+
+        document.getElementById('nextButton').addEventListener('click', bildVorwaerts);
+        document.getElementById('prevButton').addEventListener('click', bildRueckwaerts);
+    </script>
+</body>
+
+</html>
+
+<!--
+**Bewertung deines Bild-Slider-Projekts:**
+
+### Schulnote: 2 (Gut)
+
+### Gesamtbewertung: 85/100
+
+### Feedback:
+
+1. **Struktur und Sauberkeit des Codes (15/20)**:
+   - Dein HTML ist gut strukturiert, und du hast klare Kommentare hinzugefügt, was sehr hilfreich ist.
+   - Die Verwendung von CSS-Klassen ist sinnvoll, und du hast für die verschiedenen Komponenten des Sliders gute Styles definiert.
+
+2. **Design (20/20)**:
+   - Das Design ist ansprechend und nutzt Farben, die gut zueinander passen.
+   - Die Buttons sind klar sichtbar und die Hover-Effekte sind eine schöne Ergänzung.
+
+3. **Funktionalität (20/20)**:
+   - Die Übergänge zwischen den Bildern funktionieren gut und sind flüssig.
+   - Die Navigation mit den Buttons funktioniert reibungslos, und die automatische Slideshow ist gut implementiert.
+
+4. **Responsive Design (15/20)**:
+   - Du hast Media Queries verwendet, um das Design auf kleineren Bildschirmen anzupassen, was sehr wichtig ist.
+   - Es wäre jedoch hilfreich, die Buttons ebenfalls responsive zu gestalten, damit sie auf kleineren Bildschirmen nicht zu nah am Rand sind.
+
+5. **JavaScript-Logik (15/20)**:
+   - Die Logik für den Bildwechsel ist klar und funktional.
+   - Ein Verbesserungspunkt wäre, die Zeit für das automatische Sliden anpassbar zu machen oder eine Möglichkeit zu bieten, die Slideshow zu pausieren.
+
+### Gesamteindruck:
+Insgesamt hast du einen soliden Bild-Slider erstellt, der gut aussieht und funktioniert. Mit ein paar zusätzlichen Features und einer weiteren Verbesserung des responsiven Designs könntest du eine ausgezeichnete Benutzererfahrung bieten. Gut gemacht!
+-->
