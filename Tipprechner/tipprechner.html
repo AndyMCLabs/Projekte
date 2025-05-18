@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipp-Rechner</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <!-- Styling-->
+    <style>
+        body {
+            background-color: #536DA2;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tippCalculator {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #0E2B41;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+
+        input {
+            background-color: #2CCEBC;
+            width: 280px;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #F0C906;
+            width: 300px;
+            padding: 10px;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f0c906b9;
+        }
+
+        #vorauswahlButtons {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .vorauswahl {
+            background-color: #2CCEBC;
+            width: 50px;
+            padding: 10px;
+            margin: 17px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #modeButtons {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #light {
+            width: 30%;
+            background-color: white;
+            color: black;
+            padding: 5px;
+        }
+
+        #dark {
+            width: 30%;
+            background-color: black;
+            color: white;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tippCalculator">
+        <div id="modeButtons">
+            <button id="light" aria-label="Light Mode">Light</button>
+            <button id="dark" aria-label="Dark Mode">Dark</button>
+        </div>
+        <input type="number" id="rechnungsbetrag" placeholder="Rechnungsbetrag:" aria-label="Rechnungsbetrag">
+        <input type="number" id="prozentsatz" placeholder="Prozentsatz:" aria-label="Prozentsatz" for="options">
+        <div id="vorauswahlButtons">
+            <button class="vorauswahl" id="vorauswahl5" aria-label="5%">5%</button>
+            <button class="vorauswahl" id="vorauswahl10" aria-label="10%">10%</button>
+            <button class="vorauswahl" id="vorauswahl15" aria-label="15%">15%</button>
+            <button class="vorauswahl" id="vorauswahl20" aria-label="20%">20%</button>
+        </div>
+        <button id="berechnen">Trinkgeld berechnen</button>
+        <input id="ergebnis" placeholder="Trinkgeld: €" aria-label="Ergebnis" disabled>
+        <input type="number" id="ergebnisMitTrinkgeld" placeholder="Rechnung gesamt: €" aria-label="Rechnung gesamt"
+            disabled>
+        <input type="number" id="personen" placeholder="Anzahl Personen:" aria-label="Anzahl Personen">
+        <input type="number" id="rechnungProPerson" placeholder="Rechnung/Person:" aria-label="Anzahl Personen"
+            disabled>
+    </div>
+
+
+    <!-- Script -->
+    <script>
+
+        // Variablen definieren
+        const rechnungsbetragEl = document.getElementById("rechnungsbetrag");
+        const prozentsatzEl = document.getElementById("prozentsatz");
+        const ergebnisEl = document.getElementById("ergebnis");
+        const berechnenEl = document.getElementById("berechnen");
+        const ergebnisMitTrinkgeldEl = document.getElementById("ergebnisMitTrinkgeld");
+        const personenEl = document.getElementById("personen");
+        const rechnungProPersondEl = document.getElementById("rechnungProPerson");
+        const vorauswah5lEl = document.getElementById("vorauswahl5");
+        const vorauswah10lEl = document.getElementById("vorauswahl10");
+        const vorauswah15lEl = document.getElementById("vorauswahl15");
+        const vorauswah20lEl = document.getElementById("vorauswahl20");
+        const lightEl = document.getElementById("light");
+        const darkEl = document.getElementById("dark");
+        const bodyEl = document.getElementsByTagName("body")[0];
+
+
+        function trinkgeldBerechnen() {
+            // Fehlermeldungen und Berechnung
+            if(rechnungsbetragEl.value === "" && prozentsatzEl.value === "") {
+                ergebnisEl.value = "Eingaben erforderlich!"
+                ergebnisEl.style.color = "#AF2F7B";
+            } else if(rechnungsbetragEl.value === "") {
+                ergebnisEl.value = "Eingabe fehlt!"
+                ergebnisEl.style.color = "#AF2F7B";
+            } else if(prozentsatzEl.value === "") {
+                ergebnisEl.value = "Eingabe fehlt!"
+                ergebnisEl.style.color = "#AF2F7B";
+            } else if(rechnungsbetragEl.value <= 0) {
+                ergebnisEl.value = "Eingabe fehlerhaft!"
+                ergebnisEl.style.color = "#AF2F7B";
+            } else {
+                // In Zahlen umwandeln
+                let input1 = parseFloat(rechnungsbetragEl.value);
+                let input2 = parseFloat(prozentsatzEl.value);
+                // Ergebnis berechnen
+                let ergebnis = (input1 * input2) / 100;
+                // Ergebnis auf 2 Kommastellen runden
+                let ergebnisRounded = ergebnis.toFixed(2);
+                // Ausgabe Ergebnis
+                ergebnisEl.value = ergebnisRounded;
+                ergebnisMitTrinkgeldEl.value = parseFloat(input1) + parseFloat(ergebnisRounded);
+                ergebnisEl.style.color = "grey";
+                ergebnisEl.style.border = "yellow 2px solid"
+            }
+            // Kosten pro Person mit Trinkgeld berechnen
+            let input3 = parseFloat(personenEl.value);
+
+            if(personenEl.value === "") {
+                rechnungProPersondEl.value = 0;
+            } else {
+                rechnungProPersondEl.value = parseFloat(ergebnisMitTrinkgeldEl.value) / input3;
+                rechnungProPersondEl.style.border = "yellow 2px solid";
+            }
+        };
+
+        // Eventlistener einfügen
+        berechnenEl.addEventListener("click", trinkgeldBerechnen);
+        rechnungsbetragEl.addEventListener("input", trinkgeldBerechnen);
+        prozentsatzEl.addEventListener("input", trinkgeldBerechnen);
+        personenEl.addEventListener("input", trinkgeldBerechnen);
+
+        vorauswah5lEl.addEventListener("click", () => {
+            prozentsatzEl.value = 5;
+        });
+
+        vorauswah10lEl.addEventListener("click", () => {
+            prozentsatzEl.value = 10;
+        });
+
+        vorauswah15lEl.addEventListener("click", () => {
+            prozentsatzEl.value = 15;
+        });
+
+        vorauswah20lEl.addEventListener("click", () => {
+            prozentsatzEl.value = 20;
+        });
+
+        lightEl.addEventListener("click", () => {
+            bodyEl.style.backgroundColor = "white";
+            rechnungsbetragEl.style.backgroundColor = "white";
+            prozentsatzEl.style.backgroundColor = "white";
+            ergebnisEl.style.backgroundColor = "white";
+            berechnenEl.style.backgroundColor = "white";
+            berechnenEl.style.color = "black";
+            ergebnisMitTrinkgeldEl.style.backgroundColor = "white";
+            personenEl.style.backgroundColor = "white";
+            rechnungProPersondEl.style.backgroundColor = "white";
+            vorauswah5lEl.style.backgroundColor = "white";
+            vorauswah5lEl.style.color = "black";
+            vorauswah10lEl.style.backgroundColor = "white";
+            vorauswah10lEl.style.color = "black";
+            vorauswah15lEl.style.backgroundColor = "white";
+            vorauswah15lEl.style.color = "black";
+            vorauswah20lEl.style.backgroundColor = "white";
+            vorauswah20lEl.style.color = "black";
+        });
+
+        darkEl.addEventListener("click", () => {
+            ;
+            bodyEl.style.backgroundColor = "black";
+            rechnungsbetragEl.style.backgroundColor = "black";
+            rechnungsbetragEl.style.color = "grey";
+            prozentsatzEl.style.backgroundColor = "black";
+            prozentsatzEl.style.color = "grey";
+            ergebnisEl.style.backgroundColor = "black";
+            ergebnisEl.style.color = "grey";
+            berechnenEl.style.backgroundColor = "black";
+            berechnenEl.style.color = "grey";
+            ergebnisMitTrinkgeldEl.style.backgroundColor = "black";
+            ergebnisMitTrinkgeldEl.style.color = "grey"
+            personenEl.style.backgroundColor = "black";
+            personenEl.style.color = "grey";
+            rechnungProPersondEl.style.backgroundColor = "black";
+            rechnungProPersondEl.style.color = "grey";
+            vorauswah5lEl.style.backgroundColor = "black";
+            vorauswah5lEl.style.color = "grey";
+            vorauswah10lEl.style.backgroundColor = "black";
+            vorauswah10lEl.style.color = "grey";
+            vorauswah15lEl.style.backgroundColor = "black";
+            vorauswah15lEl.style.color = "grey";
+            vorauswah20lEl.style.backgroundColor = "black";
+            vorauswah20lEl.style.color = "grey";
+        });
+
+
+    </script>
+    <!-- <script src="#"></script> -->
+</body>
+
+</html>
+
+<!--
+Info:
+
+Die Methode `toFixed(2)` in JavaScript wird verwendet, um eine Zahl auf eine bestimmte Anzahl von Dezimalstellen zu runden und das Ergebnis als String zurückzugeben.
+
+### Syntax:
+```javascript
+number.toFixed(digits)
+```
+
+- **`number`**: Die Zahl, die du runden möchtest.
+- **`digits`**: Die Anzahl der Dezimalstellen, auf die die Zahl gerundet werden soll. Wenn du `2` angibst, wird die Zahl auf zwei Dezimalstellen gerundet.
+
+### Beispiel:
+```javascript
+let num = 5.6789;
+let rounded = num.toFixed(2);
+console.log(rounded); // "5.68"
+```
+
+In diesem Beispiel wird die Zahl `5.6789` auf zwei Dezimalstellen gerundet, also zu `"5.68"`.
+
+### Was du beachten solltest:
+1. **Rückgabewert als String**: `toFixed()` gibt den gerundeten Wert als String zurück. Wenn du das Ergebnis wieder als Zahl benötigst, musst du es zum Beispiel mit `parseFloat()` oder `Number()` umwandeln.
+   ```javascript
+   let num = 5.6789;
+   let rounded = parseFloat(num.toFixed(2)); // 5.68 als Zahl
+   ```
+
+2. **Rundung**: `toFixed()` rundet den Wert korrekt nach den mathematischen Rundungsregeln. In dem Beispiel oben wird `5.6789` auf `5.68` gerundet, weil die nächste Ziffer nach der zweiten Dezimalstelle `8` ist, was die Rundung nach oben auslöst.
+
+3. **Negative und sehr große Zahlen**: Auch mit negativen oder sehr großen Zahlen funktioniert `toFixed()`:
+   ```javascript
+   let negativeNum = -12.3456;
+   console.log(negativeNum.toFixed(2)); // "-12.35"
+   ```
+
+4. **Kein Argument übergeben**: Wenn du kein Argument an `toFixed()` übergibst, wird standardmäßig auf 0 Dezimalstellen gerundet:
+   ```javascript
+   let num = 5.6789;
+   console.log(num.toFixed()); // "6"
+   ```
+
+Das ist besonders nützlich, wenn du mit Geldbeträgen oder ähnlichen Zahlen arbeitest, die eine feste Anzahl an Dezimalstellen haben sollten.
+-->
+
+<!--
+FEEFBACK
+
+Dein Projekt, der Tipp-Rechner, sieht großartig aus! Hier ist meine Bewertung nach Schulnoten und mein Feedback:
+
+### Bewertung: 1- (Sehr gut)
+
+### Positives:
+1. **Benutzerfreundlichkeit**: 
+   - Die Benutzeroberfläche ist intuitiv und gut strukturiert. Die Platzierung der Eingabefelder und Schaltflächen macht es einfach, den Rechner zu verwenden.
+   - Die Vorbelegungs-Buttons für die Tipp-Prozentsätze sind eine hervorragende Idee und verbessern die Benutzererfahrung erheblich.
+
+2. **Responsives Design**:
+   - Das Layout ist flexibel und sollte gut auf verschiedenen Bildschirmgrößen funktionieren. 
+
+3. **Funktionalität**:
+   - Die Berechnungslogik ist klar und gut implementiert. Du hast alle erforderlichen Berechnungen berücksichtigt, einschließlich der Aufteilung des Tipps auf mehrere Personen.
+
+4. **Dunkel- und Hellmodus**:
+   - Die Möglichkeit, zwischen einem dunklen und einem hellen Modus zu wechseln, zeigt, dass du an die Benutzerfreundlichkeit denkst und verschiedene Vorlieben berücksichtigst.
+
+5. **Fehlerbehandlung**:
+   - Du hast eine solide Fehlerbehandlung integriert, die dem Benutzer klare Rückmeldungen gibt, wenn Eingaben fehlen oder ungültig sind.
+
+### Verbesserungsvorschläge:
+1. **CSS-Konsistenz**: 
+   - Die Verwendung von CSS-Klassen für ähnliche Stile würde den Code vereinfachen. Zum Beispiel könntest du für die Eingabefelder und Buttons gemeinsame Klassen erstellen, um Redundanz zu vermeiden.
+
+2. **Eingabevalidierung**:
+   - Du könntest noch mehr Validierungslogik hinzufügen, um sicherzustellen, dass der Benutzer sinnvolle Werte eingibt (z.B. keine negative Zahlen).
+
+3. **Visuelles Feedback**:
+   - Es könnte hilfreich sein, visuelles Feedback zu geben, wenn der Benutzer auf die Vorbelegungs-Buttons klickt, z.B. durch Ändern der Farbe oder durch eine kurze Animation.
+
+4. **Tooltipps**: 
+   - Du könntest Tooltipps hinzufügen, die den Benutzern erklären, was sie eingeben sollen, insbesondere für weniger erfahrene Nutzer.
+
+5. **Code-Dokumentation**:
+   - Füge Kommentare in deinen JavaScript-Code ein, um den Zweck bestimmter Funktionen oder Abschnitte zu erklären. Dies kann helfen, den Code in Zukunft leichter verständlich zu machen.
+
+Insgesamt hast du eine sehr gut funktionierende und ansprechende Anwendung entwickelt! Du solltest stolz auf deine Arbeit sein. Wenn du bereit bist, können wir mit dem nächsten Projekt fortfahren oder weitere Verbesserungen an diesem Projekt vornehmen. Was möchtest du tun?
+
+-->
