@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addieren üben</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- Kopfbereich der Seite -->
+    <header id="header">
+        <h1>Additionen üben</h1>
+        <p>Versuche die Aufgabe ohne Taschenrechner zu lösen.</p>
+    </header>
+
+    <!-- Hauptbereich der Anwendung -->
+    <main id="additionContainer">
+        <section aria-labelledby="additionHeading">
+                <h2 id="additionHeading">Addition</h2>
+            
+            <!-- Aufgabe anzeigen -->
+            <p>
+                <span id="zahl1" aria-label="Erste Zahl"></span> +
+                <span id="zahl2" aria-label="Zweite Zahl"></span>
+            </p>
+
+            <!-- Eingabefeld für das Benutzerergebnis -->
+            <input type="number" id="userResult" placeholder="Ergebnis eingeben..." aria-label="Ergebnis">
+
+            <!-- Button zum Überprüfen des Ergebnisses -->
+            <button id="checkResult" aria-label="Ergebnis prüfen">Ergebnis prüfen</button>
+
+            <!-- Nachricht zur Anzeige des Ergebnisses -->
+            <div id="resultMessage" role="status" aria-live="polite">- - -</div>
+
+            <!-- Fortschrittsbalken -->
+            <progress id="progressBar" value="0" max="100" aria-label="Fortschritt"></progress>
+
+            <!-- Aktuelles Level des Benutzers -->
+            <div id="userLevel" aria-label="Benutzerlevel">Level 1</div>
+
+            <!-- Audiodateien für Feedback -->
+            <audio src="./assets/short-applause-96213.mp3" id="applause"></audio>
+            <audio src="./assets/cute-level-up-1-189852.mp3" id="levelUp"></audio>
+            <audio src="./assets/wrong-answer-21-199825.mp3" id="wrong"></audio>
+        </section>
+    </main>
+
+    <!-- Fallback-Nachricht bei deaktiviertem JavaScript -->
+    <noscript>
+        <p>JavaScript ist deaktiviert. Bitte aktivieren Sie es, um alle Funktionen nutzen zu können.</p>
+    </noscript>
+
+    <!-- JavaScript-Datei einbinden -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
