@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Grundlegende Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eine kurze Beschreibung der Webseite, die in Suchmaschinen erscheint.">
+    <meta name="keywords" content="Stichwörter, getrennt, durch, Kommas">
+    <meta name="author" content="Dein Name oder der Name des Unternehmens">
+
+    <!-- Titel der Webseite -->
+    <title>Dein Website-Titel</title>
+
+    <!-- Verknüpfungen zu externen CSS-Dateien -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- Verknüpfungen zu externen Schriftarten (z.B., Google Fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon (kleines Symbol im Tab des Browsers) -->
+    <link rel="icon" href="#" type="image/x-icon">
+</head>
+
+<body>
+    <!-- <noscript> Nachricht für Benutzer ohne JavaScript -->
+    <noscript>
+        <div style="background-color: black; color: lawngreen; padding: 10px; text-align: center;">
+            <p><strong>Hinweis:</strong> Diese Webseite benötigt JavaScript, um vollständig zu funktionieren. Bitte
+                aktiviere JavaScript in deinem Browser, um die Seite wie vorgesehen nutzen zu können.</p>
+        </div>
+    </noscript>
+
+    <!-- Hauptnavigationsbereich -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Über Uns</a></li>
+                <li><a href="#">Dienstleistungen</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Random Button Maker</h1>
+        <p>Drücke auf den Button und lass dich von Button-Kreationen überraschen</p>
+    </section>
+
+    <section id="services">
+        <div class="service">
+            <h3>Random Button</h3>
+            <button id="generateButton" onclick="generateRandomButton()">Bitte drücken</button>
+        </div>
+        <div class="service">
+            <h3>Hier siehst du die Kreation </h3>
+            <button id="beispiel-Button">Beispiel-Button</button>
+        </div>
+        <div id="codeBtnText" class="service">
+            <h3>Button-CSS-Code</h3>
+            <div id="buttonCodeText">Button Code</div>         
+        </div>
+    </section>
+
+    <!-- Fußzeile mit rechtlichen Links -->
+    <footer>
+        <p>&copy; 2023 Dein Unternehmen. Alle Rechte vorbehalten.</p>
+        <ul>
+            <li><a href="#">Impressum</a></li>
+            <li><a href="#">Datenschutz</a></li>
+            <li><a href="#">AGB</a></li>
+        </ul>
+    </footer>
+
+    <!-- JavaScript-Dateien einbinden -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
