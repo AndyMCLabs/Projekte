@@ -1,0 +1,197 @@
+/* Root Farben definieren */
+:root {
+    --background-gradient: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    --background-chat: rgba(30, 30, 30, 0.4);
+    --color-text: #ffffff;
+    --color-green: #3f9e5f;
+    --color-blue: #4a90e2;
+    --color-dark-gray: #4a4a4a;
+    --color-scrollbar: #555;
+    --color-scrollbar-hover: #777;
+    --color-hoverBackground: #5cb85c;
+}
+
+/* Grundlegende Stile für alle Elemente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Stile für den Body */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--background-gradient);
+    color: var(--color-text);
+}
+
+/* Container für den Chatbot */
+#chat-container {
+    height: 65%;
+    width: 90%;
+    max-width: 600px;
+    background: var(--background-chat);
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stil für Absätze */
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--color-green);
+}
+
+/* Chatfenster */
+#chat-window {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+/* Nachrichtenbereich */
+#messages {
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Stil für Nachrichten */
+.message {
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    max-width: 80%;
+}
+
+/* Benutzer-Nachrichten */
+.message.user-message {
+    align-self: flex-end;
+    background-color: var(--color-green);
+    color: var(--color-text);
+}
+
+/* Bot-Nachrichten */
+.message.bot-message {
+    align-self: flex-start;
+    background-color: var(--color-blue);
+    color: var(--color-text);
+}
+
+/* Eingabebereich */
+#input-container {
+    display: flex;
+    padding: 10px;
+    background: var(--background-gradient);
+    border: 1px solid var(--color-dark-gray);
+    border-radius: 10px;
+}
+
+/* Benutzer-Eingabefeld */
+#user-input {
+    border: none;
+    outline: none;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: var(--color-dark-gray);
+    color: var(--color-text);
+    flex-grow: 1;
+    border-radius: 8px 0 0 8px;
+}
+
+/* Senden-Button */
+#send-button {
+    border: none;
+    background-color: var(--color-green);
+    color: var(--color-text);
+    font-size: 1rem;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover-Effekt für den Senden-Button */
+#send-button:hover {
+    background-color: #5cb85c; /* Hellerer Grünton bei Hover */
+}
+
+/* Scrollbar-Styling */
+#chat-window::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-window::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar);
+    border-radius: 4px;
+}
+
+#chat-window::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-scrollbar-hover);
+}
+
+/* Stil für die Frage-Anzeige */
+#question-display {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid var(--color-dark-gray);
+    border-radius: 10px;
+    text-align: center;
+    background: var(--background-gradient);
+    color: var(--color-green);
+}
+
+/* Hover-Effekt für die Frage-Anzeige */
+#question-display:hover {
+    cursor: pointer;
+}
+
+/* Neuer Chat-Button */
+#new-chat-button {
+    margin: 10px;
+    border: none;
+    background-color: var(--color-green);
+    color: var(--color-text);
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+/* Hover-Effekt für den neuen Chat-Button */
+#new-chat-button:hover {
+    background-color: var(--color-hoverBackground);
+}
+
+/* Unsichtbare Klasse für Screenreader */
+.visually-hidden {
+    display: none;
+}
+
+/* Responsive Design-Anpassungen */
+@media (max-width: 600px) {
+    #user-input {
+        font-size: 0.9rem;
+    }
+
+    #send-button {
+        font-size: 0.9rem;
+    }
+
+    #question-display {
+        font-size: 14px;
+    }
+}

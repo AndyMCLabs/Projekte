@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einfacher Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+</head>
+
+<body>
+    <!-- Container für den gesamten Chatbot -->
+    <div id="chat-container" role="region" aria-labelledby="chat-title">
+        <!-- Unsichtbarer Titel für Screenreader -->
+        <h1 id="chat-title" class="visually-hidden">Chatbot</h1>
+        
+        <!-- Fenster für den Chatverlauf -->
+        <div id="chat-window" role="document" aria-label="Chatverlauf">
+            <!-- Bereich für die Nachrichten -->
+            <div id="messages" aria-live="polite" aria-label="Nachrichtenbereich"></div>
+        </div>
+
+        <!-- Eingabebereich für den Benutzer -->
+        <div id="input-container">
+            <!-- Textfeld für Benutzereingaben -->
+            <input type="text" id="user-input" placeholder="Schreibe eine Nachricht..." aria-label="Benutzereingabe" title="Geben Sie Ihre Nachricht hier ein." />
+            <!-- Button zum Senden der Nachricht -->
+            <button id="send-button" aria-label="Nachricht senden" title="Nachricht absenden">Senden</button>
+        </div>
+
+        <!-- Abschnitt für mögliche Prompts -->
+        <p>Mögliche Prompts:</p>
+        <div id="question-display" onclick="setInput()" aria-label="Auswahl möglicher Prompts" title="Klicken Sie, um eine der vorgegebenen Fragen auszuwählen."></div>
+        
+        <!-- Button zum Starten eines neuen Chats -->
+        <button id="new-chat-button" aria-label="Neuen Chat starten" title="Starten Sie einen neuen Chat">Neuer Chat</button>
+    </div>
+
+    <!-- Einbindung des Skripts für die Funktionalität -->
+    <script src="script.js"></script>
+</body>
+
+</html>
