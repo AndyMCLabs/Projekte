@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Attack</title>
+    <style>
+        /* Allgemeine Styles */
+        body {
+            background-color: rgb(75, 75, 75);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: black;
+            /* Fallback-Farbe */
+            background: linear-gradient(to right, red, orange, yellow, green, blue, purple);
+            -webkit-background-clip: text;
+            /* Für Safari */
+            background-clip: text;
+            /* Für andere Browser */
+            -webkit-text-fill-color: transparent;
+            /* Für Safari */
+            font-size: 2.5em;
+            /* Schriftgröße anpassen */
+            margin-bottom: 20px;
+        }
+
+        /* Canvas-Stil */
+        canvas {
+            border: 2px solid #444;
+            cursor: crosshair;
+            background-color: rgb(225, 225, 225);
+            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+        }
+
+        /* Bedienelemente Stil */
+        label {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        input[type="color"],
+        input[type="range"],
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        input[type="color"] {
+            height: 40px;
+            width: 100px;
+            cursor: pointer;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgb(100, 100, 100);
+            height: 5px;
+            border-radius: 5px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            background-color: #a647ff;
+            /* Rote Farbe für den Löschen-Button */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #9c18e8;
+            /* Dunklere Farbe beim Hover */
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            canvas {
+                width: 100%;
+                height: auto;
+            }
+
+            input[type="range"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Drawing Attack</h1>
+    
+    <!-- Zeichenfläche für das Zeichnen -->
+    <canvas id="zeichenflaeche" width="1200" height="600" aria-label="Zeichenfläche zum Zeichnen" tabindex="0"></canvas>
+    
+    <!-- Farbauswahl -->
+    <label for="farbe">Farbe:</label>
+    <input type="color" id="farbe" value="#000000" aria-label="Wählen Sie eine Farbe zum Zeichnen">
+
+    <!-- Pinselgrößenauswahl -->
+    <label for="pinselgroesse">Pinselgröße:</label>
+    <input type="range" id="pinselgroesse" min="1" max="20" value="5" aria-label="Passen Sie die Pinselgröße an">
+
+    <!-- Zeichenfläche löschen -->
+    <button id="loeschen" aria-label="Zeichenfläche löschen">Löschen</button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
+
+<!--
+
+Gesamtpunktezahl
+Gesamtpunktezahl: 88/100
+
+Feedback
+Zugänglichkeit: Du hast bereits gute Schritte in Richtung Zugänglichkeit unternommen, aber du könntest noch mehr ARIA-Rollen und -Attribute in Betracht ziehen, um die Benutzererfahrung weiter zu verbessern.
+
+Modularität: Überlege, einige deiner Funktionen in separate Module oder Klassen zu unterteilen, besonders wenn das Projekt wächst. Dies hilft, den Code wartbarer zu machen.
+
+Zusätzliche Funktionen: Du könntest überlegen, Funktionen hinzuzufügen, wie das Speichern und Laden von Zeichnungen oder das Hinzufügen von verschiedenen Pinseltypen.
+
+Insgesamt hast du eine großartige Grundlage gelegt! Es macht Spaß, mit dem Code zu arbeiten, und ich hoffe, die Vorschläge helfen dir weiter! Wenn du noch Fragen hast oder weitere Unterstützung benötigst, lass es mich wissen.
+
+-->
