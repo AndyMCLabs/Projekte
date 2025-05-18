@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klick the Button</title>
+    <style>
+        body {
+            font-family: 'Garamond', serif;
+            font-size: 1.5rem;
+            background-color: #2c2c2c; /* Dunkler Hintergrund */
+            color: #e1e1e1; /* Helle Textfarbe für Kontrast */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            justify-content: top;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            background-color: #333;
+            color: #f38c32; /* Sandfarbe für einen alten Burg-Effekt */
+            padding: 20px;
+            margin: 0;
+            border-bottom: 3px solid #444; /* Border für zusätzlichen Effekt */
+            font-size: 2.5em;
+            width: 100%;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: #4f4f4f; /* Dunkleres Grau für den Container */
+            border: 2px solid #666; /* Leichte Umrandung für den Container */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        button {
+            background-color: #6c757d; /* Grauton für einen rustikalen Look */
+            color: #fff;
+            border: 2px solid #444;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.3s ease; /* Weicher Übergang bei Farbwechsel */
+        }
+        button:hover {
+            background-color: #a20c0f;
+        }
+        p {
+            color: skyblue;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        #status {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dd5942; /* Rot für Statusnachricht */
+        }
+        #highscore {
+            margin-top: 10px;
+            background-color: #3b3b3b;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #666;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Klick the Button</h1>
+    <div class="container">
+        <button id="clickButton">Klicke mich!</button>
+        <p>Du hast den Button <span id="clickCount">0</span> Mal geklickt.</p>
+        <p>Verbleibende Zeit: <span id="timer">30</span> Sekunden</p>
+        <p id="status">Das Spiel läuft...</p>
+        <button id="restartButton">Neustart</button>
+        <div id="highscore">
+            <h2>Highscores:</h2>
+            <ul id="highscoreList">
+                <!-- Highscores werden hier angezeigt -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Initialisiere die Klick-Zähl-Variable und den Timer
+        let clickCount = 0;
+        let gameActive = true;
+        const maxClicks = 450;  // Angepasst auf 450 Klicks
+        const timerDuration = 30; // Angepasst auf 30 Sekunden
+
+        // Hole die Referenzen auf die HTML-Elemente
+        const clickButton = document.getElementById('clickButton');
+        const clickCountDisplay = document.getElementById('clickCount');
+        const timerDisplay = document.getElementById('timer');
+        const statusDisplay = document.getElementById('status');
+        const restartButton = document.getElementById('restartButton');
+        const highscoreList = document.getElementById('highscoreList');
+
+        // Farben für den Button bei jedem Klick
+        const buttonColors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FF8C33', '#33FFD7'];
+
+        // Funktion, die bei jedem Klick aufgerufen wird
+        function handleClick() {
+            if (!gameActive) return; // Wenn das Spiel nicht aktiv ist, keine weiteren Klicks zulassen
+            clickCount++;
+            clickCountDisplay.textContent = clickCount;
+
+            // Ändere die Button-Farbe
+            const randomColor = buttonColors[Math.floor(Math.random() * buttonColors.length)];
+            clickButton.style.backgroundColor = randomColor;
+
+            // Überprüfe, ob das Spiel gewonnen wurde
+            if (clickCount >= maxClicks) {
+                endGame('Dein Klickgeschwindigkeit ist unmenschlich! Wahnsinn!');
+            }
+        }
+
+        // Funktion zum Starten des Timers
+        function startTimer() {
+            let timeLeft = timerDuration;
+            timerDisplay.textContent = timeLeft;
+
+            // Lösche den alten Timer, falls er existiert
+            if (typeof timerInterval !== 'undefined') {
+                clearInterval(timerInterval);
+            }
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    endGame('Nicht schlecht. Da geht aber bestimmt mehr!');
+                }
+            }, 1000); // Update alle 1 Sekunde
+        }
+
+        // Funktion zum Beenden des Spiels
+        function endGame(message) {
+            gameActive = false;
+            statusDisplay.textContent = message;
+
+            // Speichere den Highscore, falls vorhanden
+            saveHighscore(clickCount);
+        }
+
+        // Funktion zum Neustarten des Spiels
+        function restartGame() {
+            clickCount = 0;
+            gameActive = true;
+            clickCountDisplay.textContent = clickCount;
+            statusDisplay.textContent = 'Das Spiel läuft...';
+            startTimer(); // Timer neu starten
+        }
+
+        // Funktion zum Speichern des Highscores
+        function saveHighscore(score) {
+            let highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+            highscores.push(score);
+            highscores.sort((a, b) => b - a); // Höchster Score zuerst
+            highscores = highscores.slice(0, 5); // Nur die Top 5 Highscores behalten
+            localStorage.setItem('highscores', JSON.stringify(highscores));
+            displayHighscores();
+        }
+
+        // Funktion zum Laden und Anzeigen der Highscores
+        function displayHighscores() {
+            let highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+            highscoreList.innerHTML = highscores.map(score => `<li>${score} Klicks</li>`).join('');
+        }
+
+        // Event-Listener für die Buttons
+        clickButton.addEventListener('click', handleClick);
+        restartButton.addEventListener('click', restartGame);
+
+        // Starte den Timer und lade Highscores, wenn die Seite geladen wird
+        window.onload = function() {
+            startTimer();
+            displayHighscores();
+        };
+    </script>
+</body>
+</html>
