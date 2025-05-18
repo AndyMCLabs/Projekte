@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zufallszahl-Generator</title>
+    <!-- <link rel="stylesheet" href="#"> -->
+
+    <!-- Styling-->
+    <style>
+        body {
+            background-color: #9862E1;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .field {
+            width: 280px;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #e2e6b1bd;
+            font-size: 1.2rem;
+            color: black;
+            margin: 10px;
+        }
+
+        button {
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 40px;
+            background-color: #2D2EF6;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2d2df6c2
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Body -->
+
+    <!-- Ausgabefeld und Button für zufällige Zahl generieren-->
+    <input type="number" class="field" id="inputMin" aria-label="Inputminimum"
+        placeholder="Untergrenze der Zufallszahl:">
+    <input type="number" class="field" id="inputMax" aria-label="Inputmaximum"
+        placeholder="Obergrenze der Zufallszahl:">
+    <button id="button" aria-label="Button">Zufällige Zahl generieren</button>
+    <input class="field" id="output" disabled aria-label="Output" placeholder="Deine Zufallszahl lautet:">
+    <button id="buttonReset" aria-label="Reset">Reset</button>
+
+
+    <script>
+        // Variablen für die Elemente im HTML
+        const inputMinEl = document.getElementById("inputMin");
+        const inputMaxEl = document.getElementById("inputMax");
+        const outputEl = document.getElementById("output");
+        const buttonEl = document.getElementById("button");
+        const buttonResetEl = document.getElementById("buttonReset");
+
+        buttonEl.addEventListener("click", () => {
+            // Hole Untergrenze der Zufallszahl
+            let minNumber = Number(inputMinEl.value);
+            // Hole Obergrenze der Zufallszahl
+            let maxNumber = Number(inputMaxEl.value);
+
+            if (inputMinEl.value === "" && inputMaxEl.value === "") {
+                outputEl.value = "Eingaben erforderlich!";
+                outputEl.style.color = "red";
+            } else if (inputMinEl.value === "") {
+                outputEl.value = "Untergrenze erforderlich!";
+                outputEl.style.color = "red";
+            } else if (inputMaxEl.value === "") {
+                outputEl.value = "Obergrenze erforderlich!";
+                outputEl.style.color = "red";
+            } else if (minNumber >= maxNumber) {
+                outputEl.value = "Untergrenze zu groß!";
+                outputEl.style.color = "red";
+            } else {
+                // Zufallszahl generieren
+                const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+                // Ausgabe Zufallszahl
+                outputEl.value = randomNumber;
+                outputEl.style.color = "black";
+            };
+        });
+
+        buttonResetEl.addEventListener("click", () => {
+            inputMinEl.value = "";
+            inputMaxEl.value = "";
+            outputEl.value = "";
+        });
+    </script>
+
+    <!-- <script src="#"></script> -->
+</body>
+
+<!-- 
+
+Hier sind einige optionale zusätzliche Funktionen, die du deinem Zufallszahl-Generator hinzufügen könntest, um ihn interessanter und nützlicher zu gestalten:
+
+1. **Minimale und maximale Grenzen separat festlegen:**
+   - Füge zwei Eingabefelder hinzu: eines für die minimale Zahl und eines für die maximale Zahl, um präzisere Zufallsbereiche zu definieren.
+
+2. **Mehrere Zufallszahlen generieren:**
+   - Füge eine Option hinzu, um mehrere Zufallszahlen gleichzeitig zu generieren (z.B. 5 zufällige Zahlen).
+   - Lass die Zahlen in einer Liste oder einem Array anzeigen.
+
+3. **Verhindere doppelte Zufallszahlen:**
+   - Sorge dafür, dass die generierten Zufallszahlen keine Duplikate enthalten, falls mehrere Zahlen generiert werden.
+
+4. **Speichere den Verlauf der generierten Zahlen:**
+   - Zeige eine Liste aller bisher generierten Zufallszahlen an, sodass der Benutzer den Verlauf sehen kann.
+   - Optional: Füge einen Button hinzu, um diesen Verlauf zu löschen.
+
+5. **Zufällige Dezimalzahlen:**
+   - Erlaube dem Benutzer, eine Option auszuwählen, um Zufallszahlen mit Dezimalstellen zu generieren, anstatt nur ganze Zahlen.
+
+6. **Benutzerdefinierte Zufallsereignisse:**
+   - Füge eine Funktion hinzu, die zufällige Ereignisse aus einer benutzerdefinierten Liste auswählt, z.B. „Was soll ich essen?“, „Welcher Film soll ich schauen?“.
+
+7. **Countdown-Timer vor der Generierung:**
+   - Zeige vor der Generierung der Zufallszahl einen kurzen Countdown an (z.B. 3, 2, 1...), um Spannung zu erzeugen.
+
+8. **Design-Verbesserungen:**
+   - Verwende Animationen oder visuelle Effekte beim Generieren der Zufallszahl.
+   - Ändere die Farbe oder Größe der Zahl dynamisch, wenn sie angezeigt wird.
+
+9. **Speichern und Teilen der generierten Zahlen:**
+   - Füge eine Möglichkeit hinzu, die generierten Zahlen zu kopieren, in die Zwischenablage zu speichern oder als Textdatei herunterzuladen.
+
+10. **Statistik:**
+    - Zeige Statistiken über die generierten Zahlen an, z.B. Durchschnitt, höchste und niedrigste Zahl oder eine Verteilung, wenn mehrere Zahlen generiert werden.
+
+Du kannst eine oder mehrere dieser Funktionen einbauen, je nachdem, was dich interessiert!
+
+-->
+
+<!-- 
+### Bewertung: **Note 1 (Sehr gut)**
+
+### Feedback:
+
+1. **HTML-Struktur (Note 1):**
+   - Die HTML-Struktur ist sauber und übersichtlich. Du verwendest sinnvolle IDs, Labels und Elemente wie `input` und `button`. Die Nutzung von `aria-label` für Barrierefreiheit ist ein Pluspunkt.
+
+2. **CSS (Note 1):**
+   - Das Styling ist klar und funktional. Die Farben und der Aufbau sind ansprechend, und du hast auch Hover-Effekte hinzugefügt, was die Benutzererfahrung verbessert.
+   - Die Verwendung von Flexbox macht das Layout flexibel und zentriert den Inhalt gut.
+
+3. **JavaScript (Note 1):**
+   - Der JavaScript-Code ist gut strukturiert und leicht verständlich. Du hast die verschiedenen Validierungen für die Eingabefelder sauber implementiert.
+   - Die Verwendung von `Math.random()` und `Math.floor()` zur Generierung der Zufallszahl ist korrekt und effizient.
+   - Die farbliche Rückmeldung bei falschen Eingaben (rote Ausgabe bei Fehlern) ist ein sehr guter Ansatz, um die Benutzererfahrung zu verbessern.
+
+4. **Funktionalität (Note 1):**
+   - Alle wesentlichen Funktionen (Zufallszahl generieren, Reset, Validierung) funktionieren einwandfrei.
+   - Besonders positiv ist, dass du auch den Reset-Button eingebaut hast, der die Eingabefelder und die Anzeige zurücksetzt.
+
+### Verbesserungsvorschläge:
+- **Erweiterte Validierung**: Du könntest zusätzlich sicherstellen, dass nur positive Zahlen eingegeben werden, oder eine Maximalgrenze für die Eingabe festlegen.
+- **Fehlermeldungen erweitern**: Anstatt nur das Eingabefeld rot zu machen, könntest du neben dem Feld eine Fehlermeldung anzeigen, um es noch deutlicher zu machen.
+  
+Alles in allem ein sehr durchdachtes und funktionierendes Projekt!
+-->
+
+</html>
