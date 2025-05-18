@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahl Prüfen</title>
+  <style>
+    body {
+      background-color: #2e2e2e;
+      color: #f0f0f0;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #ffcc00;
+      font-size: 3rem;
+    }
+    button {
+      background-color: #ff0000;
+      color: #ffffff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+    .mario-block {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Brick_Block_Super_Mario.png/256px-Brick_Block_Super_Mario.png') no-repeat;
+      width: 64px;
+      height: 64px;
+      display: inline-block;
+      margin: 20px;
+    }
+    .mario-image {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Super_Mario_64_Artwork.png/480px-Super_Mario_64_Artwork.png') no-repeat;
+      width: 200px;
+      height: 200px;
+      background-size: cover;
+      margin: 20px;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Zahl Prüfen</h1>
+    <p>Ist die Zahl kleiner / gleich 0?</p>
+    <button onclick="zahlenCheck()">Prüfe eine Zahl</button>
+    <div class="mario-block"></div>
+    <div class="mario-image"></div>
+  </div>
+
+  <script>
+    function zahlenCheck() {
+      let zahl1 = Number(prompt("Gib bitte eine Zahl ein"));
+
+      if (zahl1 <= 0) {
+        alert("Deine Zahl ist kleiner oder gleich 0");
+      } else {
+        alert("Deine Zahl ist größer als 0");
+      }
+    }
+  </script>
+</body>
+</html>
